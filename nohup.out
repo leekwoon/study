@@ -79,3 +79,113 @@ Traceback (most recent call last):
   File "C:\Users\Han\djangogirls\blog\admin.py", line 5, in <module>
     admin.site.resigster(Post)
 AttributeError: 'AdminSite' object has no attribute 'resigster'
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 27, 2016 - 20:05:33
+Django version 1.8, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[27/Mar/2016 20:05:34]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 20:05:37]"GET /admin HTTP/1.1" 301 0
+[27/Mar/2016 20:05:37]"GET /admin/ HTTP/1.1" 302 0
+[27/Mar/2016 20:05:37]"GET /admin/login/?next=/admin/ HTTP/1.1" 200 1919
+[27/Mar/2016 20:05:38]"GET /static/admin/css/login.css HTTP/1.1" 200 940
+[27/Mar/2016 20:05:38]"GET /static/admin/css/base.css HTTP/1.1" 200 14049
+[27/Mar/2016 20:05:38]"GET /static/admin/img/nav-bg.gif HTTP/1.1" 200 265
+[27/Mar/2016 20:06:52]"POST /admin/login/?next=/admin/ HTTP/1.1" 200 2055
+[27/Mar/2016 20:06:52]"GET /static/admin/img/icon_error.gif HTTP/1.1" 200 319
+[27/Mar/2016 20:06:54]"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+[27/Mar/2016 20:06:54]"GET /admin/ HTTP/1.1" 200 3645
+[27/Mar/2016 20:06:54]"GET /static/admin/css/dashboard.css HTTP/1.1" 200 434
+[27/Mar/2016 20:06:54]"GET /static/admin/img/default-bg.gif HTTP/1.1" 200 836
+[27/Mar/2016 20:06:54]"GET /static/admin/img/icon_addlink.gif HTTP/1.1" 200 119
+[27/Mar/2016 20:06:54]"GET /static/admin/img/icon_changelink.gif HTTP/1.1" 200 119
+[27/Mar/2016 20:07:13]"GET /admin/blog/post/ HTTP/1.1" 200 3144
+[27/Mar/2016 20:07:13]"GET /static/admin/css/changelists.css HTTP/1.1" 200 5254
+[27/Mar/2016 20:07:13]"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 4464
+[27/Mar/2016 20:07:13]"GET /static/admin/js/core.js HTTP/1.1" 200 7522
+[27/Mar/2016 20:07:13]"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 326
+[27/Mar/2016 20:07:13]"GET /admin/jsi18n/ HTTP/1.1" 200 2372
+[27/Mar/2016 20:07:13]"GET /static/admin/js/actions.js HTTP/1.1" 200 4910
+[27/Mar/2016 20:07:13]"GET /static/admin/js/jquery.js HTTP/1.1" 200 284184
+[27/Mar/2016 20:07:13]"GET /static/admin/img/tooltag-add.png HTTP/1.1" 200 119
+[27/Mar/2016 20:07:13]"GET /static/admin/img/nav-bg-reverse.gif HTTP/1.1" 200 178
+[27/Mar/2016 20:07:15]"GET /admin/ HTTP/1.1" 200 3645
+[27/Mar/2016 20:07:45]"GET /admin/blog/post/add/ HTTP/1.1" 200 7562
+[27/Mar/2016 20:07:45]"GET /static/admin/css/forms.css HTTP/1.1" 200 6266
+[27/Mar/2016 20:07:45]"GET /static/admin/js/related-widget-wrapper.js HTTP/1.1" 200 857
+[27/Mar/2016 20:07:45]"GET /admin/jsi18n/ HTTP/1.1" 200 2372
+[27/Mar/2016 20:07:45]"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 17161
+[27/Mar/2016 20:07:45]"GET /static/admin/css/widgets.css HTTP/1.1" 200 10430
+[27/Mar/2016 20:07:45]"GET /static/admin/js/calendar.js HTTP/1.1" 200 5969
+[27/Mar/2016 20:07:45]"GET /static/admin/img/icon_calendar.gif HTTP/1.1" 200 192
+[27/Mar/2016 20:07:45]"GET /static/admin/img/icon_clock.gif HTTP/1.1" 200 390
+[27/Mar/2016 20:08:45]"GET /static/admin/img/default-bg-reverse.gif HTTP/1.1" 200 835
+[27/Mar/2016 20:08:45]"POST /admin/blog/post/add/ HTTP/1.1" 302 0
+[27/Mar/2016 20:08:45]"GET /admin/blog/post/ HTTP/1.1" 200 4464
+[27/Mar/2016 20:08:45]"GET /admin/jsi18n/ HTTP/1.1" 200 2372
+[27/Mar/2016 20:08:45]"GET /static/admin/img/icon_success.gif HTTP/1.1" 200 341
+[27/Mar/2016 20:08:50]"GET /admin/blog/post/1/ HTTP/1.1" 200 7788
+[27/Mar/2016 20:08:50]"GET /admin/jsi18n/ HTTP/1.1" 200 2372
+[27/Mar/2016 20:08:50]"GET /static/admin/img/icon_deletelink.gif HTTP/1.1" 200 181
+[27/Mar/2016 20:08:52]"GET /admin/ HTTP/1.1" 200 3958
+[27/Mar/2016 20:08:54]"GET /admin/blog/post/ HTTP/1.1" 200 4313
+[27/Mar/2016 20:08:54]"GET /admin/jsi18n/ HTTP/1.1" 200 2372
+[27/Mar/2016 20:09:00]"GET /admin/blog/post/add/ HTTP/1.1" 200 7562
+[27/Mar/2016 20:09:00]"GET /admin/jsi18n/ HTTP/1.1" 200 2372
+[27/Mar/2016 20:09:14]"POST /admin/blog/post/add/ HTTP/1.1" 302 0
+[27/Mar/2016 20:09:14]"GET /admin/blog/post/ HTTP/1.1" 200 4667
+[27/Mar/2016 20:09:14]"GET /admin/jsi18n/ HTTP/1.1" 200 2372
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 27, 2016 - 21:03:07
+Django version 1.8, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[27/Mar/2016 21:03:10]"GET / HTTP/1.1" 200 1767
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 27, 2016 - 21:05:17
+Django version 1.8, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[27/Mar/2016 21:05:51]"GET / HTTP/1.1" 500 82918
+[27/Mar/2016 21:06:05]"GET / HTTP/1.1" 500 89751
+[27/Mar/2016 21:25:00]"GET / HTTP/1.1" 500 98652
+5801
+[27/Mar/2016 21:04:25]"GET / HTTP/1.1" 500 89600
+[27/Mar/2016 21:05:17]"GET / HTTP/1.1" 200 1767
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 27, 2016 - 21:33:19
+Django version 1.8, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[27/Mar/2016 21:39:55]"GET / HTTP/1.1" 500 93635
+[27/Mar/2016 21:39:57]"GET / HTTP/1.1" 500 93635
+[27/Mar/2016 21:40:49]"GET / HTTP/1.1" 500 93635
+[27/Mar/2016 21:32:11]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:33:01]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:33:03]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:33:05]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:34:33]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:34:35]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:34:53]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:34:55]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:36:31]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:36:49]"GET /admin HTTP/1.1" 301 0
+[27/Mar/2016 21:36:49]"GET /admin/ HTTP/1.1" 200 4230
+[27/Mar/2016 21:36:49]"GET /static/admin/css/base.css HTTP/1.1" 304 0
+[27/Mar/2016 21:36:49]"GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[27/Mar/2016 21:36:49]"GET /static/admin/img/icon_addlink.gif HTTP/1.1" 304 0
+[27/Mar/2016 21:36:49]"GET /static/admin/img/default-bg.gif HTTP/1.1" 304 0
+[27/Mar/2016 21:36:49]"GET /static/admin/img/icon_changelink.gif HTTP/1.1" 304 0
+[27/Mar/2016 21:36:49]"GET /static/admin/img/nav-bg.gif HTTP/1.1" 304 0
+[27/Mar/2016 21:36:53]"GET /blog HTTP/1.1" 404 2082
+[27/Mar/2016 21:36:56]"GET / HTTP/1.1" 500 93086
+[27/Mar/2016 21:37:59]"GET / HTTP/1.1" 500 93285
+[27/Mar/2016 21:38:01]"GET / HTTP/1.1" 500 93285
