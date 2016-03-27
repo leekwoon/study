@@ -1,0 +1,81 @@
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 27, 2016 - 19:00:27
+Django version 1.8, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[27/Mar/2016 19:00:31]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:00:33]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:00:34]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:00:34]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:00:34]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:00:58]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:01:04]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:01:08]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:01:17]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:01:21]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:01:38]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 19:02:38]"GET / HTTP/1.1" 200 1767
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 27, 2016 - 19:04:33
+Django version 1.8, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[27/Mar/2016 19:04:36]"GET / HTTP/1.1" 200 1767
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 27, 2016 - 19:17:54
+Django version 1.8, using settings 'mysite.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[27/Mar/2016 20:01:08]"GET / HTTP/1.1" 200 1767
+[27/Mar/2016 20:02:45]"GET / HTTP/1.1" 200 1767
+Traceback (most recent call last):
+  File "manage.py", line 10, in <module>
+    execute_from_command_line(sys.argv)
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\core\management\__init__.py", line 338, in execute_from_command_line
+    utility.execute()
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\core\management\__init__.py", line 312, in execute
+    django.setup()
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\apps\registry.py", line 115, in populate
+    app_config.ready()
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\contrib\admin\apps.py", line 22, in ready
+    self.module.autodiscover()
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\contrib\admin\__init__.py", line 24, in autodiscover
+    autodiscover_modules('admin', register_to=site)
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\utils\module_loading.py", line 74, in autodiscover_modules
+    import_module('%s.%s' % (app_config.name, module_to_search))
+  File "C:\Anaconda2\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\Han\djangogirls\blog\admin.py", line 5, in <module>
+    admin.site.resigster(Post)
+AttributeError: 'AdminSite' object has no attribute 'resigster'
+1
+Traceback (most recent call last):
+  File "manage.py", line 10, in <module>
+    execute_from_command_line(sys.argv)
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\core\management\__init__.py", line 338, in execute_from_command_line
+    utility.execute()
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\core\management\__init__.py", line 312, in execute
+    django.setup()
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\apps\registry.py", line 115, in populate
+    app_config.ready()
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\contrib\admin\apps.py", line 22, in ready
+    self.module.autodiscover()
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\contrib\admin\__init__.py", line 24, in autodiscover
+    autodiscover_modules('admin', register_to=site)
+  File "C:\Users\Han\djangogirls\myvenv\lib\site-packages\django\utils\module_loading.py", line 74, in autodiscover_modules
+    import_module('%s.%s' % (app_config.name, module_to_search))
+  File "C:\Anaconda2\Lib\importlib\__init__.py", line 37, in import_module
+    __import__(name)
+  File "C:\Users\Han\djangogirls\blog\admin.py", line 5, in <module>
+    admin.site.resigster(Post)
+AttributeError: 'AdminSite' object has no attribute 'resigster'
