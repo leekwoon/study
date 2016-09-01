@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>0. Approximate Inference</title>
+  <link rel="stylesheet" href="/kyo-ml-study/css/main.css">
+  <link rel="stylesheet" href="/kyo-ml-study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/kyo-ml-study/docs/chapter10/0.html">
+  <script src="/kyo-ml-study/js/jquery-1.12.0.min.js"></script>     
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/kyo-ml-study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/kyo-ml-study/"><strong>kyo-ml-study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <!-- for drop-down navi -->
+            <li class="dropdown">
+              <a href="/kyo-ml-study" class="dropdown-toggle" data-toggle="dropdown"><strong>Chapter
+                  <b class="caret"></b></strong>
+              </a>
+              <ul class="dropdown-menu">
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter01/0">1. Introduction</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter02/0">2. Probabilty Distribution</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter03/0">3. Linear Models for Regression</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter04/0">4. Linear Models for Classification</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter05/0">5. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter06/0">6. Probabilty Distribution</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter07/0">7. Linear Models for Regression</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter08/0">8. Linear Models for Classification</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter09/0">9. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter10/0">10. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter11/0">11. Neural Networks</a>
+                </li>
+                
+                
+              </ul>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter01/0"><strong>1</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter02/0"><strong>2</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter03/0"><strong>3</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter04/0"><strong>4</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter05/0"><strong>5</strong></a>
+            </li>
+            
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">6</strong></a></li>
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">7</strong></a></li>
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter08/0"><strong>8</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter09/0"><strong>9</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li  class="active" >
+              <a href="/kyo-ml-study/docs/chapter10/0"><strong>10</strong></a>
+            </li>
+            
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">11</strong></a></li>
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Chapter. 10</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/kyo-ml-study/docs/chapter10/0">0. Approximate Inference</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-ml-study/docs/chapter10/1">1. Variational Inference</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-ml-study/docs/chapter10/2">2. Variational Mixture of Gaussians</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/kyo-ml-study/blob/gh-pages/docs/chapter10/0.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>0. Approximate Inference</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <ul>
+  <li>잠재 변수 \( {\bf Z} \) 가 존재하고 관찰 데이터 \( {\bf X} \) 가 주어진 모델에서는
+    <ul>
+      <li>\( p({\bf Z}|{\bf X}) \) 를 구하는 작업과,</li>
+      <li>앞서 구한 \( p({\bf Z}|{\bf X}) \) 를 사용하여 \( p({\bf X}, {\bf Z}) \) 의 기대값(expectation)을 구하는 작업이 가장 중요한 작업이다.</li>
+    </ul>
+  </li>
+  <li>이러한 모델은 다음 두 가지의 형태로 나누어 생각해 볼 수 있다.
+    <ul>
+      <li>모델의 파라미터의 값이 이미 결정(deterministic)되어 있는 모델</li>
+      <li>혹은 fully Bayesian 모델을 사용하여 파라미터에 대한 사전 분포를 고려하는 모델</li>
+    </ul>
+  </li>
+  <li>앞 장에서는 이러한 모델의 식을 계산하는 방법으로 <em>EM</em> 알고리즘을 살펴보았다.
+    <ul>
+      <li>이 알고리즘은 잠재 변수 \( Z \) 의 사후 분포와 관련된 complete-data 로그 가능도 함수의 기대값을 계산한다.</li>
+    </ul>
+  </li>
+  <li>그런데 사실 현실적인 문제를 이런 모델로 해결하기에는 많은 어려움이 따른다.
+    <ul>
+      <li>잠재 변수의 차원이 높은 경우 계산이 힘들다.</li>
+      <li>기대값 자체를 구하기가 어려운 모델인 경우도 존재한다.</li>
+    </ul>
+  </li>
+  <li>사후분포와 기대값을 구하기 어려운 이유
+    <ul>
+      <li>연속 변수
+        <ul>
+          <li>적분 식이 닫힌 형태(closed form)가 아니다.</li>
+          <li>적분식에 포함된 변수의 차수가 너무 높아 적분이 어렵다.</li>
+        </ul>
+      </li>
+      <li>이산 변수
+        <ul>
+          <li>합을 구하는 식을 계산할 때 종종 연산량이 지수로 증가한다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>그렇다면 해결 방법은 무엇일까? 바로 정확한 값이 아닌 근사 추정을 수행한다.</li>
+  <li>근사 추정에는 2가지 방법이 있다.
+    <ul>
+      <li>확률적인 방법 (stochastic)
+        <ul>
+          <li>Markov chain Monte Carlo
+            <ul>
+              <li>베이지언 추론에서 많이 사용한다.</li>
+              <li>비교적 많은 계산량을 수반한다.</li>
+              <li>따라서 작은 크기를 가지는 문제를 해결하는데 더 적합하다.</li>
+              <li>이 방법은 11장에서 다룰 것이다.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>결정론적인 방법 (deterministic)
+        <ul>
+          <li>변분 추론 (Variational Inference)</li>
+          <li>이를 변분 베이즈 (Variational Bayes)라고도 부른다.</li>
+          <li>사후 분포를 근사하는 방식을 사용한다.</li>
+          <li>비교적 큰 규모를 가지는 응용점에 더 적합하다.</li>
+          <li>하지만 정확한 값을 추론하는 능력은 부족하다.</li>
+          <li>이것은 이번 장에서 다룰 것이다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>4.4절에서 이미 라플라스 근사법(Laplace approximation)을 다루었다.
+    <ul>
+      <li>이는 분산의 최빈값을 이용하여 가우시안 함수로 이를 근사하는 기법이다.</li>
+    </ul>
+  </li>
+  <li>이번 장에서는 결정론적 근사 추정 방식인 변분 추론을 다루게 된다.</li>
+  <li>그리고 이번 장의 마지막에서는 변분 프레임워크의 한 형태인 <em>expectation propagation</em> 에 대해서도 조금 다룰 것이다.</li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+      
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'leekwoongithub'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/kyo-ml-study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

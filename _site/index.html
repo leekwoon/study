@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>kyo-ml-study</title>
+  <link rel="stylesheet" href="/kyo-ml-study/css/main.css">
+  <link rel="stylesheet" href="/kyo-ml-study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/kyo-ml-study/">
+  <script src="/kyo-ml-study/js/jquery-1.12.0.min.js"></script>     
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/kyo-ml-study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/kyo-ml-study/"><strong>kyo-ml-study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <!-- for drop-down navi -->
+            <li class="dropdown">
+              <a href="/kyo-ml-study" class="dropdown-toggle" data-toggle="dropdown"><strong>Chapter
+                  <b class="caret"></b></strong>
+              </a>
+              <ul class="dropdown-menu">
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter01/0">1. Introduction</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter02/0">2. Probabilty Distribution</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter03/0">3. Linear Models for Regression</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter04/0">4. Linear Models for Classification</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter05/0">5. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter06/0">6. Probabilty Distribution</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter07/0">7. Linear Models for Regression</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter08/0">8. Linear Models for Classification</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter09/0">9. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter10/0">10. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter11/0">11. Neural Networks</a>
+                </li>
+                
+                
+              </ul>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter01/0"><strong>1</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter02/0"><strong>2</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter03/0"><strong>3</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter04/0"><strong>4</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter05/0"><strong>5</strong></a>
+            </li>
+            
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">6</strong></a></li>
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">7</strong></a></li>
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter08/0"><strong>8</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter09/0"><strong>9</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter10/0"><strong>10</strong></a>
+            </li>
+            
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">11</strong></a></li>
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-12 col-md-6">
+    <div class="well-sm">
+      <h3>Introduction</h3>
+      <p>이 페이지는 PRML(Pattern Recognition & Machien Learning, Bishop)을 정리한 문서입니다. 관련 교재가 궁금하신 분들은 아래 버튼을 눌러 교재를 확인하시면 됩니다.</p>
+      <p>
+	      <a href="http://research.microsoft.com/en-us/um/people/cmbishop/prml/" target="_blank">
+	        <button type="button" class="btn btn-success">교재 정보</button>
+	      </a>
+      </p>
+    </div>
+    
+    <div class="well-sm">
+      <h3>New Posts</h3>
+      <ul class="post-list">
+	      
+	      <li>
+	        <h4>
+            <a href="/kyo-ml-study/2016/08/31/open.html">kyo-ml-study 사이트 개설</a>
+	        </h4>
+	        <p><span class="post-date">Aug 31, 2016</span></p>
+	        <p>This page was inspired from <a href="http://norman3.github.io/prml/">http://norman3.github.io/prml/</a>.</p>
+
+
+	      </li>
+	      
+      </ul>
+    </div>
+  </div>
+  
+  <div class="col-sm-12 col-md-6">
+    <div class="well-sm">
+      <h3>Chapter 1. 소개 (Introduction)</h3>
+      <ul>
+        <li><a href="/kyo-ml-study/docs/chapter01/0">0. 프롤로그 (Prolog)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter01/1">1. 예제 : 다항식 커브 피팅 (Example: Polynomial Curve Fitting)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter01/2">2. 확률 이론 (Probability Theory)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter01/3">3. 모델 선택 (Model Selection)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter01/4">4. 차원의 저주 (The Curse of Dimension)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter01/5">5. 결정 이론 (Decision Theory)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter01/6">6. 정보 이론 (Information Theory)</a></li>
+      </ul>
+    </div>
+    <div class="well-sm">
+      <h3>Chapter 2. 확률 분포 (Probability Distributions)</h3>
+      <ul>
+        <li><a href="/kyo-ml-study/docs/chapter02/0">0. 프롤로그 (Prolog)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter02/1">1. 이진 변수 (Binary Variables)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter02/2">2. 다항 분포 (Multinomial Variables)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter02/3_1">3. 가우시안 분포 (The Gaussian Distributions) - Part.I</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter02/3_2">3. 가우시안 분포 (The Gaussian Distributions) - Part.II</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter02/3_3">3. 가우시안 분포 (The Gaussian Distributions) - Part.III</a></li>      
+        <li><a href="/kyo-ml-study/docs/chapter02/4">4. 지수 분포족 (The Exponential Family)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter02/5">5. 비모수적 방법들 (Nonparametric Methods)</a></li>
+      </ul>
+    </div>
+    <div class="well-sm">
+      <h3>Chapter 3. 회귀 선형 모델 (Linear Models for Regression)</h3>
+      <ul>
+        <li><a href="/kyo-ml-study/docs/chapter03/0">0. 프롤로그 (Prolog)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter03/1">1. 선형 기저 함수 모델 (Linear Basis Function Model)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter03/2">2. 바이어스-분산 분해 (The Bias-Variance Decomposition)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter03/3">3. 베이지언 선형 회귀 (Bayesian Linear Regression)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter03/4">4. 베이지언 모델 비교 (Bayesian Model Comparison)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter03/5">5. 증거 영역 근사 (Evidence Approximation)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter03/6">6. 고정된 기저 함수의 제약점 (Limitations of Fixed Basis Functions)</a></li>
+      </ul>
+    </div>
+
+    <div class="well-sm">
+      <h3>Chapter 4. 분류 선형 모델 (Linear Models for Classification)</h3>
+      <ul>
+        <li><a href="/kyo-ml-study/docs/chapter04/0">0. 프롤로그 (Prolog)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter04/1">1. 판별함수 (Discriminant Functions)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter04/2">2. 확률 생성 모델 (Probabilistic Generative Models)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter04/3">3. 확률 판별 모델 (Probabilistic Discriminative Models)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter04/4">4. 라플라스 근사법 (Laplace Approximation)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter04/5">5. 베이지안 로지스틱 회귀 (Bayesian Logistic Regression)</a></li>
+      </ul>
+    </div>
+
+    <div class="well-sm">
+      <h3>Chapter 5. 신경망 (Neural Network)</h3>
+      <ul>
+        <li><a href="/kyo-ml-study/docs/chapter05/0">0. 프롤로그 (Prolog)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter05/1">1. 전방향 네트워트 (Feed-forward Network Functions)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter05/2">2. 네트워크 학습 (Network Training)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter05/3">3. 에러 역전파 (Error Backpropagation)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter05/4">4. [작성중] 헤시안 행렬 (Hessian Matrix)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter05/5">5. [준비중] 신경망 정칙화 (Regularization in Neural Networks)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter05/6">6. [준비중] 혼합 밀도 네트워크 (Mixture Density Networks)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter05/7">7. [준비중] 베이지안 신경망 (Bayesian Neural Networks)</a></li> 
+      </ul>
+    </div>
+
+    <div class="well-sm">
+      <h3>Chapter 6. 커널 메소드 (Kernel Method) (SKIP)</h3>
+    </div>
+
+    <div class="well-sm">
+      <h3>Chapter 7. 희소 커널 (Sparse Kernel Machines) (SKIP)</h3>
+    </div>
+
+    <div class="well-sm">
+      <h3>Chapter 8. 그래픽 모델 (Graphical Models)</h3>
+      <ul>
+        <li><a href="/kyo-ml-study/docs/chapter08/0">0. 프롤로그 (Prolog)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter08/1">1. 베이지언 네트워크 (Bayesian Networks)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter08/2">2. 조건부 독립 (Conditional Independence)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter08/3">3. [준비중] 마코프 랜덤 필드 (Markov Random Fields)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter08/4">4. [준비중] 그래프 모델 추론 (Inference in Graphical Models)</a></li>
+      </ul>
+    </div>
+    
+    <div class="well-sm">
+      <h3>Chapter 9. 혼합 모델과 EM (Mixture Models and EM)</h3>
+      <ul>
+        <li><a href="/kyo-ml-study/docs/chapter09/0">0. 프롤로그 (Prolog)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter09/1">1. K-평균 클러스터링 (K-means Clustering)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter09/2">2. 가우시안 혼합 분포 (Mixtures of Gaussians)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter09/3">3. EM 의 대안 (An Alternative View of EM)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter09/4">4. EM 일반화 (The EM Algorithm in General)</a></li>
+      </ul>
+    </div>
+
+    <div class="well-sm">
+      <h3>Chapter 10. 변분 추론 (Variational Inference)</h3>
+      <ul>
+        <li><a href="/kyo-ml-study/docs/chapter10/0">0. 프롤로그 (Prolog)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter10/1">1. 변분추론 (Variational Inference)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter10/2">2. [준비중] 변분 혼합 가우시안 (Variational Mexture of Gaussians)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter10/3">3. [준비중] 변분 선형 회귀 (Variational Linear Regression)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter10/4">4. [준비중] 지수족 분포들 (Exponential Family Distributions)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter10/5">5. [준비중] 지역 변분식 (Local Variational Methods)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter10/6">6. [준비중] 변분 로지스틱 회귀 (Variational Logistic Regression)</a></li>
+        <li><a href="/kyo-ml-study/docs/chapter10/7">7. [준비중] 기대 전파 (Expectation Propagation)</a></li>
+      </ul>
+    </div>
+
+    <div class="well-sm">
+      <h3>Chapter 11. 샘플링 (Sampling Methods)</h3>
+    </div>
+
+    
+  </div>
+</div>
+
+
+
+
+      
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'leekwoongithub'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/kyo-ml-study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

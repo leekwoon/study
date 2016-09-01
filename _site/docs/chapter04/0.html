@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>0. Linear Models for Classification</title>
+  <link rel="stylesheet" href="/kyo-ml-study/css/main.css">
+  <link rel="stylesheet" href="/kyo-ml-study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/kyo-ml-study/docs/chapter04/0.html">
+  <script src="/kyo-ml-study/js/jquery-1.12.0.min.js"></script>     
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/kyo-ml-study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/kyo-ml-study/"><strong>kyo-ml-study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <!-- for drop-down navi -->
+            <li class="dropdown">
+              <a href="/kyo-ml-study" class="dropdown-toggle" data-toggle="dropdown"><strong>Chapter
+                  <b class="caret"></b></strong>
+              </a>
+              <ul class="dropdown-menu">
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter01/0">1. Introduction</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter02/0">2. Probabilty Distribution</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter03/0">3. Linear Models for Regression</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter04/0">4. Linear Models for Classification</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter05/0">5. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter06/0">6. Probabilty Distribution</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter07/0">7. Linear Models for Regression</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter08/0">8. Linear Models for Classification</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter09/0">9. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter10/0">10. Neural Networks</a>
+                </li>
+                
+                
+                
+                <li >
+                  <a href="/kyo-ml-study/docs/chapter11/0">11. Neural Networks</a>
+                </li>
+                
+                
+              </ul>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter01/0"><strong>1</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter02/0"><strong>2</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter03/0"><strong>3</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li  class="active" >
+              <a href="/kyo-ml-study/docs/chapter04/0"><strong>4</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter05/0"><strong>5</strong></a>
+            </li>
+            
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">6</strong></a></li>
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">7</strong></a></li>
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter08/0"><strong>8</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter09/0"><strong>9</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/kyo-ml-study/docs/chapter10/0"><strong>10</strong></a>
+            </li>
+            
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">11</strong></a></li>
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Chapter. 4</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/kyo-ml-study/docs/chapter04/0">0. Linear Models for Classification</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-ml-study/docs/chapter04/1">1. Discriminant Functions</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-ml-study/docs/chapter04/2">2. Prob. Generative Models</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-ml-study/docs/chapter04/3">3. Prob. Discriminative Models</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-ml-study/docs/chapter04/4">4. Laplace Approximation</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-ml-study/docs/chapter04/5">5. Bayesian Logistic Regression</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/kyo-ml-study/blob/gh-pages/docs/chapter04/0.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>0. Linear Models for Classification</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <ul>
+  <li>지금까지 우리는 아주 간단하게나마(?) 회귀(regression) 모델이 무엇인지 살펴보았다.</li>
+  <li>이번 장에서는 분류(classification) 문제를 다루어보도록 하자.</li>
+  <li>분류 문제란 결국 입력 벡터 \(x \) 로부터 이에 대응되는 이산(discrete) 값을 가지는 타겟 클래스 \(C \) 에 대해 어떤 하나의 클래스에 속하도록 선정하는 작업이다.
+    <ul>
+      <li>이 때 클래스는 \(K \) 개로 \(C_K \) 로 표기한다. ( \(k=1,…,K \) )</li>
+    </ul>
+  </li>
+  <li>하나의 데이터는 하나의 클래스에만 속하게되며, 하나의 클래스는 다른 클래스를 부분적으로도 포함하지 않는다.
+    <ul>
+      <li>클래스는 상호 배타적인 관계이며 따라서 입력 공간(input space)을 각각의 영역들로 나눌 수 있다.</li>
+      <li>이렇게 나누어진 지역을 <em>decision region</em> 이라고 부르며,</li>
+      <li>이를 나누는 경계면을 <em>decision boundaries</em> 또는 <em>decision surfaces</em> 라고 부른다.</li>
+    </ul>
+  </li>
+  <li>이번 장에서는 분류를 하기 위한 선형 모델과 관련된 내용을 학습한다.
+    <ul>
+      <li>즉, 입력 \(x \) 에 대한 선형 함수를 통해 분류 작업을 수행한다.</li>
+      <li>따라서 입력 벡터 \(x \) 가 \(D \) 차원의 벡터라면, 이를 \(D-1 \) 차원의 하이퍼플랜(hyperplanes) 로 나눌 수 있게 된다.</li>
+      <li>만약 이런 선형 식으로 데이터를 나눌수 있다면, 이 데이터는 선형 분리가 가능 ( <em>linearly separable</em> ) 하다라고 한다.</li>
+    </ul>
+  </li>
+  <li>회귀 모델에서는 타겟 값 \(t \) 가 실수 범위의 값 또는 실수 벡터였다.</li>
+  <li>그러나 분류(classification) 문제에서는 보통 표현 가능한 클래스 레이블(label)로 나누어지게 된다.
+    <ul>
+      <li>두 개의 클래스로 나누어지는 문제의 경우 간단하게 \(t\in {0,1} \) 로 정의한다.</li>
+      <li>즉, \(C_1 \) 에 속하는 경우 \(t=1 \) 로, 아닌 경우 \(t=0 \) 으로 처리한다.</li>
+      <li>\(K \) 개의 클래스를 가지는 경우에는 \(t \) 를 간단하게 \(K \) 의 크기를 가지는 이진(binary) 벡터로 정의한다.</li>
+      <li>따라서 \(K=5 \) 이고 클래스가 2에 속하는 경우 타겟 값 \(t \) 를 표현하는 방법은 다음과 같다.</li>
+    </ul>
+  </li>
+</ul>
+
+<script type="math/tex; mode=display">{\bf t}=(0,1,0,0,0)^T \qquad{(4.1)}</script>
+
+<ul>
+  <li>이러한 방식을 <em>1-to-K binary coding scheme</em> 이라고 한다. (이후에도 자주 언급된다.)
+    <ul>
+      <li>물론 비확률 모델에서는 조금 다른 방식으로 이를 표현 할 것이다.</li>
+    </ul>
+  </li>
+  <li>1장에서 분류 문제를 해결하는  3가지 접근법을 간단하게 서술하였다.
+    <ul>
+      <li><em>Discriminant function</em></li>
+      <li><em>Discriminative model</em></li>
+      <li><em>Generative model</em></li>
+    </ul>
+  </li>
+  <li>이와 관련된 사항은 1.5.4 절을 참고할 것.</li>
+  <li>분류를 위한 가장 간단한 접근법은 판별 함수(discriminant function)을 사용하는 것</li>
+  <li>하지만 조건부 확률 분포를 사용하는 방법이 더 강력하다.</li>
+  <li>조건부 확률 분포 \(p(C_k|x) \) 를 결정하기 위한 2가지 방법
+    <ul>
+      <li>직접 모델링 : 데이터로부터 직접적으로 이 분포를 모델링한다. (즉, 사후분포 근사 방식)</li>
+      <li>Generative 접근 방식 : 사후 분로로 부터 사전 확률과 가능도 함수로 나누어 모델링하는 방식</li>
+      <li>우리가 이미 잘 알고 있는 방식이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<script type="math/tex; mode=display">p(C_k|{\bf x})=\dfrac{p({\bf x}|C_k)p(C_k)}{p({\bf x})} \qquad{(4.2)}</script>
+
+<ul>
+  <li>3장에서 살펴보았던 선형 회귀 모델을 응용해서 \(y({\bf x}, {\bf w}) \) 를 이용해 분류기를 작성할 수도 있다.</li>
+  <li>가장 간단한 분류기는 다음과 같은 형태를 취한다.
+    <ul>
+      <li>\(y({\bf x})={\bf w^Tx}+w_0 \)</li>
+      <li>이 경우 \(y \)는 실수 값을 가지게 된다.</li>
+      <li>2-class 문제에서는 분류를 사용하기 위해 이 값을 다시 (0,1) 범위를 가지는 값으로 변환하게 된다.</li>
+      <li>이를 처리하기 위해 비선형 함수를 도입하게 된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<script type="math/tex; mode=display">y({\bf x})=f({\bf w^Tx}+w_0) \qquad{(4.3)}</script>
+
+<ul>
+  <li>기계 학습 분야에서는 이러한 함수 \(f() \) 를 활성 함수( <em>activation function</em> ) 라고 부른다.
+    <ul>
+      <li>그리고 이에 대한 역함수를 <em>link function</em> 이라고 부른다.</li>
+    </ul>
+  </li>
+  <li>\(y({\bf x})=constant \) 에서 결정 평면이 이루어진다. (즉, \({\bf w^Tx}+w_0=constant \) )
+    <ul>
+      <li>\(f() \) 함수가 비선형일지라도 결정 경계는 \(x \) 에 대해 선형이 된다.</li>
+      <li>이러한 이유로 식 위의 식을 <em>generalized linear model</em> 이라고 부른다.</li>
+    </ul>
+  </li>
+  <li>논의를 시작하기에 앞서 3장에서 사용한 기저 함수(basis function)는 일단 도입하지 않기로 한다.
+    <ul>
+      <li>즉, 입력 변수 \(x \) 를 바로 사용하는 형태로 식을 전개할 것이다.</li>
+      <li>기저 함수를 도입하는 것은 좀 더 뒤에서 살펴보기로 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+      
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'leekwoongithub'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/kyo-ml-study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>
