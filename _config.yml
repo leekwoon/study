@@ -1,13 +1,13 @@
 # Site settings
 encoding: utf-8
-title: kyo-ml-study
+title: kyo-study
 
 email: "kyowoon.lee1924@gmail.com"
 url: "http://leekwoon.github.io"
-github_url: "http://github.com/leekwoon/kyo-ml-study"
+github_url: "http://github.com/leekwoon/kyo-study"
 github_editurl: "/blob/gh-pages"
 github_profile: "http://github.com/leekwoon"
-baseurl: "/kyo-ml-study"
+baseurl: "/kyo-study"
 disqus_shortname: leekwoongithub
 
 
