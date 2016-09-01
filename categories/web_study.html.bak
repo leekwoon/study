@@ -34,8 +34,13 @@ layout: default
     </div>
   </div>
   
- 
-    
+  <div class="col-sm-12 col-md-6">
+    <div class="well-sm">
+      <h3>Github</h3>
+      <ul>
+        <li><a href="{{ site.baseurl }}/docs/web_study_docs/github/0">0. 홈페이지 만들기</a></li>
+      </ul>
+    </div>  
   </div>
 </div>
 

@@ -1,78 +1,9 @@
 topnav:
-  - title: Chapter
-    items:
-      - title: 1. Introduction
-        group: Chapter. 1
-        url: /docs/chapter01/0
-      - title: 2. Probabilty Distribution
-        group: Chapter. 2
-        url: /docs/chapter02/0
-      - title: 3. Linear Models for Regression
-        group: Chapter. 3
-        url: /docs/chapter03/0
-      - title: 4. Linear Models for Classification
-        group: Chapter. 4
-        url: /docs/chapter04/0
-      - title: 5. Neural Networks
-        group: Chapter. 5
-        url: /docs/chapter05/0
-      - title: 6. Probabilty Distribution
-        group: Chapter. 6
-        url: /docs/chapter06/0
-      - title: 7. Linear Models for Regression
-        group: Chapter. 7
-        url: /docs/chapter07/0
-      - title: 8. Linear Models for Classification
-        group: Chapter. 8
-        url: /docs/chapter08/0
-      - title: 9. Neural Networks
-        group: Chapter. 9
-        url: /docs/chapter09/0
-      - title: 10. Neural Networks
-        group: Chapter. 10
-        url: /docs/chapter10/0
-      - title: 11. Neural Networks
-        group: Chapter. 11
-        url: /docs/chapter11/0
-
-
-
-  - title: 1
-    group: "Chapter. 1"
+  
+  - title: Machine Learning
+    url: /categories/ml_study
+  - title: Review Of Papers
+    disable: true
     url: /docs/chapter01/0
-  - title: 2
-    group: "Chapter. 2"
-    url: /docs/chapter02/0
-  - title: 3
-    group: "Chapter. 3"
-    url: /docs/chapter03/0
-  - title: 4
-    group: "Chapter. 4"
-    url: /docs/chapter04/0
-  - title: 5
-    group: "Chapter. 5"
-    url: /docs/chapter05/0    
-  - title: 6
-    group: "Chapter. 6"
-    disable: true
-    url: /docs/chapter06/0
-  - title: 7
-    group: "Chapter. 7"
-    disable: true
-    group: chapter07
-    url: /docs/chapter07/0
-  - title: 8
-    group: "Chapter. 8"
-    url: /docs/chapter08/0
-  - title: 9
-    group: "Chapter. 9"
-    url: /docs/chapter09/0
-  - title: 10
-    group: "Chapter. 10"
-    url: /docs/chapter10/0
-  - title: 11
-    group: "Chapter. 11"
-    disable: true
-    url: /docs/chapter11/0
-    
-
+  - title: Web Study
+    url: /categories/web_study
