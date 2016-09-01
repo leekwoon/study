@@ -1,0 +1,23 @@
+# Site settings
+encoding: utf-8
+title: kyo-ml-study
+
+email: "kyowoon.lee1924@gmail.com"
+url: "http://leekwoon.github.io"
+github_url: "http://github.com/leekwoon/kyo-ml-study"
+github_editurl: "/blob/gh-pages"
+github_profile: "http://github.com/leekwoon"
+baseurl: "/kyo-ml-study"
+disqus_shortname: leekwoongithub
+
+
+exclude:
+  - README.md
+  - _site
+  
+highlighter: rouge
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
