@@ -38,7 +38,7 @@ layout: default
     <div class="well-sm">
       <h3>Github</h3>
       <ul>
-        <li><a href="{{ site.baseurl }}/docs/web_study_docs/github/0">0. 홈페이지 만들기</a></li>
+        <li><a href="{{ site.baseurl }}/docs/web_study/github/0">0. 홈페이지 만들기</a></li>
       </ul>
     </div>  
   </div>
