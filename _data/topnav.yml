@@ -1,6 +1,7 @@
 topnav:
   
   - title: Machine Learning
+    disable: true
     url: /categories/ml_study
     disable: true
   - title: Review Of Papers
