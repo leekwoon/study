@@ -5,9 +5,10 @@ title: "Learning convolutional neural networks for graphs"
 ---
 Ref)
 <http://tech.whatap.io/2015/09/11/install-jekyll-on-windows/>
+
 # 1. 배경설명
 ## 1.1 문제 정의 
-<!-- 사진 -->
+![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/2.PNG){:class="center-block" height="500px"}
 주어진 그래프들로 Classify를 하기위한 Representation(표현방식)을 어떻게 학습할 수 있을까. E.g. vector representation
 ## 1.2 어려운점
 <!-- 사진 -->
