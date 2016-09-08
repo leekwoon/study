@@ -1,6 +1,6 @@
 ---
 layout: page-sidenav
-group: "github"
+group: "Deep learning"
 title: "Learning convolutional neural networks for graphs"
 ---
 Ref)
