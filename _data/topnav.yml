@@ -3,9 +3,7 @@ topnav:
   - title: Machine Learning
     disable: true
     url: /categories/ml_study
-    disable: true
   - title: Review Of Papers
-    disable: true
     url: /categories/paper_study
   - title: Web Study
     url: /categories/web_study
