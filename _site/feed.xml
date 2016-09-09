@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kyo-study</title>
+    <description></description>
+    <link>http://leekwoon.github.io/kyo-study/</link>
+    <atom:link href="http://leekwoon.github.io/kyo-study/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 08 Sep 2016 19:47:42 +0900</pubDate>
+    <lastBuildDate>Thu, 08 Sep 2016 19:47:42 +0900</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Machine Learning/Review of Papers/Web Study 탭 추가</title>
+        <description>&lt;p&gt;Contents will be added soon.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 02 Sep 2016 00:00:00 +0900</pubDate>
+        <link>http://leekwoon.github.io/kyo-study/2016/09/02/open-copy.html</link>
+        <guid isPermaLink="true">http://leekwoon.github.io/kyo-study/2016/09/02/open-copy.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>kyo-study 사이트 개설</title>
+        <description>&lt;p&gt;This page was inspired from &lt;a href=&quot;http://norman3.github.io/prml/&quot;&gt;http://norman3.github.io/prml/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It will be only used for leaving what i studied.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 31 Aug 2016 00:00:00 +0900</pubDate>
+        <link>http://leekwoon.github.io/kyo-study/2016/08/31/open.html</link>
+        <guid isPermaLink="true">http://leekwoon.github.io/kyo-study/2016/08/31/open.html</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
