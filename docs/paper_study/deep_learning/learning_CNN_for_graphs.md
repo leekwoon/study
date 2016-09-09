@@ -1,9 +1,10 @@
 ---
 layout: page-sidenav
-group: "deep_learning"
+group: "Deep learning"
 title: "Learning convolutional neural networks for graphs"
 ---
 # 1. 배경설명
+-
 ## 1.1 문제 정의 
 ![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/2.PNG){:class="center-block" height="300px"}
 주어진 그래프들로 Classify를 하기위한 Representation(표현방식)을 어떻게 학습할 수 있을까. E.g. vector representation
