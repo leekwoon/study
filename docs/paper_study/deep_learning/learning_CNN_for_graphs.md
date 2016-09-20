@@ -17,4 +17,4 @@ Graph theory에서 두 그래프 $$G, H$$ 의 *isomorphism* 은 전단사 함수
 *Graph Kernel*이란 (graph substructure에 기초하여)그래프간의 Similarity를 구하는 함수이다. 이전 연구들은 *Graph Kernel*을 이용하여 Vector Representation으로 바꾸고 SVM같은 모델을 사용하여 Classify를 하였다. 중요한 점은 이전 연구들의 경우에 Graph를 하나의 global graph structure로 가정했다는 점이다.
 
 # 2. 새로운 접근법 (PATCHY-SAN)
-- G
+- Ga
