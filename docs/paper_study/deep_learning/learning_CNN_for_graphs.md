@@ -88,11 +88,13 @@ They suggest PATCHY-SAN approach
 
 ## 3.3 장단점
 **장점**
+
 - *Graph kernel*디자인 할 필요가 없다.
 - Visualization 지원.
 - 다른 *graph kernel*방식보다 성능이 좋음.
 
 **단점**
+
 - 적은 데이터에서 *overfitting*문제.
 - 많은 *hyperparameters*.
 - Graph normalization이 학습의 일부분이 아님.
