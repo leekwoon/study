@@ -279,7 +279,49 @@ Graph theory에서 두 그래프 <script type="math/tex">G, H</script> 의 <em>i
 <p><img src="/kyo-study/images/paper_study/deep_learning/learning_CNN_for_graphs/Theorem2.PNG" alt="" class="center-block" height="150px" /></p>
 
 <ul>
-  <li><script type="math/tex">d_A가 d_G</script>보다 같거나 크다는 가정 아래에서 (ex, )</li>
+  <li><script type="math/tex">d_A가 d_G</script>보다 같거나 크다는 가정 아래에서 (예를 들어,  <script type="math/tex">d_A</script>:Hamming distance, <script type="math/tex">d_G</script>:edit distance on graphs) <script type="math/tex">d_G</script> 를 고려하지 않고 더 쉬운 문제를 풀면 된다.(<script type="math/tex">d_G</script>경우 <em>NP-complete</em>한 문제로, <script type="math/tex">d_G</script>를 고려하지 않아도 되니 이득)</li>
+  <li>여러 <em>labeling method</em> 후보군 중에 위의 식을 가장 최소화 하는 <script type="math/tex">l</script> 을 고르면 됨.</li>
+</ul>
+
+<p><img src="/kyo-study/images/paper_study/deep_learning/learning_CNN_for_graphs/16.PNG" alt="" class="center-block" height="400px" /></p>
+
+<ul>
+  <li>대부분의 <em>labeling method</em>는 단사함수가 아니라 같은 label 존재 가능.</li>
+  <li>이를 해결하기 위해 Nauty tool 이용 (논문에선 단순히 성능이 좋아서 이용했다고 언급.)</li>
+</ul>
+
+<h2 id="cnn-architecture">2.5 CNN Architecture</h2>
+<ul>
+  <li>논문에서는 실험에서 node attributes만을 이용.</li>
+  <li><script type="math/tex">a_n</script>: node attributes 갯수
+<img src="/kyo-study/images/paper_study/deep_learning/learning_CNN_for_graphs/17.PNG" alt="" class="center-block" height="400px" /></li>
+</ul>
+
+<h1 id="result--conclusion">3. Result &amp; Conclusion</h1>
+
+<h2 id="experiments---graph-classification">3.1 Experiments - Graph Classification</h2>
+<p><img src="/kyo-study/images/paper_study/deep_learning/learning_CNN_for_graphs/18.PNG" alt="" class="center-block" height="400px" /></p>
+
+<h2 id="experiments---visualization">3.2 Experiments - Visualization</h2>
+<p><img src="/kyo-study/images/paper_study/deep_learning/learning_CNN_for_graphs/19.PNG" alt="" class="center-block" height="400px" /></p>
+
+<ul>
+  <li><em>RBM</em>같은 모델이 <em>unsupervised</em>방식으로 feature을 학습할 수 있는지 보기 위해</li>
+</ul>
+
+<h2 id="section-3">3.3 장단점</h2>
+<p><strong>장점</strong></p>
+<ul>
+  <li><em>Graph kernel</em>디자인 할 필요가 없다.</li>
+  <li>Visualization 지원.</li>
+  <li>다른 <em>graph kernel</em>방식보다 성능이 좋음.</li>
+</ul>
+
+<p><strong>단점</strong></p>
+<ul>
+  <li>적은 데이터에서 <em>overfitting</em>문제.</li>
+  <li>많은 <em>hyperparameters</em>.</li>
+  <li>Graph normalization이 학습의 일부분이 아님.</li>
 </ul>
 
     </article>

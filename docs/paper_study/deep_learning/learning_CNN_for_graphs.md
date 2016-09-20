@@ -63,4 +63,36 @@ They suggest PATCHY-SAN approach
 ### 2.4.2 *Optimal graph normalization* 대안
 ![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/Theorem2.PNG){:class="center-block" height="150px"}
 
-- $$d_A가 d_G$$보다 같거나 크다는 가정 아래에서 (ex, )
+- $$d_A가 d_G$$보다 같거나 크다는 가정 아래에서 (예를 들어,  $$d_A$$:Hamming distance, $$d_G$$:edit distance on graphs) $$d_G$$ 를 고려하지 않고 더 쉬운 문제를 풀면 된다.($$d_G$$경우 *NP-complete*한 문제로, $$d_G$$를 고려하지 않아도 되니 이득)
+- 여러 *labeling method* 후보군 중에 위의 식을 가장 최소화 하는 $$l$$ 을 고르면 됨.
+
+![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/16.PNG){:class="center-block" height="400px"}
+
+- 대부분의 *labeling method*는 단사함수가 아니라 같은 label 존재 가능.
+- 이를 해결하기 위해 Nauty tool 이용 (논문에선 단순히 성능이 좋아서 이용했다고 언급.)
+
+## 2.5 CNN Architecture
+- 논문에서는 실험에서 node attributes만을 이용.
+- $$a_n$$: node attributes 갯수
+![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/17.PNG){:class="center-block" height="400px"}
+
+# 3. Result & Conclusion
+
+## 3.1 Experiments - Graph Classification
+![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/18.PNG){:class="center-block" height="400px"}
+
+## 3.2 Experiments - Visualization
+![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/19.PNG){:class="center-block" height="400px"}
+
+- *RBM*같은 모델이 *unsupervised*방식으로 feature을 학습할 수 있는지 보기 위해
+
+## 3.3 장단점
+**장점**
+- *Graph kernel*디자인 할 필요가 없다.
+- Visualization 지원.
+- 다른 *graph kernel*방식보다 성능이 좋음.
+
+**단점**
+- 적은 데이터에서 *overfitting*문제.
+- 많은 *hyperparameters*.
+- Graph normalization이 학습의 일부분이 아님.
