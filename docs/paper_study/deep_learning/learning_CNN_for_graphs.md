@@ -57,6 +57,10 @@ They suggest PATCHY-SAN approach
 
 ![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/Theorem1.PNG){:class="center-block" height="60px"}
 
-continue..
+- 하지만 위의 *Optimal graph normalization* 문제의 경우 *NP-hard*한 문제
+	- 증명: By reduction from subgraph isomorphsim (which is *NP-complete* problem).
 
+### 2.4.2 *Optimal graph normalization* 대안
 ![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/Theorem2.PNG){:class="center-block" height="150px"}
+
+- $$d_A가 d_G$$보다 같거나 크다는 가정 아래에서 (ex, )
