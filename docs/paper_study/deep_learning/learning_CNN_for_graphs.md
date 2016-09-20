@@ -48,3 +48,15 @@ They suggest PATCHY-SAN approach
  
 ## 2.4 Graph Normalization
 ![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/15.PNG){:class="center-block" height="400px"}
+
+### 2.4.1 *Optimal graph normalization* 문제정의
+![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/14.PNG){:class="center-block" height="200px"}
+
+- 상대적으로 비슷한 위치에 있는 노드들이 *adjacency matrix*에서 비슷한 위치에 놓이게 하는 *labeling method* 을 찾기위해 위와같은 문제 정의
+	- intuition: *adjacency matrix*간의 distance가 edit graph distance와 같은 그래프간의 유사도를 정의할 수 있는 *graph distance*와 유사하게 하는 *labeling method*찾기
+
+![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/Theorem1.PNG){:class="center-block" height="60px"}
+
+continue..
+
+![]({{ site.baseurl }}/images/paper_study/deep_learning/learning_CNN_for_graphs/Theorem2.PNG){:class="center-block" height="150px"}
