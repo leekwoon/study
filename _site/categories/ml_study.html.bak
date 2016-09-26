@@ -32,10 +32,6 @@
 
           
           
-            <li><a href="#"><strong class="text-danger">Machine Learning</strong></a></li>
-                      
-          
-          
             
             <li  class="active" >
               <a href="/kyo-study/categories/paper_study"><strong>Review Of Papers</strong></a>
@@ -46,9 +42,21 @@
           
             
             <li  class="active" >
+              <a href="/kyo-study/categories/opt_study"><strong>Introduction to Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li  class="active" >
               <a href="/kyo-study/categories/web_study"><strong>Web Study</strong></a>
             </li>
             
+                      
+          
+          
+            <li><a href="#"><strong class="text-danger">Machine Learning</strong></a></li>
                       
           
 	      </ul>
