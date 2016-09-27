@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>0. Graphical Model</title>
+  <title>3. Convex Functions</title>
   <link rel="stylesheet" href="/kyo-study/css/main.css">
   <link rel="stylesheet" href="/kyo-study/css/font-awesome.min.css">
-  <link rel="canonical" href="http://leekwoon.github.io/kyo-study/docs/ml_study/chapter08/0.html">
+  <link rel="canonical" href="http://leekwoon.github.io/kyo-study/docs/opt_study/intro_opt/3.html">
   <script src="/kyo-study/js/jquery-1.12.0.min.js"></script>     
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -69,7 +69,7 @@
     <div class="container">
       <div class="row">
   <div class="col-sm-3">
-    <h2>Chapter. 8</h2>
+    <h2>Introduction to Optimization</h2>
     <ul class="nav nav-pills nav-stacked">
       
       
@@ -81,75 +81,75 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-study/docs/opt_study/intro_opt/1">1. Optimization Basics</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/kyo-study/docs/opt_study/intro_opt/2">2. Convex Sets</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <li class="active " >
-        <a href="/kyo-study/docs/ml_study/chapter08/0">0. Graphical Model</a>
+        <a href="/kyo-study/docs/opt_study/intro_opt/3">3. Convex Functions</a>
       </li>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <li class=" " >
-        <a href="/kyo-study/docs/ml_study/chapter08/1">1. Bayesian Networks</a>
-      </li>
-      
-      
-      
-      
-      
-      <li class=" " >
-        <a href="/kyo-study/docs/ml_study/chapter08/2">2. Conditional Independence</a>
-      </li>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       
       
       
@@ -213,79 +213,29 @@
   <div class="col-sm-9">
     
     <div class="navbar-right">
-      <a target="_blank" href="http://github.com/leekwoon/kyo-study/blob/gh-pages/docs/ml_study/chapter08/0.md">
+      <a target="_blank" href="http://github.com/leekwoon/kyo-study/blob/gh-pages/docs/opt_study/intro_opt/3.md">
         <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
       </a>
     </div>
     
 
     <header>
-      <h1>0. Graphical Model</h1>
+      <h1>3. Convex Functions</h1>
     </header>
     <hr class="title">
     <article>
-      <ul>
-  <li>확률 이론은 현대 패턴 인식에서 가장 중심이 되는 이론이다.</li>
-  <li>우리는 1장에서 확률 이론의 가장 기본이 되는 <em>sum-rule</em> 과 <em>product-rule</em> 을 배웠다.
-    <ul>
-      <li>지금까지 배운 많은 확률 이론들은 간단하든 복잡하든 상관없이 이 두 개의 이론을 반복적으로 사용한다.</li>
-      <li>그래서 우리는 대수적인 방법들을 도입하여 복잡한 확률 모델을 형식화하여 풀 수 있었다.</li>
-    </ul>
-  </li>
-  <li>하지만 이번 장에서는 좀 더 쉽게 확률 분포를 해석하기 위한 그래프 도식 방법을 살펴볼 것이다.</li>
-  <li>
-    <p>이것을 <em>probabilistic graphical model</em> 이라고 부른다.</p>
-  </li>
-  <li>probabilistic graphical model이 주는 장점은 다음과 같다.
-    <ul>
-      <li>확률 모델의 구조를 아주 쉽게 시각화 하여 새로운 모델을 디자인하는데 도움을 준다.</li>
-      <li>그래프화된 구조를 분석함으로써 모델 속성에 대한 직관을 얻을 수 있다.
-        <ul>
-          <li>예를 들어 조건부 분포의 독립 속성 들을 그래프를 통해 손쉽게 파악할 수 있음.</li>
-        </ul>
-      </li>
-      <li>복잡한 학습과 추론 과정을 가지는 모델의 계산 과정을 그래픽적인 요소로 표현이 가능하다.
-        <ul>
-          <li>수학적인 요소들을 명시적인 그래프로 표현 가능하다.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<hr />
+      <h2 id="outline">Outline</h2>
 
 <ul>
-  <li><strong>용어 정리</strong>
-    <ul>
-      <li>일반적인 그래프는 노드(<em>node</em>)와 엣지(<em>edge</em>)로 표현된다.</li>
-      <li>하지만 확률 그래프 모델에서는 조금 다른 의미로 사용함.</li>
-      <li><strong>노드</strong>(<em>node</em>) : 랜덤 변수(random variable)를 하나의 노드로 표현함.</li>
-      <li><strong>링크</strong>(<em>link</em>) : 엣지(<em>edge</em>)와 동일한 표현으로 랜덤 변수 사이의 확률적인 관계를 나타낸다.</li>
-    </ul>
-  </li>
-  <li>우리는 가장 먼저 <em>Bayesian networks</em> 라는 그래프 모델부터 살펴볼 것이다.
-    <ul>
-      <li>이는 방향성 그래프 모델(directed graphical models)에 속한다.</li>
-      <li>여기서 방향성이란 링크(link)가 양방향이 아닌 한쪽 방향으로의 관계만 성립한다는 것이다. (화살표로 표기한다.)</li>
-    </ul>
-  </li>
-  <li><em>Bayesian networks</em> 말고도 <em>Markov random field</em> 라는 유명한 그래프 모델이 있다.
-    <ul>
-      <li>이는 비뱡향성 그래프 모델(undirected graphical models)에 속한다.</li>
-      <li>따라서 노드의 양 방향으로 관계가 맺어지고 화살표 표기는 사용하지 않는다.</li>
-    </ul>
-  </li>
-  <li>방향성 그래프는 확률 변수 사이의 관계를 표현하는데 매우 편리하다.</li>
-  <li>반면 비방향성 그래프는 랜덤 변수 사이의 제약을 표현하는데 더 편리하다.</li>
-  <li>추론 문제를 풀기 위해서 우리는 종종 방향성 그래프와 비방향성 그래프 상관없이 공통적으로 사용할 수 있는 방법이 필요하기도 하다.
-    <ul>
-      <li>이런 그래프를 <em>factor graph</em> 라고 한다.</li>
-    </ul>
-  </li>
-  <li>이번 장에서는 패턴 인식과 기계 학습에서 주로 사용하는 실질적인 그래프 모델에 대해 집중한다.</li>
-  <li>좀 더 일반화된 그래프 모델 이론이 궁금한 경우에는 별도의 자료를 찾아보도록.</li>
+  <li>Definition of the convex function</li>
+  <li>Examples</li>
+  <li>Convex function operation</li>
+  <li>Quasi-convexity</li>
 </ul>
+
+<h2 id="convex-functions">Convex Functions</h2>
+
+<p>준비중…</p>
 
     </article>
   </div>
