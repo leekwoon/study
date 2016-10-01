@@ -34,7 +34,7 @@
           
             
             <li >
-              <a href="/kyo-study/categories/paper_study"><strong>Review Of Papers</strong></a>
+              <a href="/kyo-study/categories/ml_study"><strong>Machine Learning</strong></a>
             </li>
             
                       
@@ -42,7 +42,7 @@
           
             
             <li >
-              <a href="/kyo-study/categories/opt_study"><strong>Introduction to Optimization</strong></a>
+              <a href="/kyo-study/categories/paper_study"><strong>Review Of Papers</strong></a>
             </li>
             
                       
@@ -56,7 +56,23 @@
                       
           
           
-            <li><a href="#"><strong class="text-danger">Machine Learning</strong></a></li>
+            
+            <!-- for drop-down navi -->
+            <li class="dropdown">
+              <a href="/kyo-study" class="dropdown-toggle" data-toggle="dropdown"><strong>Lectures
+                  <b class="caret"></b></strong>
+              </a>
+              <ul class="dropdown-menu">
+                
+                
+                <li  class="active" >
+                  <a href="/kyo-study/categories/opt_study">Introduction to Optimization</a>
+                </li>
+                
+                
+              </ul>
+            </li>
+            
                       
           
 	      </ul>
@@ -75,51 +91,9 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       <li class=" " >
         <a href="/kyo-study/docs/opt_study/intro_opt/1">1. Optimization Basics</a>
       </li>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       
       
       
@@ -133,57 +107,9 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       <li class="active " >
         <a href="/kyo-study/docs/opt_study/intro_opt/3">3. Convex Functions</a>
       </li>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       
       
       
@@ -235,7 +161,101 @@
 
 <h2 id="convex-functions">Convex Functions</h2>
 
-<p>준비중…</p>
+<p><strong>Convex function</strong></p>
+
+<ul>
+  <li><strong>Defintion:</strong> A function <script type="math/tex">f:\mathbf{R^n}\to \mathbf{R}</script> is convex if the domain <script type="math/tex">f\text{,dom}(f)</script> is a convex set, and if for any <script type="math/tex">\theta \in [0,1]</script>,</li>
+</ul>
+
+<script type="math/tex; mode=display">f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y), \forall x,y \in \text{dom}(f)</script>
+
+<ul>
+  <li>A function is strictly convex if the inequality is replaced by the strict equality with <script type="math/tex">\theta \in (0,1)</script></li>
+  <li>A function is concave if -f is convex</li>
+  <li><strong>Convex function is defined on the convex set</strong></li>
+  <li>The definition can be extended to</li>
+</ul>
+
+<script type="math/tex; mode=display">f(\sum_{j=1}^{k}\alpha_jx_j) \le \sum_{j=1}^{k}\alpha_jf(x_j)</script>
+
+<p>for all <script type="math/tex">\alpha_j \ge 0</script> and <script type="math/tex">\sum_{j=1}^{k}a_j=1</script></p>
+
+<ul>
+  <li><strong>Theorem:</strong> A function <script type="math/tex">f</script> is convex if and only if <script type="math/tex">f</script> is convex when it is restricted to any line that intersects its domain. That is, <script type="math/tex">f</script> is convex if and only if for any <script type="math/tex">x\in \text{dom}(f)</script>, and <script type="math/tex">v,g(t)=f(x+tv)</script> is convex
+    <ul>
+      <li>이 Theorem을 이용하면 <script type="math/tex">\mathbf{R^n}</script> domain 에서가 아니라 <script type="math/tex">\mathbf{R}</script> domain 에서 convex analysis 가능.</li>
+    </ul>
+  </li>
+  <li><strong>Proof(<script type="math/tex">\Rightarrow</script>):</strong></li>
+</ul>
+
+<p>Suppose that <script type="math/tex">f</script> is convex. Then we need to show that <script type="math/tex">g</script> is convex. Consider,</p>
+
+<script type="math/tex; mode=display">g(\alpha t_1 +(1-\alpha)t_2)\\=f(x+(\alpha t_1+(1-\alpha)t_2)v)\\=f(\alpha x+(1-\alpha)x+(\alpha t_1+(1-\alpha)t_2)v)
+\\=f(\alpha(x+t_1v)+(1-\alpha)(x+t_2v))\\ \le \alpha f(x+t_1v)+(1-\alpha)f(x+t_2v)\\=\alpha g(t_1)+(1-\alpha)g(t_2)</script>
+
+<ul>
+  <li><strong>Proof(<script type="math/tex">\Leftarrow</script>):</strong></li>
+</ul>
+
+<p>Let <script type="math/tex">v=(y-x)</script>. Then</p>
+
+<script type="math/tex; mode=display">g(t) = f(x+t(y-x)),g(t-1)=f(x+(t-1)(y-x))</script>
+
+<p>Since <script type="math/tex">g</script> is convex for any <script type="math/tex">t</script>, for any <script type="math/tex">\alpha \in [0,1]</script></p>
+
+<script type="math/tex; mode=display">g((1-\alpha)t+\alpha (t-1)) \le \alpha g(t-1)+(1-\alpha)g(t)</script>
+
+<p>Let <script type="math/tex">t=1</script>. Then</p>
+
+<script type="math/tex; mode=display">g(1-\alpha) \le \alpha g(0)+(1-\alpha)g(1)
+\\ \Leftrightarrow f(\alpha x+(1-\alpha)x+(1-\alpha)(y-x)\le \alpha f(x)+(1-\alpha)f(y)
+\\ \Leftrightarrow f(\alpha x+(1-\alpha)y) \le \alpha f(x)+(1-\alpha)f(y)</script>
+
+<h2 id="first-order-condition-for-convexity">First order condition for convexity</h2>
+
+<ul>
+  <li>Suppose that <script type="math/tex">f</script> is differentiable. Then <script type="math/tex">f:S\to \mathbf{R}</script> is convex if and only if <script type="math/tex">S</script> is convex and</li>
+</ul>
+
+<script type="math/tex; mode=display">f(y) \ge f(x) + \nabla f(x)^T(y-x), \forall x,y \in S</script>
+
+<ul>
+  <li>Connection with the first order necessary condition. If <script type="math/tex">x^*</script> is optimal, then</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla f(x^*) = 0, f(y) \ge f(x^*), \forall y \in S</script>
+
+<ul>
+  <li><script type="math/tex">x^*</script> is a global minimum point.</li>
+  <li><strong>Proof(<script type="math/tex">\Rightarrow</script>):</strong></li>
+</ul>
+
+<p>We will prove the one-dimensional case.
+Assume that <script type="math/tex">f</script> is convex. Then we have</p>
+
+<script type="math/tex; mode=display">f(x+t(y-x)) \le (1-t)f(x)+tf(y)
+\\ \Leftrightarrow f(y) \ge f(x)+\frac{f(x+t(y-x))-f(x)}{t}</script>
+
+<p>and by taking the limit <script type="math/tex">t \to 0</script>, we have the desired result</p>
+
+<ul>
+  <li><strong>Proof(<script type="math/tex">\Leftarrow</script>):</strong></li>
+</ul>
+
+<p>Suppose now that we have the first order condition. Let <script type="math/tex">z=\theta x+(1-\theta)y</script>. Then</p>
+
+<script type="math/tex; mode=display">f(x) \ge f(z)+\nabla f(z)(x-z)</script>
+
+<script type="math/tex; mode=display">f(y) \ge f(z)+\nabla f(z)(y-z)</script>
+
+<p>Then</p>
+
+<script type="math/tex; mode=display">\theta f(x)+(1-\theta)f(y) \ge f(z) = f(\theta x+(1-\theta)y</script>
+
+<h2 id="second-order-condition-for-convexity">Second order condition for convexity</h2>
+
+<p>준비중..</p>
 
     </article>
   </div>
