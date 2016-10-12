@@ -34,7 +34,7 @@
           
             
             <li >
-              <a href="/kyo-study/categories/paper_study"><strong>Review Of Papers</strong></a>
+              <a href="/kyo-study/categories/ml_study"><strong>Machine Learning</strong></a>
             </li>
             
                       
@@ -42,7 +42,7 @@
           
             
             <li >
-              <a href="/kyo-study/categories/opt_study"><strong>Introduction to Optimization</strong></a>
+              <a href="/kyo-study/categories/paper_study"><strong>Review Of Papers</strong></a>
             </li>
             
                       
@@ -56,7 +56,23 @@
                       
           
           
-            <li><a href="#"><strong class="text-danger">Machine Learning</strong></a></li>
+            
+            <!-- for drop-down navi -->
+            <li class="dropdown">
+              <a href="/kyo-study" class="dropdown-toggle" data-toggle="dropdown"><strong>Lectures
+                  <b class="caret"></b></strong>
+              </a>
+              <ul class="dropdown-menu">
+                
+                
+                <li  class="active" >
+                  <a href="/kyo-study/categories/opt_study">Introduction to Optimization</a>
+                </li>
+                
+                
+              </ul>
+            </li>
+            
                       
           
 	      </ul>
@@ -75,51 +91,9 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       <li class="active " >
         <a href="/kyo-study/docs/opt_study/intro_opt/1">1. Optimization Basics</a>
       </li>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       
       
       
@@ -133,57 +107,9 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       <li class=" " >
         <a href="/kyo-study/docs/opt_study/intro_opt/3">3. Convex Functions</a>
       </li>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       
       
       
@@ -299,12 +225,15 @@
 </ul>
 
 <p><strong>Infinum</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A real number m is called the infimum of a function <script type="math/tex">f(x)</script> over a set <script type="math/tex">X \text{ if } \forall \epsilon, \exists x_\epsilon \in S \text{ s.t}</script></li>
 </ul>
 
-<p><script type="math/tex">f(x_\epsilon) \le m+\epsilon</script>
-<script type="math/tex">f(x) \ge m ,\forall x</script></p>
+<script type="math/tex; mode=display">f(x_\epsilon) \le m+\epsilon</script>
+
+<script type="math/tex; mode=display">f(x) \ge m ,\forall x</script>
+
 <ul>
   <li>이때 <script type="math/tex">m=\underset{x \in X}{\text{inf}}f(x)</script>라 표기한다.
     <ul>
@@ -316,6 +245,7 @@
 </ul>
 
 <p><strong>Weierstrass’s theorem</strong></p>
+
 <ul>
   <li><script type="math/tex">\text{if } f:X\to \mathbf{R}</script> is a continous function defined on a compact set(closed and bounded) <script type="math/tex">X \subseteq \mathbf{R^n}</script>, then there exist <script type="math/tex">x^*,y^* \in X</script> such that</li>
 </ul>
@@ -352,6 +282,7 @@
 </ul>
 
 <p><strong>Normed vector space</strong></p>
+
 <ul>
   <li>Length of the vector A function <script type="math/tex">\vert\vert x\vert\vert: \mathbf{R^n} \to \mathbf{R}</script> is said to be a norm if the following properties hold
     <ul>
@@ -374,11 +305,13 @@
 </ul>
 
 <p><strong>Inner Product:</strong></p>
+
 <ul>
   <li>measure angle of two vectors</li>
 </ul>
 
 <p><strong>Convergence</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A real-valued sequnce <script type="math/tex">x^1,x^2,...</script> converges to <script type="math/tex">x^*</script> if for each <script type="math/tex">\epsilon >0</script> there exist <script type="math/tex">K = K(\epsilon)</script> such that</li>
 </ul>
@@ -391,6 +324,7 @@
 </ul>
 
 <p><strong>Ball</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A ball <script type="math/tex">B_\delta(x)</script> with a radius of <script type="math/tex">\delta > 0</script> is a subset of <script type="math/tex">\mathbf{R^n}</script>, defined by</li>
 </ul>
@@ -404,6 +338,7 @@
 <p><img src="/kyo-study/images/opt_study/intro_opt/1.1.png" alt="ball" /></p>
 
 <p><strong>open</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A set <script type="math/tex">X \in \mathbf{R^n}</script> is open if, for each <script type="math/tex">x \in X</script>, there exists <script type="math/tex">\delta > 0</script> such that there is a ball <script type="math/tex">B_\delta(x)</script> around <script type="math/tex">x</script> such that <script type="math/tex">B_\delta(x) \subseteq X</script></li>
 </ul>
@@ -411,6 +346,7 @@
 <p><img src="/kyo-study/images/opt_study/intro_opt/1.2.png" alt="open" class="center-block" /></p>
 
 <p><strong>closed</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A set <script type="math/tex">X</script> is closed if <script type="math/tex">X^c</script> is open.
     <ul>
@@ -422,6 +358,7 @@
 </ul>
 
 <p><strong>Bounded</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A set <script type="math/tex">X \subseteq \mathbf{R^n}</script> is bounded if there exists <script type="math/tex">M \le \infty</script> such that</li>
 </ul>
@@ -429,6 +366,7 @@
 <script type="math/tex; mode=display">||x|| \le M, \forall x \in X</script>
 
 <p><strong>Continous</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A function <script type="math/tex">f:X \to \mathbf{R}</script> where <script type="math/tex">X \subseteq \mathbf{R^n}</script> is said to be continous at <script type="math/tex">x^* \in X</script> if for every sequence <script type="math/tex">\{y^k\}</script> with <script type="math/tex">\underset{k \to \infty}{\text{lim}}y^k=x^*</script>, we have</li>
 </ul>
@@ -438,7 +376,7 @@
 <p>Equivalently, for each <script type="math/tex">\epsilon>0</script>, there exists <script type="math/tex">\delta>0</script> such that for all <script type="math/tex">x \in X</script>,</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
-||x-x^*||<\delta \to |f(x)-f(x^*) \le \epsilon %]]></script>
+||x-x^*||<\delta \to |f(x)-f(x^*)| \le \epsilon %]]></script>
 
 <h2 id="existence-of-an-optimal-solution-continue">Existence of an Optimal Solution (continue…)</h2>
 
@@ -469,6 +407,7 @@
 <script type="math/tex; mode=display">\underset{x \in X}{\text{min}}f(x)</script>
 
 <p><strong>Local minimum</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A point <script type="math/tex">x^* \in X</script> is said to be a local minimum point of <script type="math/tex">f</script> over <script type="math/tex">X</script> if there exists <script type="math/tex">\delta>0</script> such that</li>
 </ul>
@@ -480,6 +419,7 @@
 <script type="math/tex; mode=display">f(x^*) \le f(x), \forall x  \in X, \vert x-x^*\vert \le \delta</script>
 
 <p><strong>Global minimum</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> A point <script type="math/tex">x^* \in X</script> is said to be a global minimum point of <script type="math/tex">f</script> if</li>
 </ul>
@@ -487,6 +427,7 @@
 <script type="math/tex; mode=display">f(x^*) \le f(x), \forall x \in X</script>
 
 <p><strong>Feasible direction</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> Given <script type="math/tex">x\in X</script>, a vector <script type="math/tex">d</script> is a feasible direction at <script type="math/tex">x</script> if there exists a constant <script type="math/tex">\overline{\alpha}</script> such that <script type="math/tex">x+\alpha d \in X</script> for all <script type="math/tex">0 \le \alpha \le \overline{\alpha}</script></li>
 </ul>
@@ -494,6 +435,7 @@
 <p><img src="/kyo-study/images/opt_study/intro_opt/1.3.png" alt="feasible direction" class="center-block" /></p>
 
 <p><strong>gradient vector</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> if a function <script type="math/tex">f:X \to \mathbf{R}</script> is differentiable at <script type="math/tex">x \in X</script>, then we write its gradient vector as follows</li>
 </ul>
@@ -501,6 +443,7 @@
 <script type="math/tex; mode=display">\nabla f(x)=\begin{pmatrix} \frac{\partial f(x)}{\partial x_1} \\ \vdots \\ \frac{\partial f(x)}{\partial x_n} \end{pmatrix}</script>
 
 <p><strong>First order necessary condition</strong></p>
+
 <ul>
   <li>Let <script type="math/tex">X \subseteq \mathbf{R^n}</script>, and suppose that <script type="math/tex">f</script> is differentiable on <script type="math/tex">X</script>. If <script type="math/tex">x^*</script> is a local minimum point of <script type="math/tex">f</script> over <script type="math/tex">X</script>, then <script type="math/tex">x^*</script> satisfies</li>
 </ul>
@@ -573,6 +516,7 @@ g(\alpha)-f(x^*) < 0 %]]></script>
 </ul>
 
 <p><strong>Hessian matrix</strong></p>
+
 <ul>
   <li><strong>Definition:</strong> if a function <script type="math/tex">f:\mathbf{R^n} \to \mathbf{R}</script> is twice differentiable at <script type="math/tex">x \in X</script>, then its second derivative is as follows</li>
 </ul>
@@ -634,6 +578,7 @@ g(\alpha)-f(x^*) < 0 %]]></script>
 </ul>
 
 <p><strong>Sufficient condition for a local minimum</strong></p>
+
 <ul>
   <li><strong>Theorem:</strong> Let <script type="math/tex">X \subseteq \mathbf{R^n}</script>, and let <script type="math/tex">f</script> is twice differentiable. Then <script type="math/tex">x^* \in \text{int}(X)</script> is a local minimum point if
     <ul>

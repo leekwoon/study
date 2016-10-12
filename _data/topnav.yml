@@ -1,12 +1,12 @@
 topnav:
-  
+  - title: Machine Learning
+    url: /categories/ml_study
   - title: Review Of Papers
     url: /categories/paper_study
-  - title: Introduction to Optimization
-    url: /categories/opt_study
   - title: Web Study
     url: /categories/web_study
-  - title: Machine Learning
-    disable: True
-    url: /categories/ml_study
+  - title: Lectures
+    items:
+      - title: Introduction to Optimization
+        url: /categories/opt_study
 
