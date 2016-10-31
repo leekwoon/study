@@ -25,7 +25,7 @@ $$\frac{V_D(1)-V_D(1-e)}{V_D(1)} = 1-(1-e)^D$$
 ![]({{site.baseurl}}/images/ml_study/junk/cod2.png){:class="center-block"}
 
 - 위 그래프를 해석하자면, 차원이 증가할수록 전체 볼륨 크기의 대부분은 표면에 위치한다.
-- 또한 kmeans와 같이 distance를 바탕으로 하는 alogrithm은 차원이 커지면 무의미 해진다.
+- 위와 같은 특성 때문에 kmeans와 같이 distance를 바탕으로 하는 alogrithm은 차원이 커지면 무의미 해진다.
 - 예를들어, $$D$$ 차원에서 $$r=1$$인 구에서 feature point들이 uniformly distributed 되어있다고 가정해보자. 차원 $$D$$가 $$\infty$$에 가까워질 떄 원점을 classify 하는 문제를 생각해보자. 대부분의 데이터가 구의 표면에 위치고 원점으로 부터 거리가 동일하기 때문에 거리정보는 더이상 유의미 하지 않을 것이다.
 
 
