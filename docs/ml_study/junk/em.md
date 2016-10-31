@@ -23,4 +23,6 @@ $ H[x] = -\sum_x p(x)\log p(x)$
 - 정확한 형태를 모르는 확률 분포 $p(X)$ 가 있을 때 이 확률 분포를 최대한 근사한 $q(X)$가 있다고 하자.
 - $p(x)$가 아닌 $q(x)$를 사용했을때 추가적으로 필요한 정보량의 기대값을 정의해보자.
 
-$$KL(p\vert\vert q) = -\int p(X)\ln q(x)dx - (-\int p(X)\ln q(x)dx )$$
+$$KL(p\vert\vert q) = -\int p({\bf x})\ln q({\bf x})d{\bf x} - (-\int p({\bf x})\ln p({\bf x})d{\bf x }) \\ 
+=  -\int p({\bf x})\ln\{\frac{q({\bf x})}{p({\bf x})}\}d{\bf x}$$
+
