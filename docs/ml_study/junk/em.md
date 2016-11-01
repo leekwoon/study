@@ -110,12 +110,23 @@ EM algorithm
 	- 이때 $\theta_z$ 는 $\pi$ 를 의미하고, $\theta_x$ 는 $\mu$ 와 $\sum$ 을 의미한다.
 - $x_i$ 와 $z_i$ 가 관찰됬다면, D-separation에 의해서 $\theta_z$ 와 $\theta_x$ 는 independent 하고, parameter의 posterior도 factorize 될 수 있다.
 - 하지만 $z_i$는 잠재변수로써 관찰이 되지 않으므로 parameter들의 posterior은 factorize 되지 않는다.
+	- 참고로 잠재변수의 실제 값이 주어졌을 때 complete하다고 하고 주어지지 않았을 때 incomplete하다고 한다.
+    - Complete Data : \\( \{ {\bf X}, {\bf Z} \} \\)
+        - 모든 관찰 데이터에 대해 잠재 변수 \\( {\bf Z} \\) 가 주어진 모델
+        - 이 때의 로그 가능도 함수는 \\( \ln p({\bf X}, {\bf Z} \| {\bf \theta}) \\) 가 된다.
+        - 각각에 대해 가능도 함수를 구하게 되므로 어렵지 않다.
+    - Incomplete Data : \\( \{ {\bf X}\} \\) 
+        - 모든 관찰 데이터에 대해서만 주어지고 잠재 변수는 주어지지 않는다.
+        - 결국 가능한 모든 잠재 변수의 값에 대한 분포를 고려해야 한다.
+        - 로그 가능도 함수는 \\( \ln p({\bf X} \| {\bf \theta}) =  \ln \{ \sum\_Z p( {\bf X}, {\bf Z} \| {\bf \theta} ) \} \\) 로 주어진다.
+        - 로그 함수 내에 합(sum) 에 대한 수식이 존재하기 때문에 최대화 시키는 지점을 찾기가 어렵다.
 - 이는 MAP, MLE의 계산을 어렵게 만든다.
 - 또한 $\sum_{k=1}^K \pi_k = 1$ 같은 제약조건은 SGD (stochastic gradient descent) 적용을 어렵게 한다.
 - 잠재변수 모델에서 parameter들의 posterior을 계산할때 가장 큰 문제는 다중 봉우리(multiple mode)를 가졌다는 것이다.
 	- 예를 들어 GMM에서, $z_i$ 가 관찰되었다면 unimodal posterior을 갖게되어 쉽게 parameter을 추정할 수 있다.
 	- 하지만 잠재변수가 관찰 되지 않았을 경우 다양한 봉우리를 가지기 때문에 어떤 잠재변수 기준으로 optimize하는지가 중요하다.
 	- 쉽게 생각하면, 봉우리($z$)를 정하고 남은 parameter들을 optimize 해야 할 것이다.
-- 대수적으로 likelihood는 다중 봉우리(multiple model)를 가질 수 있음을
+- GMM 같이 joint probability 분포가 지수족(exponential family)일때, 대수적으로 likelihood는 다중 봉우리(multiple model)를 가질 수 있음을 보여보자.
+
 
 
