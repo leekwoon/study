@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>2. 웹 크롤링 bs4 & requests</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/web_study/web_crawling/2.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Web crawling</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/web_study/web_crawling/1">1. 웹 환경</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/web_study/web_crawling/2">2. 웹 크롤링 bs4 & requests</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/web_study/web_crawling/3">3. Scrapy</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/web_study/web_crawling/2.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>2. 웹 크롤링 bs4 & requests</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <blockquote>
+  <p>Python을 이용해 웹 크롤링을 어떻게 할 수 있을지 간단히 살표보자
+쉬운 방법으로는 Python의 requests, bs4 라이브러리를 사용하는 것이다.</p>
+</blockquote>
+
+<h2 id="beautifule-soupbs4">Beautifule Soup(bs4)</h2>
+
+<ul>
+  <li>html문서에서 원하는 정보를 손쉽게 가져올 수 있는 방법을 제공.</li>
+  <li>일종의 Parsor 역할을 수행</li>
+  <li>자동으로 인코딩을 유니코드로 변환해서 UTF-8로 출력</li>
+  <li>HTML문서를 가져오기 위해 requests 이용</li>
+</ul>
+
+<h2 id="section">실전 예시</h2>
+
+<p><img src="/study/images/web_study/web_crawling/1.png" alt="" class="center-block" /></p>
+
+<p>가령 위와 같은 <a href="http://http://stock.navle.net/">사이트</a>에서 종목 code 520009의 시가 총액값을 가져오고 싶다고 해보자.
+(참고로 해당 회사는, <strong>대우 레버리지 원유선물혼합</strong>	이다)</p>
+
+<p>실제로 해당 사이트에서 520009를 검색해 보자.
+검색을 해보면 아래와 같은 페이지를 확인할 수 있을것이다.</p>
+
+<p><img src="/study/images/web_study/web_crawling/2.png" alt="" class="center-block" /></p>
+
+<p>해당 회사의 시가총액은 228임을 확인 할 수 있다. (<strong>참고로, 검색 전과 url이 달라진 것도 확인 할 수 있다. 이는 뒤에서 다룰 것이다</strong>)그렇다면 어떻게 우리가 원하는 시가총액만 따로 가져올 수 있을까?</p>
+
+<p>구글 크롬으로 해당페이지를 열고 컨트롤+시프트+i 키를 동시에 눌러 Developer tool을 열어보자. 아래와 같이 해당 페이지의 html이 어떻게 구성되어 있는지 확인 할 수 있다. 컨트롤 + F 키를 동시에 눌러 228을 검색해보자.</p>
+
+<p><img src="/study/images/web_study/web_crawling/3.png" alt="" class="center-block" /></p>
+
+<p><code class="highlighter-rouge">&lt;td class="m_no"&gt;</code>안에 우리가 원하는 값이 들어 있는걸 확인 할 수 있다. HTML을 유심히 살펴 보면 그 위에 <code class="highlighter-rouge">&lt;td class='cast'&gt;</code> 안에 ETN 값이 담겨잆는걸 확인 할 수 있다. 좀더 HTML을 유심히 살펴보면 <code class="highlighter-rouge">&lt;td class='cast'&gt;</code>안에는 해당 사이트의 분류의 해당하는 값이 적혀있다. 따라서 전략은 간단하다. <code class="highlighter-rouge">&lt;td class='cast'&gt;</code>들중에 마지막 것 (마지막 열)을 찾고 그 다음에 해당하는 <code class="highlighter-rouge">&lt;td class="m_no"&gt;</code>중에 228 값이 들어있는 것 을 찾으면 된다.</p>
+
+<p>해당 코드는 아래와 같다.</p>
+
+<pre><code class="language-{.python}">import requests
+from bs4 import BeautifulSoup
+
+code = '520009'
+
+url = 'http://stock.navle.net'
+html = requests.post(url,data={"_filter":'search','search_keyword':code,'search_target':'title_content'})
+soup = BeautifulSoup(html.content)
+stock_type = soup.findAll('td',{"class":"cate"})[-1]
+total_val = stock_type.findNextSiblings('td',{"class":"m_no"})[6]
+print(total_val.text[2:])
+</code></pre>
+
+<p>위의 코드는 크게 두 부분으로 나뉜다.</p>
+<ol>
+  <li>requests를 통해 해당 페이지의 html을 가져온다. 이때 url 뿐만아니라 다른 인자들도 넣어주어야 하는데 가령 검색어(keyword)에는 052009를 넘겨주는 것이다. <strong>이전에 검색을 했을때 url 뒷부분이 바뀐 이유를 생각해보면 쉽게 이해할 수 있을것이다.</strong></li>
+  <li>BeautifulSoup을 이용해 웹에서 가져온 HTML은 분석해서 원하는 정보만 가져온다.</li>
+</ol>
+
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

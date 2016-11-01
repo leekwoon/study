@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Curse of Dimensionality</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/ml_study/junk/cod.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>이것 저것</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/ml_study/junk/cod">Curse of Dimensionality</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/ml_study/junk/cod.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>Curse of Dimensionality</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <p><img src="/study/images/ml_study/junk/cod1.png" alt="" class="center-block" /></p>
+
+<ul>
+  <li>데이터의 차원(dimensionality)이 증가할수록 해당 공간의 크기(부피)가 기하급수적으로 증가한다.</li>
+  <li>차원이 증가할수록 데이터의 분포 분석 또는 모델추정에 필요한 샘플 데이터 개수가 기하급수적으로 증가한다.</li>
+  <li>고차원의 대부분 데이터들은 데이터 공간의 표면부근에 위치한다.</li>
+  <li>어떤 한 점으로 부터 최근접 거리와 최원접 거리의 차이가 거의 없어진다.</li>
+  <li><script type="math/tex">D</script> 차원에서 반지름의 길이가 <script type="math/tex">r=1</script> 인 구를 생각해보자.</li>
+  <li>부피는</li>
+</ul>
+
+<script type="math/tex; mode=display">V_D(r)=K_Dr^D</script>
+
+<ul>
+  <li>예를들어, 3차원에서 <script type="math/tex">K_D</script>는 <script type="math/tex">(4/3)\pi</script></li>
+  <li>거리가 <script type="math/tex">r = 1</script>인 경우의 구의 부피에서 <script type="math/tex">r = 1-e</script>인 구의 부피를 빼는 것을 상상해보자.</li>
+</ul>
+
+<script type="math/tex; mode=display">\frac{V_D(1)-V_D(1-e)}{V_D(1)} = 1-(1-e)^D</script>
+
+<ul>
+  <li><script type="math/tex">e</script> 값이 변화할 때 원래 부피와의 비율을 살펴보자.</li>
+</ul>
+
+<p><img src="/study/images/ml_study/junk/cod2.png" alt="" class="center-block" /></p>
+
+<ul>
+  <li>위 그래프를 해석하자면, 차원이 증가할수록 전체 볼륨 크기의 대부분은 표면에 위치한다.</li>
+  <li>위와 같은 특성 때문에 kmeans와 같이 distance를 바탕으로 하는 alogrithm은 차원이 커지면 무의미 해진다.</li>
+  <li>예를들어, <script type="math/tex">D</script> 차원에서 <script type="math/tex">r=1</script>인 구에서 feature point들이 uniformly distributed 되어있다고 가정해보자. 차원 <script type="math/tex">D</script>가 <script type="math/tex">\infty</script>에 가까워질 떄 원점을 classify 하는 문제를 생각해보자. 대부분의 데이터가 구의 표면에 위치고 원점으로 부터 거리가 동일하기 때문에 거리정보는 더이상 유의미 하지 않을 것이다.</li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

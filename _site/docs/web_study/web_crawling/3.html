@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>3. Scrapy</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/web_study/web_crawling/3.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Web crawling</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/web_study/web_crawling/1">1. 웹 환경</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/web_study/web_crawling/2">2. 웹 크롤링 bs4 & requests</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/web_study/web_crawling/3">3. Scrapy</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/web_study/web_crawling/3.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>3. Scrapy</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <blockquote>
+  <p>requests와 Beatifule Soup을 이용해 웹 크롤링이 가능한데 Scrapy가 왜 필요할까?
+구글의 경우만 보아도 규칙적으로 짧은 시간안에 자동으로 많은 데이터를 위와 같은 방식은 쉽게 감지되고, 어느 순간부터 사이트 접속을 할 수 없게 만든다.
+따라서 이런 문제를 바탕으로 웹 크롤링을 전문적으로 다루는 라이브러리가 Scrapy이다.</p>
+</blockquote>
+
+<h2 id="scrapy">Scrapy</h2>
+
+<ul>
+  <li>web scraper framework</li>
+  <li>다양한 selector 지원</li>
+  <li>파이프라인
+    <ul>
+      <li>데이터 후처리(filtering)</li>
+    </ul>
+  </li>
+  <li>로깅
+    <ul>
+      <li>데이터가 잘 처리되고 있는지</li>
+    </ul>
+  </li>
+  <li>이메일
+    <ul>
+      <li>데이터가 들어왔을때 메일 기능</li>
+    </ul>
+  </li>
+</ul>
+
+<p>#####Scrapy 프로젝트 생성</p>
+
+<p><code class="highlighter-rouge">scrapy startproject tutorial</code></p>
+
+<ul>
+  <li>items.py : 저장할 데이터를 클래스 형태로 관리</li>
+  <li>pipeline.py : scrapy를 통해서 데이터를 가져오고 후처리를 할경우 여기에 구현</li>
+  <li>setting.py : scrapy에 대한 설정들 e.g., 파이프 라인 순서, bot이름 등등</li>
+  <li>spiders폴더 안에 실질적으로 웹 크롱링 할 내용들을 구현하면 된다.
+    <ul>
+      <li>참고로 name변수 안에 유니크한 이름을 지정해야함</li>
+    </ul>
+  </li>
+</ul>
+
+<p>#####Scrapy 프로젝트 실행</p>
+
+<p><code class="highlighter-rouge">scrapy crwal 지정한-유니크한-이름</code></p>
+
+<p>크롬에서 developer tool(컨트롤+시프트+i)를 이용해 html을 확인할 수 있다. 그리고 해당 html에서 원하는 부분의 xpath를 알고 싶으면 마우스 우클릭을 통해 확인가능</p>
+
+<h2 id="continue">Continue..</h2>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

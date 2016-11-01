@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>1. 웹 환경</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/web_study/web_crawling/1.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Web crawling</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/web_study/web_crawling/1">1. 웹 환경</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/web_study/web_crawling/2">2. 웹 크롤링 bs4 & requests</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/web_study/web_crawling/3">3. Scrapy</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/web_study/web_crawling/1.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>1. 웹 환경</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <blockquote>
+  <p>server, client
+http
+request, response
+Frontend(html, css, javascript)
+Backend(웹 서버, 데이터 베이스 서버, 웹 프레임 워크)</p>
+</blockquote>
+
+<h2 id="server--client">Server &amp; Client</h2>
+
+<p>서버(server): 특별한 서비스를 제공하는 컴퓨터</p>
+
+<ul>
+  <li>서버의 주소(URL) e.g.,192.169.0.1:80</li>
+  <li>서버의 종류(port) e.g.,80</li>
+</ul>
+
+<p>클라이언트(client): 서비스를 사용하는 사용자</p>
+
+<h2 id="http">HTTP</h2>
+
+<p>HTTP(<strong>H</strong>yper<strong>T</strong>ext <strong>T</strong>ransfer <strong>P</strong>rotocol): WWW 상에서 정보를 주고받을 수 있는 <strong>프로토콜</strong>이다. (일종의 약속)</p>
+
+<ul>
+  <li>브라우저 종류에 상관없이!</li>
+</ul>
+
+<h2 id="request-response">Request, Response</h2>
+
+<p>Request: 서버로의 요청
+2가지 방식이 있는데</p>
+
+<ul>
+  <li>GET: 정보를 가져오는 역활</li>
+  <li>Post: 정보를 수정, 입력하는 역할</li>
+</ul>
+
+<p>Response: 서버로 부터의 응답</p>
+
+<ul>
+  <li><strong>html</strong>, javascript, css, image, etc.</li>
+</ul>
+
+<h2 id="frontend">Frontend</h2>
+
+<p>웹 환경을 개발할때 크게 두가지로 나뉘는데(Frontend, Backend), Frontend는 사용자에게 보여지는, 사용자가 브라우저에서 정보를 보고 웹서버에게 정보를 요청(request)하기 위한 부분이라 보면 된다.</p>
+
+<ul>
+  <li>HTML
+    <ul>
+      <li>웹 페이지를 구조적으로 나타내는 문서</li>
+    </ul>
+  </li>
+  <li>CSS
+    <ul>
+      <li>디자인</li>
+    </ul>
+  </li>
+  <li>JavaScript
+    <ul>
+      <li>사용자의 편의성을 위한 동작을 수행하기 위한 프로그래밍 언어</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="backend">Backend</h2>
+
+<p>웹 서버(Apache, IIS, nginx, GWX, etc.)</p>
+
+<ul>
+  <li>사용자의 요청에 맞게 알맞은 해당 HTML을 전송해주는 프로그램</li>
+</ul>
+
+<p>데이터 베이스(Mysql, Oracle, MongoDB, etc.)</p>
+
+<ul>
+  <li>사용자의 정보를 저장하는 저장소</li>
+</ul>
+
+<p>웹 프레임 워크(Django, Flask, Ruby on Rails, ASP.NET, etc.)</p>
+
+<ul>
+  <li>웹 개발을 보다 편리하게 만들어주는 도구
+    <ul>
+      <li>참고로 사용자가 많을경우 Django와 같은 웹 프레임 워크에만 의존하기 보다 Mysql, Oracle같은 DB를 이용하는게 더 효율적</li>
+    </ul>
+  </li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>
