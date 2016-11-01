@@ -126,11 +126,28 @@ EM algorithm
 	- 예를 들어 GMM에서, $z_i$ 가 관찰되었다면 unimodal posterior을 갖게되어 쉽게 parameter을 추정할 수 있다.
 	- 하지만 잠재변수가 관찰 되지 않았을 경우 다양한 봉우리를 가지기 때문에 어떤 잠재변수 기준으로 optimize하는지가 중요하다.
 	- 쉽게 생각하면, 봉우리($z$)를 정하고 남은 parameter들을 optimize 해야 할 것이다.
-- GMM 같이 joint probability 분포가 지수족(exponential family)일때, 대수적으로 likelihood는 다중 봉우리(multiple model)를 가질 수 있음을 보여보자.
-- complete data log likelihood는 다음과 같이 나타낼 수 있다.
+- GMM 같이 joint probability 분포가 지수족(exponential family)일때, 잠재변수를 가지는 모델의 likelihood는 다중 봉우리(multiple model)를 가질 수 있음을 대수적으로 보여보자.
+- 우선 joint probability가 지수족(exponential family)이라면 다음과 같이 나타낼 수 있다.
+
+$p(x,z\vert \theta)=\frac{1}{Z(\theta)}\exp[\theta^T\phi({\bf x},{\bf z})]$
+
+- 모든 data가 관찰되는 complete data log likelihood는 다음과 같이 나타낼 수 있다.
 
 $L(\theta)=\sum_i \ln p({\bf x}_i,{\bf z}_i\vert \theta)=\theta^T(\sum_i \phi({\bf x_i},{\bf z_i}))-N\ln Z(\theta)$
 
-- 첫번째 term은 $\theta$ 에 linear 하니 일단 무시.
-- 
+- 첫번째 term은 $\theta$ 에 linear 하고 뒤의 log partition function $\ln Z(\theta)$ 는 convex하다. (왜 그런지는 따로 찾아보기)
+- 뒤의 term에 마이너스가 붙어 있어서 전체적으로 concave하고 따라서 하나의 maximum이 존재한다.
+- 하지만 잠재 변수를 포함하는 모델의 경우 잠재변수는 관찰되지 못하므로 likelihood는 아래와 같이 표현된다. (incomplete data log likelihood)
+
+$L(\theta)=\sum_i \ln p({\bf x}_i\vert \theta)=\sum_i \ln (\sum_{{\bf z}_i}p({\bf x}_i,{\bf z}_i\vert \theta))$
+
+- $p({\bf x},{\bf z})$ 는 exponential family라고 가정하였으므로,
+
+$L(\theta)=\sum_i \ln [\sum_{{\bf z}_i}p({\bf x}_i,{\bf z}_i\vert \theta)]=\sum_i \ln (\sum_{{\bf z}_i}\exp[\theta^T\phi({\bf x},{\bf z})])-N\ln Z(\theta)$
+
+- 첫번째 term의 log-sum-exp 함수는 convex하고 뒤의 log partition function $\ln Z(\theta)$ 는 convex하다.
+- 하지만 두 convex 함수의 차는 일반적으로 convex하지 않다.
+- 따라서 여러개의 optimal solution을 가진다. (다중 봉우리를 가진다.)
+
+
 
