@@ -127,6 +127,10 @@ EM algorithm
 	- 하지만 잠재변수가 관찰 되지 않았을 경우 다양한 봉우리를 가지기 때문에 어떤 잠재변수 기준으로 optimize하는지가 중요하다.
 	- 쉽게 생각하면, 봉우리($z$)를 정하고 남은 parameter들을 optimize 해야 할 것이다.
 - GMM 같이 joint probability 분포가 지수족(exponential family)일때, 대수적으로 likelihood는 다중 봉우리(multiple model)를 가질 수 있음을 보여보자.
+- complete data log likelihood는 다음과 같이 나타낼 수 있다.
 
+$L(\theta)=\sum_i \ln p({\bf x}_i,{\bf z}_i\vert \theta)=\theta^T(\sum_i \phi({\bf x_i},{\bf z_i}))-N\ln Z(\theta)$
 
+- 첫번째 term은 $\theta$ 에 linear 하니 일단 무시.
+- 
 
