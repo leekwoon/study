@@ -1,3 +1,3 @@
 #!/bin/bash
 
-jekyll serve -w -P 20000
+jekyll serve -w -p 10000

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Kalman Filter Basics</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/ml_study/kalman_filter/1.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Kalman Filter</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/ml_study/kalman_filter/1">Kalman Filter Basics</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/ml_study/kalman_filter/1.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>Kalman Filter Basics</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <ul>
+  <li>noise(잡음)이 포함된 센서로부터 측정된 값(<script type="math/tex">z</script>)과 부정확한 수학식(State Space Model)으로 부터 계산되어진 값(<script type="math/tex">\hat{x}_{t\vert t-1}</script>)을 가지고 좀더 정확하게 실제의 값을 추측해내는 Kalman filter에 대해 알아보자</li>
+</ul>
+
+<h2 id="section">칼만 필터의 동적 시스템 모델</h2>
+
+<ul>
+  <li>Kalman filter은 discretized time domain에서 linear dynamical system을 기반으로 작동한다.</li>
+  <li>특정시간 <script type="math/tex">t</script>에서 kalman filter는 다음과 같은 관계식을 가정한다.</li>
+</ul>
+
+<script type="math/tex; mode=display">x_t=F_tx_{t-1}+B_tu_t+w_t</script>
+
+<script type="math/tex; mode=display">z_t=H_tx_t+v_t</script>
+
+<ul>
+  <li>이때, <script type="math/tex">w_t</script>와 <script type="math/tex">v_t</script>는 mean은 0이고 covariance가 각각 <script type="math/tex">Q_t,R_t</script>인 noise이다.</li>
+  <li><script type="math/tex">z</script>는 <script type="math/tex">x</script>와 단위가 다를 수 있고 <script type="math/tex">H</script>로 단위 맞춰 줌</li>
+  <li>예를 들어, 가속운동 하는 기차의 경우 위치와 속도는 각각 아래와 같이 표현될수 있다</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{pmatrix}x_t\\ \dot{x}_t\end{pmatrix} =
+\begin{pmatrix}1&\triangle t\\0&1\\ \end{pmatrix}
+\begin{pmatrix}x_{t-1}\\ \dot{x}_{t-1}\end{pmatrix}+
+\begin{pmatrix}(\triangle t)^2/2\\ \triangle t\end{pmatrix}
+\frac{f_t}{m}+\text{noise} %]]></script>
+
+<p>위의 예시 에서는 <script type="math/tex">F_t=\begin{pmatrix}x_t\\ \dot{x}_t\end{pmatrix}</script> 그리고 <script type="math/tex">B_t=\begin{pmatrix}(\triangle t)^2/2\\ \triangle t\end{pmatrix}</script></p>
+
+<h2 id="section-1">칼만 필터의 구조</h2>
+
+<ul>
+  <li>우주의 모든 원자, 전자, 미립자를 모두 모델링하지 않기에 가정된 수학식(State Space Model)은 부정확할 수밖에 없다.</li>
+  <li>또한 정밀한 관측을 위한 초고정밀의 센서를 만드는 일 또한 쉽지 않다.</li>
+  <li>따라서 주어진 상황에서의 최선은 부정확한 모델로부터 예측된 값과 잡음이 섞인 센서로 부터의 값을 가지고 
+  확률적으로 가장 그럴듯한 값을 추정하는 것일 것이다. (아래의 그림과 같이)</li>
+</ul>
+
+<p><img src="/study/images/ml_study/kalman_filter/1.png" alt="" class="center-block" /></p>
+
+<ul>
+  <li>칼만 필터는 예측과 보정 두 단계를 거쳐 값을 추정한다.</li>
+</ul>
+
+<p><strong>예측 단계</strong></p>
+
+<script type="math/tex; mode=display">\hat{x}_{t\vert t-1}=F_t\hat{x}_{t\vert t-1}+B_tu_t</script>
+
+<script type="math/tex; mode=display">P_{t\vert t-1}=F_tP_{t-1\vert t-1}F_t^T+Q_t</script>
+
+<ul>
+  <li><script type="math/tex">P_{t\vert t-1}</script> 식은 아래와 같이 유도할 수 있다</li>
+</ul>
+
+<script type="math/tex; mode=display">P_{t\vert t-1}=E[(x_t-\hat{x}_{t\vert t-1})(x_t-\hat{x}_{t\vert t-1})^T]</script>
+
+<script type="math/tex; mode=display">=E[(F(x_t-\hat{x}_{t\vert t-1})+w_t)(F(x_t-\hat{x}_{t\vert t-1})+w_t)^T]</script>
+
+<script type="math/tex; mode=display">=FE[(x_t-\hat{x}_{t\vert t-1})w_t^T]F^T+FE[(x_t-\hat{x}_{t\vert t-1})w^T]+E[w_t(x_t-\hat{x}_{t\vert t-1})^T]F^T+E[w_tw_t^T]</script>
+
+<p>state estimation error와 process noise는 uncorrelated 하기에,</p>
+
+<script type="math/tex; mode=display">E[(x_t-\hat{x}_{t\vert t-1})w^T]=E[w_t(x_t-\hat{x}_{t\vert t-1})^T]=0</script>
+
+<p>따라서,</p>
+
+<script type="math/tex; mode=display">P_{t\vert t-1}=E[(x_t-\hat{x}_{t\vert t-1})(x_t-\hat{x}_{t\vert t-1})^T]</script>
+
+<script type="math/tex; mode=display">=FE[(x_t-\hat{x}_{t\vert t-1})w_t^T]F^T+E[w_tw_t^T]</script>
+
+<script type="math/tex; mode=display">=FP_{t-1\vert t-1}F^T+Q_t</script>
+
+<p><strong>보정 단계</strong></p>
+
+<script type="math/tex; mode=display">K_t=P_{t|t-1}H_t^T(H_tP_{t|t-1}H_t^T+R_t)^-1</script>
+
+<script type="math/tex; mode=display">\hat{x}_{t|t}=\hat{x}_{t|t-1}+K_t(z_t-H_t\hat{x}_{t|t-1})</script>
+
+<script type="math/tex; mode=display">P_{t|t}=P_{t|t-1}-K_tH_tP_{t|t-1}</script>
+
+<ul>
+  <li>보정 단계는 모델로부터 예측된 값을 센서로부터 측정된 값을 이용해 보정하는 단계이다.</li>
+  <li>모델로부터 예측된 분포와 센서로부터 측정된 분포를 어떻게 합쳐서 확률적으로 더 나은 추정값을 구할 수 있을까?</li>
+  <li>칼만 필터에서는 두 분포(Normal distribution)를 곱함으로써 추정값을 구한다.</li>
+  <li>재밌는 사실은 두개의 Normal distribution을 곱해도 그 결과 역시 Normal distribution이라는 사실이다.</li>
+  <li>곱해서 전개해보면 위와 같은 식들을 얻을 수 있다.</li>
+  <li>이때, <script type="math/tex">K</script>를 Kalman gain이라 한다.
+    <ul>
+      <li>(<script type="math/tex">z</script>와 <script type="math/tex">x</script>의 단위가 같은경우)이해를 돕기위해 <script type="math/tex">H</script>를 <script type="math/tex">I</script> (Identity Matrix)로 놓고 보면 Kalman gain은 센서로부터 측정된 값을 얼마나 신뢰할지를 나타낸다고 볼 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

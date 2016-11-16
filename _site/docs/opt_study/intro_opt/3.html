@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>3. Convex Functions</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/opt_study/intro_opt/3.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Introduction to Optimization</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/1">1. Optimization Basics</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/2">2. Convex Sets</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/opt_study/intro_opt/3">3. Convex Functions</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/4">4. Convex Optimizaion</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/opt_study/intro_opt/3.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>3. Convex Functions</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <h2 id="outline">Outline</h2>
+
+<ul>
+  <li>Definition of the convex function</li>
+  <li>Examples</li>
+  <li>Convex function operation</li>
+</ul>
+
+<h2 id="convex-functions">Convex Functions</h2>
+
+<p><strong>Convex function</strong></p>
+
+<p><img src="/study/images/opt_study/intro_opt/3.1.png" alt="" class="center-block" /></p>
+
+<ul>
+  <li><strong>Defintion:</strong> A function <script type="math/tex">f:\mathbf{R^n}\to \mathbf{R}</script> is convex if the domain <script type="math/tex">f\text{,dom}(f)</script> is a convex set, and if for any <script type="math/tex">\theta \in [0,1]</script>,</li>
+</ul>
+
+<script type="math/tex; mode=display">f(\theta x+(1-\theta)y)\le\theta f(x)+(1-\theta)f(y), \forall x,y \in \text{dom}(f)</script>
+
+<ul>
+  <li>A function is strictly convex if the inequality is replaced by the strict equality with <script type="math/tex">\theta \in (0,1)</script></li>
+  <li>A function is concave if -f is convex</li>
+  <li><strong>Convex function is defined on the convex set</strong></li>
+  <li>The definition can be extended to</li>
+</ul>
+
+<script type="math/tex; mode=display">f(\sum_{j=1}^{k}\alpha_jx_j) \le \sum_{j=1}^{k}\alpha_jf(x_j)</script>
+
+<p>for all <script type="math/tex">\alpha_j \ge 0</script> and <script type="math/tex">\sum_{j=1}^{k}a_j=1</script></p>
+
+<ul>
+  <li><strong>Theorem:</strong> A function <script type="math/tex">f</script> is convex if and only if <script type="math/tex">f</script> is convex when it is restricted to any line that intersects its domain. That is, <script type="math/tex">f</script> is convex if and only if for any <script type="math/tex">x\in \text{dom}(f)</script>, and <script type="math/tex">v,g(t)=f(x+tv)</script> is convex
+    <ul>
+      <li>이 Theorem을 이용하면 <script type="math/tex">\mathbf{R^n}</script> domain 에서가 아니라 <script type="math/tex">\mathbf{R}</script> domain 에서 convex analysis 가능.</li>
+    </ul>
+  </li>
+  <li><strong>Proof(<script type="math/tex">\Rightarrow</script>):</strong></li>
+</ul>
+
+<p>Suppose that <script type="math/tex">f</script> is convex. Then we need to show that <script type="math/tex">g</script> is convex. Consider,</p>
+
+<script type="math/tex; mode=display">g(\alpha t_1 +(1-\alpha)t_2)\\=f(x+(\alpha t_1+(1-\alpha)t_2)v)\\=f(\alpha x+(1-\alpha)x+(\alpha t_1+(1-\alpha)t_2)v)
+\\=f(\alpha(x+t_1v)+(1-\alpha)(x+t_2v))\\ \le \alpha f(x+t_1v)+(1-\alpha)f(x+t_2v)\\=\alpha g(t_1)+(1-\alpha)g(t_2)</script>
+
+<ul>
+  <li><strong>Proof(<script type="math/tex">\Leftarrow</script>):</strong></li>
+</ul>
+
+<p>Let <script type="math/tex">v=(y-x)</script>. Then</p>
+
+<script type="math/tex; mode=display">g(t) = f(x+t(y-x)),g(t-1)=f(x+(t-1)(y-x))</script>
+
+<p>Since <script type="math/tex">g</script> is convex for any <script type="math/tex">t</script>, for any <script type="math/tex">\alpha \in [0,1]</script></p>
+
+<script type="math/tex; mode=display">g((1-\alpha)t+\alpha (t-1)) \le \alpha g(t-1)+(1-\alpha)g(t)</script>
+
+<p>Let <script type="math/tex">t=1</script>. Then</p>
+
+<script type="math/tex; mode=display">g(1-\alpha) \le \alpha g(0)+(1-\alpha)g(1)
+\\ \Leftrightarrow f(\alpha x+(1-\alpha)x+(1-\alpha)(y-x))\le \alpha f(x)+(1-\alpha)f(y)
+\\ \Leftrightarrow f(\alpha x+(1-\alpha)y) \le \alpha f(x)+(1-\alpha)f(y)</script>
+
+<h2 id="first-order-condition-for-convexity">First order condition for convexity</h2>
+
+<p><img src="/study/images/opt_study/intro_opt/3.2.png" alt="" class="center-block" /></p>
+
+<ul>
+  <li>Suppose that <script type="math/tex">f</script> is differentiable. Then <script type="math/tex">f:S\to \mathbf{R}</script> is convex if and only if <script type="math/tex">S</script> is convex and</li>
+</ul>
+
+<script type="math/tex; mode=display">f(y) \ge f(x) + \nabla f(x)^T(y-x), \forall x,y \in S</script>
+
+<ul>
+  <li>Connection with the first order necessary condition. If <script type="math/tex">x^*</script> is optimal, then</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla f(x^*) = 0, f(y) \ge f(x^*), \forall y \in S</script>
+
+<ul>
+  <li><script type="math/tex">x^*</script> is a global minimum point.
+    <ul>
+      <li>ch1에서 배운 first order condition for optimal point를 생각해보자.</li>
+      <li><script type="math/tex">\nabla f(x^*) = 0</script>은 optimal point를 가지기 위한 일차 필요조건이였다.</li>
+      <li>하지만 convex가 보장이 되면 <script type="math/tex">\nabla f(x^*) = 0</script>은 <script type="math/tex">0</script>이 되어 <script type="math/tex">f(y) \ge f(x^*)</script>이되고
+        <ul>
+          <li>local optiaml문제에서 global optimal문제가 되고</li>
+          <li>ch1에서 배운 optimal point에 대한 일차 필요조건이 충분조건이 된다.</li>
+        </ul>
+      </li>
+      <li>Convex의 중요성 :)</li>
+    </ul>
+  </li>
+  <li><strong>Proof(<script type="math/tex">\Rightarrow</script>):</strong></li>
+</ul>
+
+<p>We will prove the one-dimensional case.
+Assume that <script type="math/tex">f</script> is convex. Then we have</p>
+
+<script type="math/tex; mode=display">f(x+t(y-x)) \le (1-t)f(x)+tf(y)
+\\ \Leftrightarrow f(y) \ge f(x)+\frac{f(x+t(y-x))-f(x)}{t}</script>
+
+<p>and by taking the limit <script type="math/tex">t \to 0</script>, we have the desired result</p>
+
+<ul>
+  <li><strong>Proof(<script type="math/tex">\Leftarrow</script>):</strong></li>
+</ul>
+
+<p>Suppose now that we have the first order condition. Let <script type="math/tex">z=\theta x+(1-\theta)y</script>. Then</p>
+
+<script type="math/tex; mode=display">f(x) \ge f(z)+\nabla f(z)(x-z)</script>
+
+<script type="math/tex; mode=display">f(y) \ge f(z)+\nabla f(z)(y-z)</script>
+
+<p>Then</p>
+
+<script type="math/tex; mode=display">\theta f(x)+(1-\theta)f(y) \ge f(z) = f(\theta x+(1-\theta)y)</script>
+
+<h2 id="second-order-condition-for-convexity">Second order condition for convexity</h2>
+
+<ul>
+  <li>Twice differentiable function <script type="math/tex">f:S\to R</script> is convex iff <script type="math/tex">S</script> is convex and</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla^2f(x)=H \ge 0</script>
+
+<ul>
+  <li>The Hessian must be positive semi-definite</li>
+  <li>For the strict convexity, <script type="math/tex">H > 0</script></li>
+</ul>
+
+<h2 id="convex-functions-examples">Convex Functions: Examples</h2>
+
+<p><strong>Quadratic optimization probelm (like the least sqaure problem)</strong></p>
+
+<script type="math/tex; mode=display">f(x)=\frac{1}{2}x^TPx+q^Tx+r</script>
+
+<ul>
+  <li>is convex iff <script type="math/tex">P\ge 0</script>, and is strictly convex iff <script type="math/tex">P>0</script>.</li>
+  <li>The least square problem <script type="math/tex">f(x) = \vert\vert Ax-b \vert\vert^2</script> is convex</li>
+  <li>증명은,intersection with an arbitrary line <script type="math/tex">\{\hat x+tv \vert \; t \in \mathbf{R}\}</script> 을 이용해 보일 수 있다.</li>
+  <li>앞에서 배운 Convex를 보이기 위한 Theorem 참고.</li>
+</ul>
+
+<p><strong>Convex function examples on <script type="math/tex">\mathbf{R}</script>:</strong></p>
+
+<ul>
+  <li>affine: <script type="math/tex">ax+b</script>
+    <ul>
+      <li>참고로 affine은 convex이면서 concave</li>
+    </ul>
+  </li>
+  <li>exponential: <script type="math/tex">e^{ax}</script></li>
+  <li>powers: <script type="math/tex">x^{\alpha}</script> for <script type="math/tex">\alpha > 1</script></li>
+  <li>powers of absolute value: <script type="math/tex">\vert x\vert^p</script> on <script type="math/tex">\mathbf{R}</script> where <script type="math/tex">p \ge 1</script>
+    <ul>
+      <li>triangularity로 보일 수 있다.</li>
+    </ul>
+  </li>
+  <li>negative entropy: <script type="math/tex">xlogx</script> on <script type="math/tex">\mathbf{R}</script>: 2nd order derivative is positive</li>
+  <li>참고로 <script type="math/tex">logx</script>는 concave</li>
+</ul>
+
+<p><strong>Convex function examples on <script type="math/tex">\mathbf{R^n}</script> and <script type="math/tex">\mathbf{R^{m\times n}}</script>:</strong></p>
+
+<ul>
+  <li>norm: <script type="math/tex">\vert\vert \cdot \vert\vert</script></li>
+  <li>
+    <script type="math/tex; mode=display">f(x)=\max\{ x_1,...,x_n \}</script>
+  </li>
+  <li>affine function
+    <ul>
+      <li>affine이 convex한 것과 <script type="math/tex">\text{Tr}(A+B) = \text{Tr}(A) + \text{Tr}(B)</script>를 이용해 증명 가능</li>
+    </ul>
+  </li>
+</ul>
+
+<script type="math/tex; mode=display">f(x)=\text{Tr}(A^TX)+b</script>
+
+<ul>
+  <li>induced norm (singular value) : norm of the matrix</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert X\vert\vert_2 = \underset{\vert\vert v\vert\vert \ne 0}{\text{sup}} \frac{\vert\vert Xv\vert\vert_2}{\vert\vert v\vert\vert_2}= (\lambda_max(X^TX))^{1/2}</script>
+
+<p><strong>log-determinant function</strong></p>
+
+<ul>
+  <li>Example: <script type="math/tex">f: \mathbf{S^n}\to \mathbf{R}</script> with <script type="math/tex">f(X)=\log\det(x)</script></li>
+  <li>log-determinant가 concave한 것을 intersection with an arbitrary line을 이용해 증명해 보자.</li>
+</ul>
+
+<script type="math/tex; mode=display">g(t) = log\det(X+tV)
+\\=\log\det(X^{1/2}(I+tX^{-1/2}VX^{-1/2})X^{1/2})
+\\=\log\det X + \log\det (I+tX^{-1/2}VX^{-1/2})
+\\=\log\det X + \sum_{i=1}^n \log(1+t\lambda_i)</script>
+
+<ul>
+  <li>where <script type="math/tex">\lambda_i</script> are eigenvalues of <script type="math/tex">X^{-1/2}VX^{-1/2}</script>.</li>
+  <li><script type="math/tex">g(t)</script>는 <script type="math/tex">t</script>에 대해서 <script type="math/tex">\log</script>때문에 concave함</li>
+  <li>실제로 <script type="math/tex">% <![CDATA[
+g''=-\sum_{i=1}^n \frac{\lambda_i^2}{(1+t\lambda_i)^2} < 0 %]]></script>, strictly concave</li>
+</ul>
+
+<p><strong>Example: <script type="math/tex">f(x,y)=x^2/y</script> where <script type="math/tex">y > 0</script></strong></p>
+
+<ul>
+  <li>eigen value를 이용해 convex를 증명해 보자.</li>
+  <li>
+    <script type="math/tex; mode=display">f_{xx} = 2/y</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">f_{xy} = -2x/y^2</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">f_{yy} = 2x^2/y^3</script>
+  </li>
+  <li><script type="math/tex">\det H = 0</script>, 즉 모든 eigen value의 곱은 0
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">\lambda_1 \lambda_2  = 0</script>
+      </li>
+    </ul>
+  </li>
+  <li><script type="math/tex">\text{Tr}(H) = \frac{2}{y} + \frac{2x^2}{y^3} > 0</script> where <script type="math/tex">y>0</script>, 즉 모든 eigen value의 합은 0보다 크다.
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">\lambda_1 + \lambda_2  > 0</script>
+      </li>
+    </ul>
+  </li>
+  <li>따라서 모든 eigen value들이 0과 같거나 크므로, <script type="math/tex">H</script> 는 positive semi-definite이고</li>
+  <li><script type="math/tex">f</script>는 convex하다</li>
+</ul>
+
+<h2 id="epigraph-and-sublevel-sets">Epigraph and Sublevel Sets</h2>
+
+<p><img src="/study/images/opt_study/intro_opt/3.3.png" alt="" class="center-block" /></p>
+
+<p><strong><script type="math/tex">\alpha</script>-sublevel set</strong></p>
+<ul>
+  <li><strong>Definition:</strong> <script type="math/tex">\alpha</script>-sublevel set of <script type="math/tex">f:\mathbf{R^n} \to \mathbf{R}</script></li>
+</ul>
+
+<script type="math/tex; mode=display">C_{\alpha} = \{x \in \text{dom}(f) \vert \; f(x) \le \alpha \}</script>
+
+<ul>
+  <li>sublevel set of convex functions are convex.</li>
+  <li><strong>But the converse is not true</strong></li>
+  <li>즉, <script type="math/tex">C_{\alpha}</script>는 <script type="math/tex">f</script>가 <script type="math/tex">\alpha</script>보다 작은 범위 내의 domain</li>
+</ul>
+
+<p><strong>Epigraph</strong></p>
+<ul>
+  <li><strong>Definition:</strong> epigraph of <script type="math/tex">f:\mathbf{R^n} \to \mathbf{R}</script>:</li>
+</ul>
+
+<script type="math/tex; mode=display">\text{epi}(f)=\{ (x,t) \in \mathbf{R^n} \vert \; x \in \text{dom}(f),\; f(x) \le t \}</script>
+
+<ul>
+  <li>A function <script type="math/tex">f</script> is convex iff <script type="math/tex">\text{epi}(f)</script> is convex.</li>
+  <li><strong>Convex를 보이는 한 방법!</strong> (differentiable 할 필요 x)</li>
+  <li><strong>Ch5에서 duality를 다룰 때 또 사용 될 것</strong></li>
+</ul>
+
+<h2 id="jensens-inequality">Jensen’s Inequality</h2>
+
+<p><strong>Jensen’s Inequality</strong></p>
+
+<ul>
+  <li>Convex combination version: If <script type="math/tex">f</script> is convex, then with <script type="math/tex">\theta_i \ge 0</script> and <script type="math/tex">\sum_{i=1}^k\theta_i=1</script>,</li>
+</ul>
+
+<script type="math/tex; mode=display">f(\theta_1x_1+\dots+ \theta_kx_k ) \le \sum_{i=1}^k \theta_i f(x_i)</script>
+
+<ul>
+  <li>Random vector: if <script type="math/tex">f</script> is convex, then</li>
+</ul>
+
+<script type="math/tex; mode=display">f(E[x]) \le E[f(x)]</script>
+
+<p><strong>Holder’s Inequality</strong></p>
+
+<script type="math/tex; mode=display">\sum_i x_iy_i \le (\sum_i \vert x_i\vert^p)^{1/p}(\sum_i \vert y_i\vert^q)^{1/q}</script>
+
+<ul>
+  <li>where <script type="math/tex">\frac{1}{p}+\frac{1}{q}=1, \; p > 1</script></li>
+</ul>
+
+<h2 id="operations-that-preserve-convexity">Operations that Preserve Convexity</h2>
+
+<ul>
+  <li>Scaling: if <script type="math/tex">f(x)</script> is convex, then <script type="math/tex">\alpha f(x)</script> is convex</li>
+  <li>Addition: if <script type="math/tex">f_1</script> and <script type="math/tex">f_2</script> are convex, then <script type="math/tex">f_1 + f_2</script> is convex</li>
+  <li>Composition with an affine function: <script type="math/tex">f</script> is convex and <script type="math/tex">g</script> is affine, then 
+<script type="math/tex">f(g(x))</script> is convex</li>
+</ul>
+
+<p><strong>Pointwise maximum</strong></p>
+
+<ul>
+  <li>if <script type="math/tex">f_1,f_2,...,f_m</script> are convex functions, then their pointwise maximum, defined by</li>
+</ul>
+
+<script type="math/tex; mode=display">f(x) = \max\{ f_1(x),f_2(x),...,f_m(x) \}</script>
+
+<ul>
+  <li>pointwise maximum is also convex</li>
+</ul>
+
+<p><strong>Pointwise supremum</strong></p>
+
+<ul>
+  <li>If for each <script type="math/tex">y \in S</script>, <script type="math/tex">f(x,y)</script> is convex, then the point wise supremum</li>
+</ul>
+
+<script type="math/tex; mode=display">g(x) = \underset{y\in S}{\text{sup}}f(x,y)</script>
+
+<ul>
+  <li>is convex</li>
+  <li>참고로 <script type="math/tex">S</script>가 convex일 필요는 없다</li>
+  <li>또한</li>
+</ul>
+
+<script type="math/tex; mode=display">\text{epi}(g) = \cap_{y\in S}\text{epi}(f(\cdot,y))</script>
+
+<ul>
+  <li>
+    <p><script type="math/tex">f</script>가 convex하면 <script type="math/tex">\text{epi}(f(\cdot,y))</script>도 모든 y에 대해 convex하므로
+<script type="math/tex">\text{epi}(g)</script>는 convex하다. (왜냐하면, convex끼리의 교집합은 convex하므로)</p>
+  </li>
+  <li>
+    <p>참고로</p>
+    <ul>
+      <li><script type="math/tex">f(x,y)</script> is convex in (x,y), and <script type="math/tex">C</script> is convex and nonempty, then</li>
+      <li><script type="math/tex">g(x) = \underset{y\in C}{\text{inf}}f(x,y)</script> 또한 convex하다</li>
+      <li>이때는 Pointwise supremum과 다르게 <script type="math/tex">C</script>는 반드시 convex해야한다</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Scalar composition</strong></p>
+
+<ul>
+  <li>Suppose <script type="math/tex">f(x)=h(g(x))</script> where <script type="math/tex">h:\mathbf{R} \to \mathbf{R}</script> and <script type="math/tex">g:\mathbf{R^n} \to \mathbf{R}</script>
+    <ul>
+      <li><script type="math/tex">f</script> is convex if <script type="math/tex">h</script> is convex and nondecreasing and <script type="math/tex">g</script> is convex
+        <ul>
+          <li>e.g., <script type="math/tex">\exp g(x)</script> if <script type="math/tex">g</script> is convex</li>
+        </ul>
+      </li>
+      <li><script type="math/tex">f</script> is convex if <script type="math/tex">h</script> is convex and nonincreasing and <script type="math/tex">g</script> is concave
+        <ul>
+          <li>e.g., <script type="math/tex">1/g(X)</script> if <script type="math/tex">g</script> is concave and positive</li>
+        </ul>
+      </li>
+      <li><script type="math/tex">f</script> is concave if <script type="math/tex">h</script> is concave and nondecreasing and <script type="math/tex">g</script> is concave</li>
+      <li><script type="math/tex">f</script> is concave if <script type="math/tex">h</script> is concave and nonincreasing and <script type="math/tex">g</script> is convex</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Vector composition</strong></p>
+
+<ul>
+  <li>Suppose <script type="math/tex">f(x)=h(g(x))</script> where <script type="math/tex">h:\mathbf{R^k} \to \mathbf{R}</script> and <script type="math/tex">g:\mathbf{R^n} \to \mathbf{R^k}</script>
+    <ul>
+      <li><script type="math/tex">f</script> is convex if <script type="math/tex">h</script> is convex and nondecreasing in each argument and <script type="math/tex">g_i</script> is convex</li>
+      <li><script type="math/tex">f</script> is convex if <script type="math/tex">h</script> is convex and nonincreasing in each argument and <script type="math/tex">g_i</script> is concave</li>
+    </ul>
+  </li>
+  <li>Scalar composition과 같은 맥락 단 <script type="math/tex">h</script>의 input이 vector</li>
+</ul>
+
+<p><strong>Perspective Function</strong></p>
+
+<ul>
+  <li>If <script type="math/tex">f:\mathbf{R^n} \to \mathbf{R}</script>, the perspective of <script type="math/tex">f</script> is the function <script type="math/tex">g:\mathbf{R^{n+1}} \to \mathbf{R}</script> defined by</li>
+</ul>
+
+<script type="math/tex; mode=display">g(x,t)=tf(\frac{x}{t})</script>
+
+<ul>
+  <li><script type="math/tex">f</script>가 convex하면 perspective operation은 convexity 보존</li>
+  <li>증명은 Epigraph를 통해 가능</li>
+</ul>
+
+<h2 id="section">내용 정리</h2>
+<ul>
+  <li>지금 까지 배운 Convex를 보이는 5가지 방법
+    <ol>
+      <li>By definition</li>
+      <li>By the intersection with an arbitrary line <script type="math/tex">g(t) = x+tv</script></li>
+      <li>
+        <script type="math/tex; mode=display">f(y) \ge f(x) + \nabla f(x)^T(y-x), \forall x,y \in S</script>
+      </li>
+      <li>
+        <script type="math/tex; mode=display">H \ge 0</script>
+      </li>
+      <li>Epigraph (differentiable 할 필요 x)</li>
+    </ol>
+  </li>
+</ul>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

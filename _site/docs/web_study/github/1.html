@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>1. 홈페이지 만들기</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/web_study/github/1.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>github</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/web_study/github/1">1. 홈페이지 만들기</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/web_study/github/2">2. 명령어 정리</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/web_study/github/1.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>1. 홈페이지 만들기</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <p>Ref)
+<a href="http://tech.whatap.io/2015/09/11/install-jekyll-on-windows/">http://tech.whatap.io/2015/09/11/install-jekyll-on-windows/</a></p>
+<h2 id="jekyll---">1. Jekyll 윈도우에 설치해서 사용하기</h2>
+<ul>
+  <li>Jekyll은 여러 형태의 텍스트와 소스들로 구성 정적 파일들을 웹사이트로 생성시켜주는 툴이다.</li>
+  <li>GitHub Pages 에서도 이용.</li>
+</ul>
+
+<h2 id="section">1.1 필요한 것</h2>
+<ul>
+  <li>Ruby(ruby, DevKit)</li>
+  <li>Jekyll</li>
+  <li>Python(Setuptool,pip,Pygments)</li>
+  <li>rouge</li>
+</ul>
+
+<p>Ruby for Jekyll. Pygments for syntax highlighting. python for Pygments.</p>
+
+<h2 id="ruby-">1.2 Ruby 설치하기</h2>
+
+<p><a href="http://rubyinstaller.org/downloads/">http://rubyinstaller.org/downloads/</a>
+위 주소에서 Ruby와 Development Kit 설치</p>
+
+<p>설치할때 아래 옵션을 체크하면 어느 경로에서든 ruby 실행 가능!</p>
+
+<p><img src="/study/images/web_study/github/1.PNG" alt="Install Ruby" class="center-block" height="500px" /></p>
+
+<p>C:\RubyDevkit 에 Development Kit을 설치했다 가정하고
+윈도우 CMD 창에서 아래 명령으로 초기화와 Ruby 와 Binding 을 해줍니다.</p>
+
+<p><code class="highlighter-rouge">cd C:\RubyDevkit</code></p>
+
+<p><code class="highlighter-rouge">ruby dk.rb init</code></p>
+
+<p><code class="highlighter-rouge">ruby dk.rb install</code></p>
+
+<h2 id="jekyll-">1.3 Jekyll 설치하기</h2>
+<p>Ruby의 gem 패키지 인스톨러를 이용하여 설치</p>
+
+<p><code class="highlighter-rouge">gem install jekyll</code></p>
+
+<p><code class="highlighter-rouge">gem install rouge</code></p>
+
+<p><code class="highlighter-rouge">gem install bundle</code></p>
+
+<p><code class="highlighter-rouge">gem install wdm</code></p>
+
+<p><code class="highlighter-rouge">bundle install</code></p>
+
+<h2 id="python-">1.4 Python 설치하기</h2>
+<p>설치는 아래 링크에서
+<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p>
+
+<p>Pygments 설치
+<code class="highlighter-rouge">pip install Pygments</code></p>
+
+<p>#나머지는 나중에..</p>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

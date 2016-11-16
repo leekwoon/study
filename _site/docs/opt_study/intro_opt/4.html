@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>4. Convex Optimizaion</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/opt_study/intro_opt/4.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Introduction to Optimization</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/1">1. Optimization Basics</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/2">2. Convex Sets</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/3">3. Convex Functions</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/opt_study/intro_opt/4">4. Convex Optimizaion</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/opt_study/intro_opt/4.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>4. Convex Optimizaion</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <h2 id="outline">Outline</h2>
+
+<blockquote>
+  <p>지금까지 Existence, convex sets , convex functions배웠다.
+이번에는 convex optimization을 배워보자.
+책에서 4.1, 4.2부분만 다룸</p>
+</blockquote>
+
+<h2 id="convex-optimization">Convex Optimization</h2>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}}f(x)</script>
+
+<script type="math/tex; mode=display">\text{s.t. } f_i(x) \le 0, \forall i=1,2,...,m</script>
+
+<script type="math/tex; mode=display">a_i^Tx=b_i, \forall j = 1,2,...,p</script>
+
+<ul>
+  <li>Convex optimization 문제가 되기 위해서는..
+    <ul>
+      <li>The objective function must be convex</li>
+      <li>The inequality constraint function must be convex</li>
+      <li>The equality constraint must be affine</li>
+    </ul>
+  </li>
+  <li>따라서 위와 같은 꼴로 만들어 주어야 한다.</li>
+  <li>예시들을 살펴 보자.</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}}f(x)</script>
+
+<script type="math/tex; mode=display">\text{s.t. } Ax \ge b</script>
+
+<ul>
+  <li>위와 같은 문제를 아래와 같이 전형적인 Convex optimization 문제 꼴로 바꿀 수 있다.</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}}f(x)</script>
+
+<script type="math/tex; mode=display">\text{s.t. } Ax +s = b</script>
+
+<script type="math/tex; mode=display">s\ge 0</script>
+
+<ul>
+  <li>이때 s를 slack variable이라 한다</li>
+  <li>한가지 예시를 더 살펴보자</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}}f(A_0x+b_0)</script>
+
+<script type="math/tex; mode=display">\text{s.t. } g_j(A_jx+b_j) \le 0, j=1,2,...,m</script>
+
+<ul>
+  <li>위와 같은 문제를 아래와 같이 전형적인 Convex optimization 문제 꼴로 바꿀 수 있다.</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}}f(y_0)</script>
+
+<script type="math/tex; mode=display">\text{s.t. } g_j(y_j) \le 0, j=1,2,...,m</script>
+
+<script type="math/tex; mode=display">y_j=A_jx+b_j, j=0,1,...,m</script>
+
+<p><strong>Epigraph form optimization</strong></p>
+
+<ul>
+  <li>또한 Ch4에서 배운 Epigraph를 활용해 문제를 변형 할 수도 있다. (Epigraph가 convexity를 보존하기 때문에)</li>
+  <li>예를 들어,</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}}f(x)</script>
+
+<script type="math/tex; mode=display">\text{s.t. } g(x) \le 0, Ax =b</script>
+
+<ul>
+  <li>위의 문제를 아래와 같이,</li>
+</ul>
+
+<script type="math/tex; mode=display">\text{min }w</script>
+
+<script type="math/tex; mode=display">\text{s.t. } f(x) \le w</script>
+
+<script type="math/tex; mode=display">g(x) \le 0, Ax =b</script>
+
+<ul>
+  <li>Epigraph를 이용해 x에 관해 최소화 하던 문제를 w에 대해 최소화 하는 문제로 바꿀 수 있다.</li>
+</ul>
+
+<p><img src="/study/images/opt_study/intro_opt/4.1.png" alt="" class="center-block" /></p>
+
+<h2 id="useful-facts">Useful Facts</h2>
+
+<ul>
+  <li>왜 Convex optimization이 중요할까?</li>
+  <li><strong>Fact:</strong> If <script type="math/tex">x^*</script> is a local minimum, then it is algo global minimum point for a convex optimization problem.</li>
+  <li><strong>Fact:</strong> Let <script type="math/tex">S</script> be the set of all global minimizers for the convex optimization problem. Then <script type="math/tex">S</script> is a convex set</li>
+  <li><strong>Fact:</strong> The first order necessary optimality condition becomes sufiicient for the convex optimization problem.</li>
+  <li><strong>Fact:</strong> If <script type="math/tex">f</script> is strictly convex, then there exist a unique minimizer.</li>
+</ul>
+
+<h2 id="problem-with-equality-constraint">Problem with Equality Constraint</h2>
+
+<ul>
+  <li>consider</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}}f(x)</script>
+
+<script type="math/tex; mode=display">\text{s.t. } Ax=b</script>
+
+<ul>
+  <li>if <script type="math/tex">f</script> is convex, then <script type="math/tex">x^*</script> is the minimizer iff</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla f(x^*)^T(y-x^*) \ge 0 \; \forall y, Ay = b</script>
+
+<ul>
+  <li>Note that <script type="math/tex">Ax^*=b</script>. We then have</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla f(x^*)^Tz \ge 0 \; \forall z, A(z+x^*) = b</script>
+
+<script type="math/tex; mode=display">\Leftrightarrow \nabla f(x^*)^Tz \ge 0 \; \forall z, Az = 0</script>
+
+<ul>
+  <li>Since <script type="math/tex">-Az=0</script>,</li>
+</ul>
+
+<script type="math/tex; mode=display">\Leftrightarrow \nabla f(x^*)^Tz = 0 \; \forall z, Az = 0</script>
+
+<ul>
+  <li>Let <script type="math/tex">N(A)</script> and <script type="math/tex">R(A)</script> be the null and column spaces of <script type="math/tex">A</script>, respectively.</li>
+  <li>By the fact that</li>
+</ul>
+
+<script type="math/tex; mode=display">N(A) \perp R(A^T)</script>
+
+<script type="math/tex; mode=display">z \in N(A)</script>
+
+<script type="math/tex; mode=display">z \perp \nabla f(x^*)^T</script>
+
+<ul>
+  <li>we can know</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla f(x^*)^T \in R(A^T)</script>
+
+<script type="math/tex; mode=display">\nabla f(x^*)^T = A^Tu</script>
+
+<ul>
+  <li>This means that there exists a vector <script type="math/tex">u</script> such that <script type="math/tex">\nabla f(x^*)^T = A^Tu</script>.</li>
+  <li>Therefore, <script type="math/tex">x^*</script> is an optimal solution iff</li>
+</ul>
+
+<script type="math/tex; mode=display">\exists u \; \nabla f(x^*)^T - A^Tu = 0, \; Ax^*=b</script>
+
+<h2 id="section">내용 정리</h2>
+
+<ul>
+  <li>Convex Optimization의 중요성을 배울 수 있었다
+    <ul>
+      <li>local point를 global로 만들어 주고</li>
+      <li>The first order necessary optimality condition을 충분조건으로 만들어 주며</li>
+      <li>Strictly convex할 경우 uniqueness를 보장해준다</li>
+    </ul>
+  </li>
+  <li>전형 적인 Convex Optimization문제 형식으로 바꾸기 위한 방식을을 배울 수 있었다</li>
+  <li>Convex Optimization 문제 중에서도 Equality Constraint 경우에는 단순히 Unconstraint한 연립 방정식 문제로 바꿀 있다!.</li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>
