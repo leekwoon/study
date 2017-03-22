@@ -4,7 +4,7 @@ group: "이것 저것"
 title: "RKHS (Reproducing Kernel Hilbert Sapce)"
 ---
 
-> http://www.gatsby.ucl.ac.uk/~gretton/coursefiles/lecture4_introToRKHS.pdf
+> <http://www.gatsby.ucl.ac.uk/~gretton/coursefiles/lecture4_introToRKHS.pdf>
 
 # Hibert Space
 --------------
