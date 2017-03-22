@@ -32,7 +32,9 @@ $k(x,x') := \langle \phi(x),\phi(x')\rangle_{\mathcal{H}}$
 - 이때 kernel 은 다음과 같은 특성을 가진다.
 	- Symmetric : $k(x,y) = k(y,x)$
 	- $k$ 로 이루어진 Gram matrix 가 positive semi-difinite
-	- $k(x,y) \ge 0$ [^1]
+	- $k(x,y) \ge 0$ [^Banach]
 
---
-[^1]: Gram matrix size 가 1인 경우에도 positive semidefinite
+
+---
+
+[^Banach]: Gram matrix size 가 1인 경우에도 positive semidefinite
