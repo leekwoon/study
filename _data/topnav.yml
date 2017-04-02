@@ -7,5 +7,7 @@ topnav:
     url: /categories/paper_study
   - title: Web Study
     url: /categories/web_study
+  - title: Piano
+    url: /categories/piano
 
 

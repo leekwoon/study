@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>6. Gradient Descent</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/opt_study/intro_opt/6.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/piano"><strong>Piano</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Introduction to Optimization</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/1">1. Optimization Basics</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/2">2. Convex Sets</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/3">3. Convex Functions</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/4">4. Convex Optimizaion</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/5">5. Duality</a>
+      </li>
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/opt_study/intro_opt/6">6. Gradient Descent</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/7">7. Projection method</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/8">8. Game Theory</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/opt_study/intro_opt/6.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>6. Gradient Descent</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <blockquote>
+  <p>이번에는 Unconstrained optimization 을 위한 Algorithm 인 Gradient Descent mothod 를 배워보자.
+참고로 optimization problem 에 따라 다른 algorithm 이 존재한다.</p>
+</blockquote>
+
+<ul>
+  <li>Unconstrained opimization
+ 	- Gradient method
+ 	- Newton method</li>
+  <li>Constrained optimization
+ 	- Projection method
+ 	- Interior point method</li>
+</ul>
+
+<h2 id="unconstrained-minimization-problem">Unconstrained Minimization Problem</h2>
+
+<ul>
+  <li>Consider : <script type="math/tex">f:\mathbf{R^n} \to \mathbf{R}</script></li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}} \ f(x)</script>
+
+<ul>
+  <li><script type="math/tex">f</script> 가 twice differentiable (두번 미분 가능)하고 convex 하면</li>
+  <li><script type="math/tex">\nabla f(x^*) = 0</script> 은 optimality 의 필요충분조건이다.</li>
+  <li>(조건에 Hessian 을 뺀 이유는 convex 이기 위한 필요충분조건 이므로, 이미 위에서 convex 언급했으니..)</li>
+  <li>하지만 closed form 이 나오지 않아 analytical 하게 풀 수 없는 경우 존재.</li>
+  <li>따라서 Numerical Algorithm 필요.</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{min}} \ f(x)</script>
+
+<ul>
+  <li>예를 들어, <script type="math/tex">x_0</script> 을 시작점으로 optimal point <script type="math/tex">x^*</script> 로 이동하고 싶다고 해보자.</li>
+  <li>그러기 위해서는 <script type="math/tex">x_{k+1}=g(x_k)</script> 그리고 <script type="math/tex">\lim_{k\to \infty}g(x_k)=x^*</script> 을 만족하는 function <script type="math/tex">g</script> 를 design 해야한다.</li>
+  <li>한가지 방법으로 Gradient method 는 <script type="math/tex">f'</script> 를 <script type="math/tex">g</script> 로 이용한다.</li>
+</ul>
+
+<script type="math/tex; mode=display">x_{k+1}=x_{k}-t_{k}\nabla f(x_k)</script>
+
+<ul>
+  <li>이때, <script type="math/tex">t_k</script> 가 너무 크면 optimal point 로 수렴하지 않을 수 있고,</li>
+  <li><script type="math/tex">t_k</script> 가 너무 작으면 수렴이 너무 느릴 수 있다.</li>
+  <li><script type="math/tex">t_k</script> 를 선택하는 대표적인 방법으로는
+    <ol>
+      <li>Constant</li>
+      <li>Exact line search</li>
+      <li>Armijo’s rule</li>
+    </ol>
+  </li>
+  <li>우선 <script type="math/tex">t_k = t</script> 로 constant (Fixed Step Size) 인 경우를 고려해보자.</li>
+</ul>
+
+<h2 id="gradient-descent-with-a-fixed-step-size">Gradient Descent with a Fixed Step Size</h2>
+
+<p><strong>Lipschitz continuous</strong></p>
+
+<script type="math/tex; mode=display">\vert\vert \nabla f(x)- \nabla f(y) \vert\vert \le M\vert\vert x-y\vert\vert</script>
+
+<ul>
+  <li>위의 조건을 만족할 때 <script type="math/tex">f(x)</script> 의 도함수 <script type="math/tex">f'(x)</script> 가 Lipschitz continuous 하다고 말한다.</li>
+  <li>다르게 표현하면 <script type="math/tex">f'(x)</script> 가 continuous and differentiable 하고 <script type="math/tex">f''(x)</script> 는 bounded 되어있으면 <script type="math/tex">f'(x)</script> 는 Lipschitz continuous</li>
+  <li><strong>Theorem</strong> :
+    <ul>
+      <li>도함수가 Lipschitz continuous 하고
+        <ul>
+          <li>
+            <script type="math/tex; mode=display">\vert\vert \nabla f(x)- \nabla f(y) \vert\vert \le M\vert\vert x-y\vert\vert</script>
+          </li>
+        </ul>
+      </li>
+      <li><script type="math/tex">\underset{x}{\text{inf}} \ f(x) = f^* > -\infty</script> 할때</li>
+      <li>gradient algorithm with <script type="math/tex">% <![CDATA[
+t<\frac{2}{M} %]]></script> has the following property</li>
+    </ul>
+  </li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{k\to \infty}{\text{lim}} \ \nabla f(x_k)=0</script>
+
+<script type="math/tex; mode=display">\underset{k\to \infty}{\text{lim}}  \vert\vert \nabla f(x_k)\vert\vert=0</script>
+
+<ul>
+  <li>이때 <script type="math/tex">f</script>는 convex 일 필요는 없다.
+    <ul>
+      <li>하지만 optimality 를 보장하지는 않는다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/study/images/opt_study/intro_opt/6.1.png" alt="" class="center-block" /></p>
+
+<ul>
+  <li>위의 그림은 optimality 를 보장하지 않는 예시를 보여준다.</li>
+  <li><script type="math/tex">f''(x)</script> 는 bounded 되어있고 <script type="math/tex">f'(x)</script> 는 Lipschitz 하지만 ..</li>
+  <li>위의 Theorem 을 증명해보자.</li>
+  <li><strong>Proof</strong> : <script type="math/tex">f'</script> 가 Lipschitz continous 할 때, Let</li>
+</ul>
+
+<script type="math/tex; mode=display">g(t) = f(x+t(y-x))</script>
+
+<ul>
+  <li>Then</li>
+</ul>
+
+<script type="math/tex; mode=display">g(1) = g(0) + \int_0^1 g'(t)dt</script>
+
+<ul>
+  <li>비슷한 방법으로</li>
+</ul>
+
+<script type="math/tex; mode=display">f(y) = f(x) + \int_x^y f'(t)dt \\
+= f(x) + \int_0^1 f'(x+t(y-x))^{T}(y-x)dt \\
+= f(x) + \nabla f(x)^{T}(y-x) + \int_0^1 \left( f'(x+t(y-x))-\nabla f(x) \right)^{T}(y-x)dt</script>
+
+<ul>
+  <li>by cauchy schwarz (C-S) inequality
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">y-x \le \vert\vert y-x\vert\vert</script>
+      </li>
+    </ul>
+  </li>
+  <li>by cauchy schwarz (C-S) inequality and Lipschitz continous of <script type="math/tex">f'</script>
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">f'(x+t(y-x))-\nabla f(x) \le \vert\vert f'(x+t(y-x))-\nabla f(x)\vert\vert \le Mt\vert\vert y-x\vert\vert</script>
+      </li>
+    </ul>
+  </li>
+  <li>위 식들에 의해서,</li>
+</ul>
+
+<script type="math/tex; mode=display">f(y) \le f(x) + \nabla f(x)^{T}(y-x) + M\int_0^1 t\vert\vert y-x\vert\vert^2 dt \\
+=f(x) + \nabla f(x)^{T}(y-x) + \frac{M}{2}\vert\vert y-x\vert\vert^2</script>
+
+<ul>
+  <li>This implies</li>
+</ul>
+
+<script type="math/tex; mode=display">f(x_{k+1}) \le f(x_k) + \nabla f(x_k)^{T}(x_{k+1}-x_{k}) + \frac{M}{2}\vert\vert x_{k+1}-x_k\vert\vert^2</script>
+
+<ul>
+  <li>by the gradient method
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">x_{k+1} = x_k - t\nabla f(x_k)</script>
+      </li>
+    </ul>
+  </li>
+  <li>위 식에 의해서,</li>
+</ul>
+
+<script type="math/tex; mode=display">f(x_{k+1}) = f(x_k) + \nabla f(x_k)^{T}(-t\nabla f(x_k)) + \frac{M}{2}t^2\vert\vert \nabla f(x_k)\vert\vert^2 \\
+= f(x_k)-t(1-\frac{M}{2}t)\vert\vert \nabla f(x_k)\vert\vert^2 \\
+\Leftrightarrow t(1-\frac{M}{2}t)\vert\vert \nabla f(x_k)\vert\vert^2 \le f(x_k)-f(x_{k+1}) \\
+\Leftrightarrow t(1-\frac{M}{2}t)\vert\vert \nabla f(x_k)\vert\vert^2 \le f(x_k)-f(x_{k+1}) \le f(x_k) - f^*</script>
+
+<ul>
+  <li><script type="math/tex">f^*</script> 은 finite 하고 또한 <script type="math/tex">t</script> 를 <script type="math/tex">\frac{2}{M}</script> 보다 작게 잡으면, <script type="math/tex">(1-\frac{M}{2}t) > 0</script> 이기 때문에</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\underset{n\to \infty}{\text{lim}} \sup \sum_{k=1}^n \vert\vert \nabla f(x_k)\vert\vert^2 < \infty %]]></script>
+
+<ul>
+  <li>Therefore</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{k\to \infty}{\text{lim}}\vert\vert \nabla f(x_k)\vert\vert^2 = 0</script>
+
+<ul>
+  <li><strong>Theorem</strong> :
+    <ul>
+      <li>이전 조건들을 충족하면서..
+        <ul>
+          <li>도함수가 Lipschitz continuous 하고
+            <ul>
+              <li>
+                <script type="math/tex; mode=display">\vert\vert \nabla f(x)- \nabla f(y) \vert\vert \le M\vert\vert x-y\vert\vert</script>
+              </li>
+            </ul>
+          </li>
+          <li><script type="math/tex">\underset{x}{\text{inf}} \ f(x) = f^* > -\infty</script> 할때</li>
+        </ul>
+      </li>
+      <li><script type="math/tex">f</script> 가 <strong>convex</strong> 하다면 !</li>
+      <li><script type="math/tex">% <![CDATA[
+t < \frac{2}{M} %]]></script> 인 경우에 gradient descent algorithms 은 optimal point 로 수렴한다.
+        <ul>
+          <li>
+            <script type="math/tex; mode=display">x^* \in X_{\text{opt}} = \{ \bar{x} : f(\bar{x})= \underset{x}{\text{inf}} f(x) \}</script>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>따라서 특정한 condition 이 만족 될때, Convexity 는 optimal point 로의 수렴을 보장해준다.</li>
+  <li>그렇다면 얼마나 <strong>빨리</strong> 수렴할까?</li>
+  <li>얼마나 수렴하는이 알아보기 위해 Strong convexity 라는 condition 을 추가로 이용해보자.
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">\nabla^2 f(x) \ge mI</script>
+      </li>
+    </ul>
+  </li>
+  <li>By definition, strong convexity implies strict convexity.</li>
+</ul>
+
+<script type="math/tex; mode=display">f(y)\ge f(x) + \nabla f(x)^T(y-x)+\frac{1}{2}m\vert\vert y-x\vert\vert^2</script>
+
+<ul>
+  <li>By the Lipschitz condition</li>
+</ul>
+
+<script type="math/tex; mode=display">f(y)\le f(x) + \nabla f(x)^T(y-x)+\frac{1}{2}M\vert\vert y-x\vert\vert^2</script>
+
+<ul>
+  <li>Implication of the storng convexity:</li>
+</ul>
+
+<script type="math/tex; mode=display">f(y)\ge f(x) + \nabla f(x)^T(y-x)+\frac{1}{2}m\vert\vert y-x\vert\vert^2 \\
+\ge f(x) + \nabla f(x)^T(\bar{y}-x)+\frac{1}{2}m\vert\vert \bar{y}-x\vert\vert^2, \text{where } \; \bar{y}=x-(1/m)\nabla f(x)</script>
+
+<ul>
+  <li>Hence,</li>
+</ul>
+
+<script type="math/tex; mode=display">f^* \ge f(x)-\frac{1}{2m}\vert\vert\nabla f(x)\vert\vert^2</script>
+
+<ul>
+  <li>This implies</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert\nabla f(x)\vert\vert \le (2m\epsilon)^{1/2} \Rightarrow f(x) \le f^*+\epsilon</script>
+
+<ul>
+  <li><strong>따라서 <script type="math/tex">\vert\vert\nabla f(x)\vert\vert</script> bounded 됨</strong></li>
+  <li>Also, Implication of the storng convexity:</li>
+</ul>
+
+<script type="math/tex; mode=display">f^* \ge f(x) + \nabla f(x)^T(x^*-x)+\frac{1}{2}m\vert\vert x^*-x\vert\vert^2 \\
+=f(x) - \vert\vert\nabla f(x)\vert\vert \vert\vert(x^*-x)\vert\vert+\frac{1}{2}m\vert\vert x^*-x\vert\vert^2</script>
+
+<ul>
+  <li>And we have</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert x^*-x\vert\vert \le \frac{2}{m}\vert\vert\nabla f(x)\vert\vert</script>
+
+<ul>
+  <li><strong>또한 <script type="math/tex">\vert\vert x^*-x\vert\vert</script> 도 bounded 됨</strong></li>
+  <li>Note that the strong convexity implies the strict convexity</li>
+  <li>Hence, <script type="math/tex">x^*</script> is unique.</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert x_{k+1}-x^*\vert\vert^2 = \vert\vert x_{k}-t\nabla f(x_k)-x^*+t\nabla f(x^*) \vert\vert^2 \\
+=\vert\vert (x_{k}-x^*)-t(\nabla f(x_k)-t\nabla f(x^*)) \vert\vert^2 \\
+=\vert\vert x_{k}-x^*\vert\vert^2+t^2\vert\vert\nabla f(x_k)-t\nabla f(x^*) \vert\vert^2 - 2t(x_k-x^*)^T(\nabla f(x_k)-t\nabla f(x^*)) \\
+\le \vert\vert x_{k}-x^*\vert\vert^2+t^2M^2\vert\vert x_k-x^* \vert\vert^2 + 2t(x^*-x_k)^T\nabla f(x_k)+2t(x_k-x^*)^Tt\nabla f(x^*) \\
+ \le \vert\vert x_{k}-x^*\vert\vert^2+t^2M^2\vert\vert x_k-x^* \vert\vert^2 -2tf(x^*)+ 2t(x^*-x_k)^T\nabla f(x_k)+2tf(x^*)+2t(x_k-x^*)^Tt\nabla f(x^*)</script>
+
+<ul>
+  <li>By the first order optimality condition, we have</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert x_{k+1}-x^*\vert\vert^2 \le \vert\vert x_{k}-x^*\vert\vert^2+t^2M^2\vert\vert x_k-x^* \vert\vert^2 -2tf(x^*)+ 2t(x^*-x_k)^T\nabla f(x_k)+2tf(x^*)+2tf(x_k)</script>
+
+<ul>
+  <li><script type="math/tex">\vert\vert x^*-x\vert\vert \le \frac{2}{m}\vert\vert\nabla f(x)\vert\vert</script> 을 이용하여</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert x_{k+1}-x^*\vert\vert^2 \le \vert\vert x_{k}-x^*\vert\vert^2+t^2M^2\vert\vert x_k-x^* \vert\vert^2 -\frac{1}{2}m\vert\vert x_k-x^*\vert\vert^2 2t \\
+=(1-mt+M^2t^2)\vert\vert x_k-x^*\vert\vert^2</script>
+
+<ul>
+  <li>This implies</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert x_k-x^*\vert\vert^2 \le (1-mt+M^2t^2)^k\vert\vert x_0-x^*\vert\vert^2</script>
+
+<ul>
+  <li><strong>따라서, <script type="math/tex">% <![CDATA[
+\vert 1-mt+M^2t^2 \vert < 1 %]]></script> 일때 converges exponentially</strong></li>
+</ul>
+
+<h2 id="gradient-descent-with-a-variable-step-size">Gradient Descent with a Variable Step Size</h2>
+
+<p><strong>Exact line search</strong></p>
+
+<ul>
+  <li>비현실적 (impractical)</li>
+  <li>배보다 배꼽이 더 클수도</li>
+</ul>
+
+<script type="math/tex; mode=display">t=\arg \underset{s \ge 0}{\text{min}} f(x+s\Delta x)</script>
+
+<p><strong>Backtracking search (Armijo’s rule)</strong></p>
+
+<ul>
+  <li>quite practical</li>
+</ul>
+
+<p><img src="/study/images/opt_study/intro_opt/6.2.png" alt="" class="center-block" /></p>
+
+<p><img src="/study/images/opt_study/intro_opt/6.3.png" alt="" class="center-block" /></p>
+
+<h2 id="newtons-method">Newton’s Method</h2>
+
+<ul>
+  <li><script type="math/tex">f</script> 가 twice differentiable (두번 미분 가능)하고 convex</li>
+  <li>gradient method 보다 좀더 빠른 algorith 은?</li>
+</ul>
+
+<h2 id="newtons-method-1">Newton’s Method</h2>
+
+<script type="math/tex; mode=display">x_{k+1} = x_k-t_k \nabla^2 f(x_k)^{-1} \nabla f(x_k)</script>
+
+<ul>
+  <li>Newton’s method</li>
+  <li>Hessian 역행렬 이용</li>
+</ul>
+
+<p><img src="/study/images/opt_study/intro_opt/6.4.png" alt="" class="center-block" /></p>
+
+<ul>
+  <li><script type="math/tex">f''</script> 가 Lipschitz continuity 를 만족하고
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">\vert\vert \nabla^2 f(x) - \nabla^2 f(y)\vert\vert \le L\vert\vert x-y\vert\vert</script>
+      </li>
+    </ul>
+  </li>
+  <li><script type="math/tex">f</script> 가 strong convexity 을 만족할때
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">\nabla^2 f(x) \ge mI</script>
+      </li>
+    </ul>
+  </li>
+  <li>Then we have for <script type="math/tex">I\ge k</script></li>
+</ul>
+
+<script type="math/tex; mode=display">f(x_I)-p^* \le \frac{2m^3}{L^2}(\frac{1}{2})^{2^{I-k+1}}</script>
+
+<ul>
+  <li>much faster than the geometric convergence (gradient method)</li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

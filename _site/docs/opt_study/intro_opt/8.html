@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>8. Game Theory</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/opt_study/intro_opt/8.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/piano"><strong>Piano</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Introduction to Optimization</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/1">1. Optimization Basics</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/2">2. Convex Sets</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/3">3. Convex Functions</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/4">4. Convex Optimizaion</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/5">5. Duality</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/6">6. Gradient Descent</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/7">7. Projection method</a>
+      </li>
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/opt_study/intro_opt/8">8. Game Theory</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/opt_study/intro_opt/8.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>8. Game Theory</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <blockquote>
+  <p>Game Theory 에 대해 간단히 살펴보자.</p>
+</blockquote>
+
+<h2 id="general-setup-of-the-n-player-game">General Setup of the N-Player Game</h2>
+
+<ul>
+  <li>다음과 같은 N-Player Game 을 정의해보자.</li>
+  <li>Players: <script type="math/tex">1,2,...N</script>
+    <ul>
+      <li>Decision / action for Player <script type="math/tex">i</script> : <script type="math/tex">x_i \in X_i</script></li>
+      <li>Cost function: <script type="math/tex">L_i(x_i,x_{-i})</script> (이때, <script type="math/tex">x_{-i}</script> 는 <script type="math/tex">x_i</script> 를 제외한 나머지)</li>
+      <li>이때 <script type="math/tex">X_i</script> 가 finite 할때 <em>finite game</em> 이라 하고</li>
+      <li><script type="math/tex">X_i \subseteq \mathbf{R^n}</script> 일때 <em>static infinite game</em> 이라 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Nash equilibrium</strong></p>
+
+<ul>
+  <li><strong>Definition</strong> : <script type="math/tex">x^* = (x_1^*,...,x_N^*)</script> is a <strong>Nash equilibrium</strong> if for all <script type="math/tex">i \in 1,2,...N</script>,</li>
+</ul>
+
+<script type="math/tex; mode=display">L_i(x_i^*,x_{-i}^*) \le L_i(x_i,x_{-i}^*), \forall x_i \in X_i</script>
+
+<ul>
+  <li>참고로, N-Player noncooperative game problem 을 가정한다.</li>
+  <li>Mixed strategy 가 적용되지 위와 같은 경우는 pure Nash equilibrium 이라 한다. (뒤에서 Mixed strategy 다룰 것)</li>
+  <li>(Rationality 와 optimality 를 전제 조건으로) 풀어 말하면, optimal point 가 있을때 상대방도 합리적인 선택을 한다면</li>
+  <li>서로 균형을 이루는 지점이 서로에게 최적화 된 지점.</li>
+</ul>
+
+<h2 id="two-player-zero-sum-game">Two Player Zero-Sum Game</h2>
+
+<ul>
+  <li>Two Player Zero-Sum Game 을 살펴보자.</li>
+  <li><script type="math/tex">N=2</script> 이고 <script type="math/tex">L_1 = -L_2</script> 일때, Nash equilibrium 은 다음과 같이 나타낸다. (이때 player 1 : minimizor,  player 2 : maximizor)</li>
+</ul>
+
+<script type="math/tex; mode=display">L(x_1^*,x_2) \le L(x_1^*,x_2^*) \le L(x_1,x_2^*), \forall x_i \in X_i, i= 1,2</script>
+
+<ul>
+  <li>duality 에서 배운 saddle point 를 떠올리면 된다.</li>
+  <li>Zero-Sum game 의 특징을 살펴보자면
+    <ul>
+      <li>(<strong>unique value</strong>) 여러 saddle point solutions 을 가질 수 있지만 그때의 cost 값은 동일하다.</li>
+      <li>(<strong>interchangeability</strong>) 만약 <script type="math/tex">(x1,x2)</script> 와 <script type="math/tex">(y1,y2)</script> 가 saddle-point solutions 이라면,</li>
+      <li><script type="math/tex">(x1,y2)</script> 와 <script type="math/tex">(y1,x2)</script> 도 saddle point solutions 이 될 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="example-of-finite-games">Example of Finite Games</h2>
+
+<p><strong>Prisonal’ dilemma</strong> (2 player non-zero sum finite game)</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}
+    (8,8)^* & (0,30)\\
+    (30,0) & (2,2)\\
+  \end{bmatrix} %]]></script>
+
+<ul>
+  <li>Both row and column players are minimizers</li>
+  <li>1st row and column: confess</li>
+  <li>2nd row and column: do not confess</li>
+  <li><script type="math/tex">L_i(x_i^*,x_{-i}^*) \le L_i(x_i,x_{-i}^*), \forall x_i \in X_i</script> 을 만족하는 지점을 찾아보면,</li>
+  <li>쉽게 <script type="math/tex">(8,8)</script> 지점이 Nash equilibrium 임을 알 수 있다.</li>
+  <li>참고로, <script type="math/tex">(2,2)</script> 에서는 더 opimize 할 여지가 있으므로 Nash equilibrium 이 아니다.</li>
+</ul>
+
+<p><strong>Matching penny game</strong> (2 player zero sum finite game)</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}
+    (1,-1) & (-1,1)\\
+    (-1,1) & (1,-1)\\
+  \end{bmatrix} %]]></script>
+
+<ul>
+  <li>Both row and column players are maximizers</li>
+  <li>1st row and column: head</li>
+  <li>2nd row and column: tail</li>
+  <li>지금까지 배운걸로는 Nash equilibrium 을 구할 수 없다.
+    <ul>
+      <li><strong>Mixed Strategies</strong> 필요!</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="mixed-strategies">Mixed Strategies</h2>
+
+<ul>
+  <li>이전 Matching penny game 에서 보았듣이, Nash equilibrium 이 존재 하지 않는 finite game 의 경우도 있다.</li>
+  <li>각 decision 에 확률을 부여한 Mixed strategy 를 이용한다면 Nash equlibrium 을 구할 수 있다.</li>
+</ul>
+
+<p><strong>Mixed strategies for two players</strong></p>
+
+<ul>
+  <li><script type="math/tex">p_1</script> is an m-dimensional probability column vector for player <script type="math/tex">1</script>
+    <ul>
+      <li>That is, <script type="math/tex">\sum_{j=1}^m p_1^j = 1 \; \text{where } p_1 = (p_1^1,...,p_1^m)</script></li>
+    </ul>
+  </li>
+  <li><script type="math/tex">p_2</script> is an n-dimensional probability column vector for player <script type="math/tex">2</script>
+    <ul>
+      <li>That is, <script type="math/tex">\sum_{j=1}^n p_2^j = 1 \; \text{where } p_2 = (p_2^1,...,p_2^n)</script></li>
+    </ul>
+  </li>
+  <li><script type="math/tex">p_1</script> and <script type="math/tex">p_2</script> are probability mass functions.</li>
+</ul>
+
+<h2 id="nash-equilibrium-in-mixed-stratedgies-for-finite-games">Nash Equilibrium in Mixed Stratedgies for Finite Games</h2>
+
+<ul>
+  <li>Let <script type="math/tex">A</script> be a matrix for Player <script type="math/tex">1</script> and <script type="math/tex">B</script> be for PLayer <script type="math/tex">2</script></li>
+  <li><strong>Definition</strong>: A pair <script type="math/tex">(p_1^*,p_2^*)</script> is siad to constitue a Nash equilibrium in mixed strategies if</li>
+</ul>
+
+<script type="math/tex; mode=display">{p_1^*}^TAp_2^* \le {p_1}^TAp_2^*</script>
+
+<script type="math/tex; mode=display">{p_1^*}^TAp_2^* \le {p_1^*}^TAp_2</script>
+
+<h2 id="saddle-point-in-mixed-strategies-for-finite-games">Saddle Point in Mixed Strategies for Finite Games</h2>
+
+<ul>
+  <li>만약 <script type="math/tex">A = -B</script> 인경우, 문제는 two-player zero-sum finite game 으로 정의된다.</li>
+  <li><strong>Definition</strong> : A pair <script type="math/tex">(p_1^*,p_2^*)</script> is said to constitue a saddle-point solution in mixed strategies if</li>
+</ul>
+
+<script type="math/tex; mode=display">{p_1^*}^TAp_2 \le {p_1^*}^TAp_2^* \le p_1^TAp_2^* \; \forall p_1,p_2</script>
+
+<h2 id="existence-of-the-saddle-point">Existence of the Saddle Point</h2>
+
+<p><strong>Minimax theorem</strong></p>
+
+<ul>
+  <li>finite zero-sum game 의 경우 항상 mixed strategy saddle-point solution 이 존재함이 폰 노이만에 의해 증명되었다.</li>
+  <li>하지만 solutions 이 unique 하진 않을 수도</li>
+</ul>
+
+<h2 id="existence-of-nash-equilibria">Existence of Nash Equilibria</h2>
+
+<p><strong>Nash theorem</strong> (fixed point analysis)</p>
+
+<ul>
+  <li>finite <strong>nonzero</strong>-sum game 의 경우 항상 mixed strategy Nash equilibrium 이 존재함이 폰 노이만에 의해 증명되었다.</li>
+  <li>마찬가지로 solutions 이 unique 하진 않을 수도</li>
+</ul>
+
+<h2 id="characterization-of-nash-equilibria">Characterization of Nash Equilibria</h2>
+
+<ul>
+  <li>Mixed strategy Nash equilibrium 을 구하기 위한 <strong>중요한 theorem</strong> 을 살펴보자!</li>
+  <li><strong>Theorem</strong>: Every pure action in the support on any player’s quilibrium mixed strategy yields the same cost</li>
+  <li>무슨 말인가 하니, 예를 들어 player <script type="math/tex">1</script> 의 각 decision 의 확률이 mixted strategy 를 기반으로 할때, player <script type="math/tex">2</script> 의 pure decisions (확률을 고려하는 mixed strategy 가 아닌 pure!) 은 같은 cost 를 가진다.</li>
+  <li>이해를 돕기 위해 Matching penny game 을 생각해보자.</li>
+</ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}
+    (1,-1) & (-1,1)\\
+    (-1,1) & (1,-1)\\
+  \end{bmatrix} %]]></script>
+
+<ul>
+  <li>mixed strategy 에 의한 player <script type="math/tex">1</script> 의 <script type="math/tex">p_1</script> 이 주어졌을 때, player <script type="math/tex">2</script> 의 각 pure decision 의 cost 는,
+    <ul>
+      <li>Head : <script type="math/tex">-p_1^1+p_1^2</script></li>
+      <li>Tail : <script type="math/tex">p_1^1-p_1^2</script></li>
+    </ul>
+  </li>
+  <li>같은 방식으로 player <script type="math/tex">1</script> 의 경우에는
+    <ul>
+      <li>Head : <script type="math/tex">p_2^1-p_2^2</script></li>
+      <li>Tail : <script type="math/tex">-p_2^1+p_2^2</script></li>
+    </ul>
+  </li>
+  <li><script type="math/tex">\sum_j p_i^j = 1, \; \sum_j p_2^j = 1</script>  임을 이용하면,
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">p_1 = (\frac{1}{2},\frac{1}{2})</script>
+      </li>
+      <li>
+        <script type="math/tex; mode=display">p_2 = (\frac{1}{2},\frac{1}{2})</script>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Rock-scissors-paper game</strong></p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{bmatrix}
+    (0,0) & (-1,1) & (1,-1)\\
+    (1,-1) & (0,0)  & (-1,1)\\
+    (-1,1) & (1,-1) & (0,0) \\
+  \end{bmatrix} %]]></script>
+
+<ul>
+  <li>조금 더 복잡한 Rock-scissors-paper game 를 살펴보자.</li>
+  <li>mixed strategy 에 의한 player <script type="math/tex">1</script> 의 <script type="math/tex">p_1</script> 이 주어졌을 때, player <script type="math/tex">2</script> 의 각 pure decision 의 cost 는,
+    <ul>
+      <li>rock : <script type="math/tex">-p_1^2+p_1^3</script></li>
+      <li>scissors : <script type="math/tex">p_1^1-p_1^3</script></li>
+      <li>paper : <script type="math/tex">-p_1^1+p_1^2</script></li>
+    </ul>
+  </li>
+  <li>Theorem 에 의해 각 pure decision 의 cost 가 같음을 이용해 연립방정식을 세우면,</li>
+</ul>
+
+<script type="math/tex; mode=display">p_1^1+p_1^2+p_1^3=1</script>
+
+<script type="math/tex; mode=display">-p_1^2+p_1^3 = p_1^1-p_1^3</script>
+
+<script type="math/tex; mode=display">p_1^1-p_1^3 = -p_1^1 + p_1^2</script>
+
+<ul>
+  <li>최종적으로 식을 풀면
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">p_1 = (\frac{1}{3},\frac{1}{3},\frac{1}{3})</script>
+      </li>
+      <li>
+        <script type="math/tex; mode=display">p_2 = (\frac{1}{3},\frac{1}{3},\frac{1}{3})</script>
+      </li>
+    </ul>
+  </li>
+  <li>사실, 위와 같은 zero-sum finite game 의 경우 saddle-pint (Nash equilibrium) 은 linear programs 을 풀어 얻을 수 있다.</li>
+  <li><strong>minimax theorem</strong> 에 의해 다음을 만족하는 pmfs <script type="math/tex">x^*, y^*</script> 가 항상 존재한다.</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x}{\text{max}} \; \underset{y}{\text{min}} \; x^TAy = \underset{y}{\text{min}} \; \underset{x}{\text{max}} \; x^TAy = {x^*}^TAy^*</script>
+
+<ul>
+  <li>참고로</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{y}{\text{min}} \; x^TAy = \underset{j}{\text{min}} \; \sum_{i=1}^n a_{ij}x_i, \; z \le \sum_{i=1}^n a_{ij}x_i, \forall j</script>
+
+<script type="math/tex; mode=display">\underset{x}{\text{max}} \; x^TAy = \underset{i}{\text{max}} \; \sum_{j=1}^n a_{ij}y_j, \; \sum_{j=1}^n a_{ij}y_j \le w, \forall j</script>
+
+<ul>
+  <li>Dual linear programs for <script type="math/tex">x^*</script></li>
+</ul>
+
+<script type="math/tex; mode=display">\max \; z \;\;\;\text{ s.t.}</script>
+
+<script type="math/tex; mode=display">z - \sum_{i=1}^n a_{ij}x_i \le 0, \; j = 1,2,...,n</script>
+
+<script type="math/tex; mode=display">\sum_{i=1}^n x_i = 1, \; x_i \ge 0, \; i=1,2,...,n</script>
+
+<ul>
+  <li>and for <script type="math/tex">y^*</script></li>
+</ul>
+
+<script type="math/tex; mode=display">\min \; w \;\;\;\text{ s.t.}</script>
+
+<script type="math/tex; mode=display">w - \sum_{j=1}^n a_{ij}y_j \ge 0, \; i = 1,2,...,n</script>
+
+<script type="math/tex; mode=display">\sum_{j=1}^n y_j = 1, \; y_j \ge 0, \; j=1,2,...,n</script>
+
+<h2 id="existence-of-pure-nash-equilibria">Existence of Pure Nash Equilibria</h2>
+
+<p><strong>Theorem</strong></p>
+<ul>
+  <li>For each <script type="math/tex">i</script>, Let <script type="math/tex">X_i</script> be a closed, bounded, and convex subset of <script type="math/tex">\mathbf{R^n}</script>,</li>
+  <li>and the cost function <script type="math/tex">L_i</script> is jointly continuous in all its argument,</li>
+  <li>and strictly convex in <script type="math/tex">x_i</script> for every <script type="math/tex">x_j \in X_j, \; j \ne i</script>.</li>
+  <li>Then the game admits a Nash equilibrium in pure strategy.</li>
+  <li>즉, 각 player 에 대하여 first order optimality 은 Nash equilibria 에 대한 충분조건이다.
+    <ul>
+      <li>정리하면, 모든 <script type="math/tex">X_i</script> 가 convex, bounded</li>
+      <li>모든 <script type="math/tex">L_i</script> 가 continous, strictly convex</li>
+      <li>할때 optimality 보장하게 되고 Nash equilibria 존재</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="example">Example</h2>
+
+<p><strong>Quadratic zero-sum infinite game</strong></p>
+
+<script type="math/tex; mode=display">J(u_1,u_2) = \frac{1}{2}u_1^TR_{11}u_1 + u_1^TR_{12}u_2 - \frac{1}{2}u_2^TR_{22}u_2 + u_1^Tr_1 + u_2^Tr_2 + c</script>
+
+<ul>
+  <li><script type="math/tex">u_1</script> : minimizer</li>
+  <li><script type="math/tex">u_2</script> : maximizer</li>
+  <li>
+    <script type="math/tex; mode=display">R_11,R_22 > 0</script>
+  </li>
+  <li>The unique saddle point solution</li>
+  <li><script type="math/tex">\nabla^2_{u_1} J(u_1,u_2) = R_{11} > 0</script> , strictly convex</li>
+  <li><script type="math/tex">% <![CDATA[
+\nabla^2_{u_2} J(u_1,u_2) = -R_{22} < 0 %]]></script> , strictly concave</li>
+  <li>strictly convex, concave 하므로 first order sufficient condition 는
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">\nabla_{u_1} J(u_1,u_2) = R_{11}u_1 + R_{12}u_2 + r_1 = 0</script>
+      </li>
+      <li>
+        <script type="math/tex; mode=display">\nabla_{u_2} J(u_1,u_2) = R_{12}u_1 + R_{12}u_2 + r_1 = 0</script>
+      </li>
+    </ul>
+  </li>
+  <li>연립해서 풀면,
+    <ul>
+      <li>
+        <script type="math/tex; mode=display">u_1^* = -(R_{11}+R_{12}R_{22}^{-1}R_{12}^T)^{-1}(r_1+R_{12}R_{22}^{-1}r_2)</script>
+      </li>
+      <li>
+        <script type="math/tex; mode=display">u_2^* = -(R_{22}+R_{12}^TR_{11}^{-1}R_{12})^{-1}(r_2+R_{12}^TR_{11}^{-1}r_1)</script>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

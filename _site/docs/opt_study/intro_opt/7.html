@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>7. Projection method</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/opt_study/intro_opt/7.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>    
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/piano"><strong>Piano</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Introduction to Optimization</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/1">1. Optimization Basics</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/2">2. Convex Sets</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/3">3. Convex Functions</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/4">4. Convex Optimizaion</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/5">5. Duality</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/6">6. Gradient Descent</a>
+      </li>
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/opt_study/intro_opt/7">7. Projection method</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/opt_study/intro_opt/8">8. Game Theory</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/opt_study/intro_opt/7.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>7. Projection method</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <blockquote>
+  <p>Constrained optimization problem 을 위한 Projection method 를 배워보자.</p>
+</blockquote>
+
+<h2 id="gradient-projection">Gradient Projection</h2>
+
+<ul>
+  <li>Consider : <script type="math/tex">f:\mathbf{R^n} \to \mathbf{R}</script></li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x\in C}{\text{min}} \ f(x)</script>
+
+<ul>
+  <li><strong>Constrained optimization problem</strong></li>
+  <li><script type="math/tex">C</script> : closed and convex subset of <script type="math/tex">\mathbf{R^n}</script></li>
+  <li>constrained optimization problem 을 풀기 위해서는 gradient algorithm 을 아래와 같이 수정할 필요가 있음</li>
+</ul>
+
+<script type="math/tex; mode=display">x_{k+1}=P_C(x_k-t\nabla f(x_k))</script>
+
+<ul>
+  <li>where <script type="math/tex">P_C</script> is the projection of <script type="math/tex">x_k-t\nabla f(x_k)</script> on the set <script type="math/tex">C</script></li>
+  <li><script type="math/tex">P_C</script> 는 다음과 같은 문제로 나타낼수 있다.</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{z \in C}{\text{argmin}} \vert\vert z-x\vert\vert^2</script>
+
+<ul>
+  <li>이때 <script type="math/tex">x</script> 는 gradient method 로 얻어진 <script type="math/tex">x_k-t\nabla f(x_k)</script> 이고</li>
+  <li><script type="math/tex">x \notin C</script> 이면, 가장 가까운 <script type="math/tex">z \in C</script> 를 찾고</li>
+  <li><script type="math/tex">x \in C</script> 이면, <script type="math/tex">z=x</script> 이다. (projection 하지 않아도 괜찮음)</li>
+  <li>Projection 을 찾는 문제는 대부분의 경우 그리 간단하지 않다.</li>
+  <li>하지만, <script type="math/tex">C</script> 가 linear equality 인 경우에는 쉽게 풀 수 있다.</li>
+  <li>예를 들어,</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{z}{\text{min}} \vert\vert z-x\vert\vert^2 \\
+\text{s.t. } Az=b</script>
+
+<ul>
+  <li>Let <script type="math/tex">A</script> : <script type="math/tex">p \times n</script> matrix with <script type="math/tex">\text{rank}(A)=p</script></li>
+  <li>The Lagrangian:</li>
+</ul>
+
+<script type="math/tex; mode=display">L(z,\nu) = (z-x)^T(z-x) + \nu^T(Az-b)</script>
+
+<script type="math/tex; mode=display">\nabla_z L = 0 \Leftrightarrow 2(z-x)+A^T\nu = 0</script>
+
+<ul>
+  <li>따라서 간단히 연립 방정식으로 나타낼 수 있다.</li>
+</ul>
+
+<script type="math/tex; mode=display">2z+A^T\nu = 2x, \; Az=b</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{pmatrix} 2I & A^T\\ A & 0 \end{pmatrix}\begin{pmatrix} z\\ \nu\end{pmatrix}= \begin{pmatrix} 2x\\ b \end{pmatrix} %]]></script>
+
+<ul>
+  <li>연립 방정식을 풀어보면</li>
+</ul>
+
+<script type="math/tex; mode=display">2z+A^T\nu = 2x \Leftrightarrow A^T\nu = 2(x-z) \\
+\Leftrightarrow AA^T\nu = 2A(x-z) \\
+\Leftrightarrow \nu = 2(AA^T)^{-1}A(x-z)</script>
+
+<ul>
+  <li>Then</li>
+</ul>
+
+<script type="math/tex; mode=display">\nu^* = 2(AA^T)^{-1}A(x-z)</script>
+
+<script type="math/tex; mode=display">z^* = (A^TA)^{-1}A^Tb</script>
+
+<h2 id="projection-theorem">Projection Theorem</h2>
+
+<ul>
+  <li>잠깐 복습하자면,</li>
+</ul>
+
+<script type="math/tex; mode=display">\underset{x\in C}{\text{min}} \ f(x)</script>
+
+<ul>
+  <li>convex function <script type="math/tex">f</script> 와 convex and closed set <script type="math/tex">C</script> 에 대하여</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla f(x^*)^T(x-x^*) \ge 0, \forall x \in C</script>
+
+<ul>
+  <li>위와 같은 조건을 만족할때 <script type="math/tex">x^*</script> 는 global optimal point 가 된다. (convex 경우 optimality 에 대한 필요충분조건)</li>
+</ul>
+
+<p><strong>Projection</strong></p>
+
+<ul>
+  <li>For every <script type="math/tex">x \in \mathbf{R^n}</script>, there exists a unique vector over <script type="math/tex">z \in C</script> that minimize <script type="math/tex">\vert\vert z-x\vert\vert^2</script>. This is called a projecttion of <script type="math/tex">x</script> on <script type="math/tex">C</script>, <script type="math/tex">P_C(x)</script>, that is,</li>
+</ul>
+
+<script type="math/tex; mode=display">P_C(x)=\arg \underset{z \in C}{\text{min}} \vert\vert z-x\vert\vert^2</script>
+
+<ul>
+  <li>unique vector 가 존재하는 이유는 <script type="math/tex">\vert\vert z-x\vert\vert^2</script> 가 strictly convex 하기 때문이다.
+    <ul>
+      <li>간단히 2번 미분해서 보일 수 있다.</li>
+    </ul>
+  </li>
+  <li>Projection 은 중요한 2가지 특성을 가진다. (나중에 projection method 의 convergence 를 보일 때 이용될 것)</li>
+</ul>
+
+<p><strong>property 1</strong></p>
+
+<ul>
+  <li>Given some <script type="math/tex">x \in \mathbf{R^n}</script>, a vector <script type="math/tex">z^* \in C</script> is <script type="math/tex">z^*=P_C(x)</script> if and only if</li>
+</ul>
+
+<script type="math/tex; mode=display">(z^*-x)^T(z-z^*) \ge 0, \forall \in C</script>
+
+<ul>
+  <li><strong>Proof</strong> : convex optimization problem 이기 때문에 아래 식을 만족해야 한다.</li>
+</ul>
+
+<script type="math/tex; mode=display">\nabla f(z^*)^T(z-z^*) \ge 0, \forall z \in C</script>
+
+<ul>
+  <li><script type="math/tex">\nabla f(z^*)</script> 을 실제 대입 보면</li>
+</ul>
+
+<script type="math/tex; mode=display">(z^*-x)^T(z-z^*) \ge 0, \forall \in C</script>
+
+<p><strong>property 2</strong></p>
+
+<ul>
+  <li><script type="math/tex">P_C(x)</script> is a <strong>nonexpansive mapping</strong>, i.e.,</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert P_C(x)-P_C(y)\vert\vert \le \vert\vert x-y\vert\vert, \; \forall x,y \in \mathbf{R^n}</script>
+
+<ul>
+  <li>이 특성은 Projection operator 가 continuous function 임을 내포한다.</li>
+  <li><strong>Proof</strong> :</li>
+  <li><script type="math/tex">x</script> 에 대해서는 <script type="math/tex">z^* \to P_C(x)</script> , <script type="math/tex">z \to P_C(y)</script></li>
+</ul>
+
+<script type="math/tex; mode=display">(P_C(y)-P_C(x))^T(x-P_C(x)) \le 0</script>
+
+<ul>
+  <li><script type="math/tex">y</script> 에 대해서는 <script type="math/tex">z^* \to P_C(y)</script> , <script type="math/tex">z \to P_C(x)</script></li>
+</ul>
+
+<script type="math/tex; mode=display">(P_C(x)-P_C(y))^T(y-P_C(y)) \le 0</script>
+
+<ul>
+  <li>위의 두 식을 더하면</li>
+</ul>
+
+<script type="math/tex; mode=display">(P_C(y)-P_C(x))^T(x-P_C(x)-y+P_C(y)) \le 0</script>
+
+<ul>
+  <li>C-S inquality 를 이용하면</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert P_C(y)-P_C(x)\vert\vert \le (P_C(y)-P_C(x))^T(y-x) \\
+\le \vert\vert P_C(y)-P_C(x)\vert\vert \; \vert\vert  y-x\vert\vert</script>
+
+<h2 id="convergence-of-the-projection-gradient-descent-method">Convergence of the Projection Gradient Descent Method</h2>
+
+<ul>
+  <li><script type="math/tex">f'</script> 가 Lipschitz continuity 하고 <script type="math/tex">\nabla^2 f(x) \ge mI</script> (strong convexity) 하다면</li>
+  <li><script type="math/tex">P_C(x^*-t\nabla f(x^*)) = x^*</script> where <script type="math/tex">x^*</script> solves <script type="math/tex">\underset{x\in C}{\text{min}} \ f(x)</script> (optimal point 로 수렴!)</li>
+  <li>얼마나 빨리 수렴할까?</li>
+  <li><strong>Proof</strong> : <strong>nonexpansive mapping</strong> 을 이용하면</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert x_{k+1}-x^*\vert\vert^2 = \vert\vert P_C(x_{k}-t\nabla f(x_k))-P_C(x^*-t\nabla f(x^*)) \vert\vert^2 \\
+\le \vert\vert (x_{k}-x^*)-t(\nabla f(x_k)-t\nabla f(x^*)) \vert\vert^2</script>
+
+<ul>
+  <li>나머지 증명 부분은 gradient method 의 convergence 를 보이는 방법과 같다.</li>
+  <li><script type="math/tex">% <![CDATA[
+\vert 1-mt+M^2t^2 \vert < 1 %]]></script> 일때 geometric convergence to optimal solution.</li>
+</ul>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>
