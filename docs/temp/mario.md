@@ -92,10 +92,7 @@ $ sudo apt-get install fceux
 # Sym-link OpenCV 3.0
 (tensorflow)$ cd ~/tensorflow/lib/python3.5/site-packages/
 (tensorflow)$ ln -s /usr/local/lib/python3.5/site-packages/cv2.cpython-35m-x86_64-linux-gnu.so cv2.so
-
-(tensorflow)$ pip install opencv-python
 ```
-
 - OpenAI의 baseline 설치 (최신 빌드를 설치하기 위해 아래 명령어 이용)
 ```shell
 (tensorflow)~$ pip install git+https://github.com/openai/baselines
