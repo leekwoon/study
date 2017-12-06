@@ -65,7 +65,7 @@ $ sudo apt-get install fceux
 ```shell
 (tensorflow)$ pip install opencv-python
 ```
-- 만약 python 3.n 버전에서 위와같은 방법으로 설치가 되지 않으면 아래방법으로 설치.
+- 만약 python 3.n 버전에서 위와같은 방법으로 설치가 되지 않으면 [아래방법](https://stackoverflow.com/questions/37188623/ubuntu-how-to-install-opencv-for-python3)으로 설치.
 - 주의할 점은 opencv와 contrib 버전이 동일해야 한다.
 ```shell
 # Build and install OpenCV 3.0 with Python 3.4+ bindings
