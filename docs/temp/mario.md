@@ -57,6 +57,9 @@ $ sudo apt-get install fceux
 ```
 
 # 슈퍼마리오 강화학습
+- (참고자료)
+  - https://brunch.co.kr/@kakao-it/144
+  - https://brunch.co.kr/@kakao-it/161
 - 이미지 처리를 위한 opencv-python 패키지 설치 필요  
 - 우선 다음과 같은 명령어로 설치해보자.
 ```shell
