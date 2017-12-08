@@ -8,6 +8,7 @@ To-Do
 -----
 
 - $x$
+- $x$
 - [] GAN + MCTS to consider similar states
 
 컬링이란
