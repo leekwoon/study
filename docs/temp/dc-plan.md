@@ -6,11 +6,13 @@ title: "개발 일지 (2017-12-06)"
 
 To-Do
 -----
+
 - $x$
 - [] GAN + MCTS to consider similar states
 
 컬링이란
 -------
+
 - Turn based strategy game
 - Legal moves exist infinitely (**continuous action**)
 - Many kinds of **uncertainty** exists
