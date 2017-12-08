@@ -114,8 +114,8 @@ $$\;\;\;\; a_{best, t} = \text{argmax}_{a \in A} E[v_t\vert a] - C \sqrt{\frac{\
   - Use previous algorithm, collect data using self-play games
   - At each move, the following information is stored
     - The game state $$s_t$$
-    - The best action $$a_{best, t} = \text{argmax}_{a \in A} E[v_t\verta] - C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$$
-    - The expected value of the best action using kernel Regression $$v_{best,t}=f(s_{t+1}\verts_t, a_{best,t})$$
+    - The best action $$a_{best, t} = \text{argmax}_{a \in A} E[v_t\vert a] - C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$$
+    - The expected value of the best action using kernel Regression $$v_{best,t}=f(s_{t+1}\vert s_t, a_{best,t})$$
     - final score $$z_t$$
   - Here, label of value can be $$\alpha z_t + (1-\alpha)v_{best,t}$$
 - Retrain Network
