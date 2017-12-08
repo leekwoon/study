@@ -6,7 +6,8 @@ title: "개발 일지 (2017-12-06)"
 
 To-Do
 -----
-- [ ] GAN + MCTS to consider similar states
+- $x$
+- [] GAN + MCTS to consider similar states
 
 컬링이란
 -------
@@ -16,9 +17,9 @@ To-Do
 
 디지털 컬링이란
 --------------
-- Curling Game SW to analyze and discuss    the strategy of curling
+- Curling Game SW to analyze and discuss the strategy of curling
 - Sweeping is not considered
-- Uncertainty is more simple
+- Uncertainty is more simple $x$
 
 관련 연구들
 ----------
