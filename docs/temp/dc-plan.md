@@ -48,6 +48,7 @@ Deep Learning model for Digital curling
 - 2016년도 우승 모델을 baseline 모델로 잡고, 딥러닝 모델을 학습시키기 위하여 (Game AI Tournament) GAT 2016 우승 프로그램 데이터를 수집하였다.
 
 **Training Policy Network**
+
 - KR UCT dependent on rule based rollout policy
 - To learn the policy, We collected data using AyumuGAT1 (winner of 2016 competition) to learn a policy (about 500, 000 shot logs)
 - Rule 기반 방법론을 극복하기 위하여, Policy Netork를 학습
@@ -65,10 +66,12 @@ Deep Learning model for Digital curling
   - The optimal shot from our policy net might not consider the riskiness of the strategy by the shot uncertainty.
 
 **Data Analysis**
+
 ![]({{site.baseurl}}/images/temp/dc-4.png){:class="center-block"}
 ![]({{site.baseurl}}/images/temp/dc-5.png){:class="center-block"}
 
 **Training Value Network**
+
 - Assumption
   - Learning expected VALUE given game configuration is much easier than learning where to shot the stone
 - Problem
@@ -85,6 +88,7 @@ Deep Learning model for Digital curling
 ![]({{site.baseurl}}/images/temp/dc-6.png){:class="center-block"}
 
 **알고리즘**
+
 1. $\text{Initialize}$ $k$ $\text{actions using Policy Network and evaluate using virtual simulation}$
 $\;\;a_{1,t} = \text{argmax}_{a\in \text{grid}}P(a|s_t)$
 $\;\;a_{2,t} = \text{argmax}_{a\in (\text{grid}-a_{1,t})}P(a|s_t)$
@@ -104,6 +108,7 @@ $\;\;\;\; a_{best, t} = \text{argmax}_{a \in A} E[v_t|a] - C \sqrt{\frac{\log\Si
 
 ------------------------------------
 **Improve performance with Self-Play**
+
 - Self-Play
   - Use previous algorithm, collect data using self-play games
   - At each move, the following information is stored
