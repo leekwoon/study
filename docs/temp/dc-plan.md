@@ -63,9 +63,11 @@ Deep Learning model for Digital curling
   - Shot data is imbalanced
   - There must be existing the loss of variety of the strategies. (continuous -> 32x32)
   - The optimal shot from our policy net might not consider the riskiness of the strategy by the shot uncertainty.
+
 **Data Analysis**
 ![]({{site.baseurl}}/images/temp/dc-4.png){:class="center-block"}
 ![]({{site.baseurl}}/images/temp/dc-5.png){:class="center-block"}
+
 **Training Value Network**
 - Assumption
   - Learning expected VALUE given game configuration is much easier than learning where to shot the stone
@@ -78,8 +80,10 @@ Deep Learning model for Digital curling
 - Another Problem
   - We have to consider infinite number of actions to choose action since $\pi(s_t) = \text{argmax}_a \Sigma_a p(s_{t+1}|s_t, a)[f_{\theta}(s_{t+1})]$
   - Thus, We decide to use **Policy Net + Value Net + Continuouse Search**
+
 ------------------------------------------
 ![]({{site.baseurl}}/images/temp/dc-6.png){:class="center-block"}
+
 **알고리즘**
 1. $\text{Initialize}$ $k$ $\text{actions using Policy Network and evaluate using virtual simulation}$
 $\;\;a_{1,t} = \text{argmax}_{a\in \text{grid}}P(a|s_t)$
@@ -97,6 +101,7 @@ $\;\;v_{i,t}=f(s_{t+1}|s_t, a_{i,t})$
     $\;\;\;\; v_{sample,t}=f(s_{t+1}|s_t, a_{sample,t})$
 3. $\text{Select best action}$ $a_{best, t}$ $\text{based on LCB (Lower Confidence Bound)}$
 $\;\;\;\; a_{best, t} = \text{argmax}_{a \in A} E[v_t|a] - C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$
+
 ------------------------------------
 **Improve performance with Self-Play**
 - Self-Play
