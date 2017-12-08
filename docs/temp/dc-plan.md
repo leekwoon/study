@@ -59,7 +59,7 @@ Deep Learning model for Digital curling
 ![]({{site.baseurl}}/images/temp/dc-3.png){:class="center-block"}
 - There exists several problem of Policy Network
   - Most of shots deliver stone in the house (only small number of take out shot in the game)
-  - In the case take out shot their can be many candidates  has relatively small probability compared to shot of other strategy
+  - In the case take out shot their can be many candidates. Thus, It  has relatively small probability compared to shot of other strategy
   - Shot data is imbalanced
   - There must be existing the loss of variety of the strategies. (continuous -> 32x32)
   - The optimal shot from our policy net might not consider the riskiness of the strategy by the shot uncertainty.
