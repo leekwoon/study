@@ -82,7 +82,7 @@ Deep Learning model for Digital curling
   - Use virtual simulation to consider uncertainty. Thus, given $$s_t$$ simulation is done with $$a_t + N(a_t, \Sigma)$$ to move to $$s_{t+1}$$
   - Multi task learning (one network learns both policy and value)
 - Another Problem
-  - We have to consider infinite number of actions to choose action since $$\pi(s_t) = \text{argmax}_a \Sigma_a p(s_{t+1}|s_t, a)[f_{\theta}(s_{t+1})]$$
+  - We have to consider infinite number of actions to choose action since $$\pi(s_t) = \text{argmax}_a \Sigma_a p(s_{t+1}\vert s_t, a)[f_{\theta}(s_{t+1})]$$
   - Thus, We decide to use **Policy Net + Value Net + Continuouse Search**
 
 ------------------------------------------
@@ -91,21 +91,21 @@ Deep Learning model for Digital curling
 **알고리즘**
 
 1. $$\text{Initialize}$$ $$k$$ $$\text{actions using Policy Network and evaluate using virtual simulation}$$
-$$\;\;a_{1,t} = \text{argmax}_{a\in \text{grid}}P(a|s_t)$$
-$$\;\;a_{2,t} = \text{argmax}_{a\in (\text{grid}-a_{1,t})}P(a|s_t)$$
+$$\;\;a_{1,t} = \text{argmax}_{a\in \text{grid}}P(a\vert s_t)$$
+$$\;\;a_{2,t} = \text{argmax}_{a\in (\text{grid}-a_{1,t})}P(a\vert s_t)$$
 ...
-$$\;\;v_{i,t}=f(s_{t+1}|s_t, a_{i,t})$$
+$$\;\;v_{i,t}=f(s_{t+1}\vert s_t, a_{i,t})$$
 2. $$\text{Repeat}$$ $$n$$ $$\text{times}$$
     $$\;\;\;\text{Select action based on UCB (Upper Confidence Bound).}$$
     $$\;\;\;\text{Here, expected value is calculated by Kernel Regression}$$
-    $$\;\;\;\; a_{selected, t} = \text{argmax}_{a \in A} E[v_t|a] + C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$$
-    $$\;\;\;\;\text{where,}\; E[v_t|a] = \frac{\Sigma_{b\in A}K(a,b)v_{b,t}}{\Sigma_{b \in A}K(a,b)}$$
+    $$\;\;\;\; a_{selected, t} = \text{argmax}_{a \in A} E[v_t\vert a] + C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$$
+    $$\;\;\;\;\text{where,}\; E[v_t\vert a] = \frac{\Sigma_{b\in A}K(a,b)v_{b,t}}{\Sigma_{b \in A}K(a,b)}$$
     $$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;W(a)=\Sigma_{b \in A}K(a,b)$$
     $$\;\;\;\text{Sample a new action from known gaussian distribution (which is known) and evaluate}$$
     $$\;\;\;\; a_{sample,t} \sim N(a_{selected,t, \Sigma})$$
-    $$\;\;\;\; v_{sample,t}=f(s_{t+1}|s_t, a_{sample,t})$$
+    $$\;\;\;\; v_{sample,t}=f(s_{t+1}\vert s_t, a_{sample,t})$$
 3. $$\text{Select best action}$$ $$a_{best, t}$$ $$\text{based on LCB (Lower Confidence Bound)}$$
-$$\;\;\;\; a_{best, t} = \text{argmax}_{a \in A} E[v_t|a] - C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$$
+$$\;\;\;\; a_{best, t} = \text{argmax}_{a \in A} E[v_t\vert a] - C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$$
 
 ------------------------------------
 **Improve performance with Self-Play**
@@ -114,8 +114,8 @@ $$\;\;\;\; a_{best, t} = \text{argmax}_{a \in A} E[v_t|a] - C \sqrt{\frac{\log\S
   - Use previous algorithm, collect data using self-play games
   - At each move, the following information is stored
     - The game state $$s_t$$
-    - The best action $$a_{best, t} = \text{argmax}_{a \in A} E[v_t|a] - C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$$
-    - The expected value of the best action using kernel Regression $$v_{best,t}=f(s_{t+1}|s_t, a_{best,t})$$
+    - The best action $$a_{best, t} = \text{argmax}_{a \in A} E[v_t\verta] - C \sqrt{\frac{\log\Sigma_{b\in A}W(b)}{W(a)}}$$
+    - The expected value of the best action using kernel Regression $$v_{best,t}=f(s_{t+1}\verts_t, a_{best,t})$$
     - final score $$z_t$$
   - Here, label of value can be $$\alpha z_t + (1-\alpha)v_{best,t}$$
 - Retrain Network
