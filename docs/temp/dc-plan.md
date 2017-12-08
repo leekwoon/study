@@ -45,7 +45,7 @@ Deep Learning model for Digital curling
 ---------------------------------------
 - 기존의 KR_UCT 방식을 따라가려했지만, KR_UCT 모델의 성능은 잘 짜여진 rule-based rollout policy에 크게 영향을 받는다.
 - 컬링의 Donmain Knowledge 에 기반하여 룰을 하나하나 구현하기보다, Deep learning Model 만을 이용하여 최적의 전략을 추천하고자 한다.
-- 2016년도 우승 모델을 baseline 모델로 잡고, 딥러닝 모델을 학습시키기 위하여 (Game AI Tournament) GAT 2016 우승 프로그램 데이터를 수집하였다.
+- 2016년도 우승 모델을 baseline 모델로 잡고, 딥러닝 모델을 학습시키기 위하여 (Game AI Tournament) GAT 2016 우승 프로그램 데이터를 수집하였다. $x$
 
 **Training Policy Network**
 
@@ -63,7 +63,7 @@ Deep Learning model for Digital curling
   - In the case take out shot their can be many candidates. Thus, It  has relatively small probability compared to shot of other strategy
   - Shot data is imbalanced
   - There must be existing the loss of variety of the strategies. (continuous -> 32x32)
-  - The optimal shot from our policy net might not consider the riskiness of the strategy by the shot uncertainty.
+  - The optimal shot from our policy net might not consider the riskiness of the strategy by the shot uncertainty. $x$
 
 **Data Analysis**
 
@@ -77,7 +77,7 @@ Deep Learning model for Digital curling
 - Problem
   - HIGH VARIANCE of the score makes training difficult
 - To overcome problem
-  - Given state $s_{t+1}$  , instead of learning final score, learning from the value of next state $f_\theta(s_{t+1})$ using current value network $f_{\theta}$
+  - Given state $s_{t+1}$, instead of learning final score, learning from the value of next state $f_\theta(s_{t+1})$ using current value network $f_{\theta}$
   - Use virtual simulation to consider uncertainty. Thus, given $s_t$ simulation is done with $a_t + N(a_t, \Sigma)$ to move to $s_{t+1}$
   - Multi task learning (one network learns both policy and value)
 - Another Problem
