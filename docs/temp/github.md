@@ -4,7 +4,10 @@ group: "이것저것"
 title: "Github 명령어 (2017-12-04)"
 ---
 
-# Github 페이지 수정
+# Github 명령어
+
+Github 페이지 수정
+-----------------
 
 - git clone '주소'
 - git status

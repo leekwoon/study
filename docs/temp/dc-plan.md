@@ -4,6 +4,8 @@ group: "Digital Curling"
 title: "개발 일지 (2017-12-06)"
 ---
 
+# 개발 일지
+
 To-Do
 -----
 - [ ] GAN + MCTS to consider similar states
