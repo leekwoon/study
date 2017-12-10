@@ -1,7 +1,7 @@
 ---
 layout: page-sidenav
 group: "Reinforcement Learning: An Introduction"
-title: 0. Summary of Notation (2017-12-10)
+title: 0. Summary of Notation 
 ---
 
 # Summary of Notation
