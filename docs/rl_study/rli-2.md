@@ -5,4 +5,4 @@ title: 2. Multi-armed Bandits
 ---
 
 # Multi-armed Bandits
-$\color{red}{\text{준비중...}}$
+$$\color{red}{\text{준비중...}}$$
