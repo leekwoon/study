@@ -7,9 +7,6 @@ title: 3. Finite Markov Decision Processes
 check
 -----
 
-- $$p{x|y)$$
-- $$p(x|y)$$
-
 # Finite Markov Decision Processes
 > Here, we assume <span style=color:red>dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards ($\mathcal{S},\mathcal{A},\mathcal{R}$) all have a finite number of elements.
 
@@ -18,7 +15,7 @@ Background of math
 **Conditional Probability**
 - Given two events $A$ and $B$ with $p(B) > 0$, the **conditional probability** of $A$ given $B$ is
 
-$$p(A\vert B) = \frac{p(A \cap B)}{p(B)}$$
+$$\mathbb{P}(A\vert B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}$$
 
 - Similarly, if $X$ and $Y$ are <u>*non-degenerate*</u>[^1] and <u>*jointly continuous random variables*</u> with density $f_{X,Y}(x,y)$ then if $B$ has positive measure then the **conditional probability** is
 
@@ -103,10 +100,38 @@ MDP
 - When agent can directly observes environment state, formally, this is a MDP
 - When agent indirectly observes environment state, formally, this is a PO-MDP (Partially observable Markov decision process)
 
-**Markov Chains**
+**Markov Chain (=Markov process/memory-less random process)**
 - Let the state space $X$ be a bounded compact[^6] subset of the Euclidean space, the discrete-time dynamic system ${(x)}_{t\in \mathbb{N}} \in X$ is a **Markov chain** if it satisfies the **Markov property**
 
-$$p(x_t+1)$$
+$$\mathbb{P}({x_{t+1}=x}|x_t, x_{t-1}, ..., x_0)=\mathbb{P}(x_{t+1}=x|x_t)$$
+
+- Given an initial state $x_0\in X$, a Markov chain is defined by the trainsition probability $p$
+
+$$p({y}|{x})=\mathbb{P}({x_{t+1}=s'}|{x_t}=x)$$
+
+- Given that we start in state $x_i$, let $T_i$ be the first return time to state $i$ (**hitting time**)
+
+$$T_i = \inf\{{n\ge 1: x_n=i} | {x_0=i}\}$$
+
+- and **mean recurrence time** is
+
+$$M_i=E[T_i]$$
+
+- the state $x_i$ is
+  - transient: if $\mathbb{P}(T_i < \infty) < 1$
+    - There is non-zero probability that we will never return to $x_i$
+  - recurrent: not transient
+    - positive recurrent: $M_i$ is **finite**
+      - must return to $x_i$ in **finite** time
+    - null recurrent: $M_i$ is infinite
+
+**Markov decision process**
+- A **Markov decision process** is defined as a tuple ($\mathcal{S},\mathcal{A},p,r,\gamma$)
+  - $\mathcal{S}$ is a set of states
+  - $\mathcal{A}$ is a set of actions
+  - $p$ is a state transition probability with $p({y}|{x,a})=\mathbb{P}({s_{t+1}=y}|{s_t=x, a_t=a})$
+  - $r$ is a reward function with $r(s,a)=$
+
 
 
 - Classical(+mathematical) formalization of sequentail decision making, where a actions influence not just immediate rewards, but also subsequent states and future rewards
