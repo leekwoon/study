@@ -4,7 +4,14 @@ group: "Reinforcement Learning: An Introduction"
 title: 3. Finite Markov Decision Processes
 ---
 
+check
+-----
+
+- $$p({x}|{y})$$
+- $$p({x}|{y})$$
+
 # Finite Markov Decision Processes
+> Here, we assume <span style=color:red>dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards ($\mathcal{S},\mathcal{A},\mathcal{R}$) all have a finite number of elements.
 
 Background of math
 ------------------
@@ -71,9 +78,46 @@ $$\vert\vert\mathcal{T}v - \mathcal{T}u\vert\vert \le L\vert\vert u-v \vert\vert
 
 $$\vert\vert v_n-v\vert\vert \le \gamma^n\vert\vert v_0-v \vert\vert$$
 
+MDP
+---
 
+**Agent Environment Model**
+![]({{site.baseurl}}/images/rl_study/rli-1.1.PNG){:class="center-block"}[^5]
+- Agent learns a way to achieve a goal by interacting with environment
+- Several properties of environment
+  - Controllability
+    - fully (e.g., chess)
+    - partially (e.g., portfolio optimization)
+  - Uncertainty
+    - determinisitic (e.g., chess)
+    - stochastic (e.g., backgammon)
+  - Reactive
+    - adversarial (e.g., chess)
+    - fixed (e.g., Tetris)
+  - Observavility
+    - full (e.g., chess)
+    - partial (e.g., robotics)
+  - Availability
+    - known (e.g., chess)
+    - unknown (e.g., robotics)
+- When agent can directly observes environment state, formally, this is a MDP
+- When agent indirectly observes environment state, formally, this is a PO-MDP (Partially observable Markov decision process)
+
+**Markove Chains**
+- Let the state space $X$ be a bounded compact[^6] subset of the Euclidean space, the discrete-time dynamic system ${(x)}_{t\in \mathbb{N}}$
+- Classical(+mathematical) formalization of sequentail decision making, where a actions influence not just immediate rewards, but also subsequent states and future rewards
+- Straightforward framing of the problem of learning from interaction to achieve a goal
+
+- Agent and environment interact at each of sequence of <span style=color:red>discrete time</span> steps, $t=0,1,2,3,...$
+  - At each time step $t$, the agent receives some representation of the environment's state $S_t \in \mathcal{S}$, and on that basis select an action $A_t \in \mathcal{A}(s)$
+  - One time step later, as a consequence of its action, agent receive new state $S_{t+1}$ and reward $R_{t+1}$
+
+
+References
 ----------
 [^1]: $X$ is degenerate if, for some $a \in \mathbb{R}, p(X=a)=1$. A random variable that is not degenerate is called non-degenerate.
 [^2]: See [proof](https://en.wikipedia.org/wiki/Law_of_total_expectation#Proof_in_the_general_case)
 [^3]: See [Wasserstein GAN 수학 이해하기 I ](https://www.slideshare.net/ssuser7e10e4/wasserstein-gan-i)
 [^4]: For example, $a_n=(1+\frac{1}{n})^n$ is a sequence of rationals, but its limit $e$ is not rational
+[^5]: https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079
+[^6]: The meaning of compact is same as colsed and bounded

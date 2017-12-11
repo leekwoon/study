@@ -15,3 +15,6 @@ Github 페이지 수정
 - git add *
 - git commit -a -m "설명"
 - git push origin gh-pages
+
+**로컬 저장소를 원격 저장소에 맞춰서 갱신**
+- git pull 
