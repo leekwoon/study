@@ -7,8 +7,8 @@ title: 3. Finite Markov Decision Processes
 check
 -----
 
-- $$p({x}|{y})$$
-- $$p({x}|{y})$$
+- $$p{x|y)$$
+- $$p(x|y)$$
 
 # Finite Markov Decision Processes
 > Here, we assume <span style=color:red>dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards ($\mathcal{S},\mathcal{A},\mathcal{R}$) all have a finite number of elements.
@@ -103,8 +103,12 @@ MDP
 - When agent can directly observes environment state, formally, this is a MDP
 - When agent indirectly observes environment state, formally, this is a PO-MDP (Partially observable Markov decision process)
 
-**Markove Chains**
-- Let the state space $X$ be a bounded compact[^6] subset of the Euclidean space, the discrete-time dynamic system ${(x)}_{t\in \mathbb{N}}$
+**Markov Chains**
+- Let the state space $X$ be a bounded compact[^6] subset of the Euclidean space, the discrete-time dynamic system ${(x)}_{t\in \mathbb{N}} \in X$ is a **Markov chain** if it satisfies the **Markov property**
+
+$$p(x_t+1)$$
+
+
 - Classical(+mathematical) formalization of sequentail decision making, where a actions influence not just immediate rewards, but also subsequent states and future rewards
 - Straightforward framing of the problem of learning from interaction to achieve a goal
 
