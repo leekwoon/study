@@ -4,11 +4,9 @@ group: "Reinforcement Learning: An Introduction"
 title: 3. Finite Markov Decision Processes
 ---
 
-check
------
-
 # Finite Markov Decision Processes
-> Here, we assume <span style=color:red>dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards ($\mathcal{S},\mathcal{A},\mathcal{R}$) all have a finite number of elements.
+>- Here, we assume <span style=color:red>dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards ($\mathcal{S},\mathcal{A},\mathcal{R}$) all have a finite number of elements.
+>- <span style=color:red>Stationary</span> assumption: the dynamics and reward do not change over time. For example, transition probability $p({s'}|{s,a})$ and reward of transition $r(s,a,s')$ do not depends on the time $t$ (See below)
 
 Background of math
 ------------------
@@ -81,6 +79,9 @@ MDP
 **Agent Environment Model**
 ![]({{site.baseurl}}/images/rl_study/rli-1.1.PNG){:class="center-block"}[^5]
 - Agent learns a way to achieve a goal by interacting with environment
+- Agent and environment interact at each of sequence of <span style=color:red>discrete time</span> steps, $t=0,1,2,3,...$
+  - At each time step $t$, the agent receives some representation of the environment's state $S_t \in \mathcal{S}$, and on that basis select an action $A_t \in \mathcal{A}(s)$
+  - One time step later, as a consequence of its action, agent receive new state $S_{t+1}$ and reward $R_{t+1}$
 - Several properties of environment
   - Controllability
     - fully (e.g., chess)
@@ -101,45 +102,45 @@ MDP
 - When agent indirectly observes environment state, formally, this is a PO-MDP (Partially observable Markov decision process)
 
 **Markov Chain (=Markov process/memory-less random process)**
-- Let the state space $X$ be a bounded compact[^6] subset of the Euclidean space, the discrete-time dynamic system ${(x)}_{t\in \mathbb{N}} \in X$ is a **Markov chain** if it satisfies the **Markov property**
+- Let the state space $\mathcal{S}$ be a bounded compact[^6] subset of the Euclidean space, the discrete-time dynamic system ${(s)}_{t\in \mathbb{N}} \in S$ is a **Markov chain** if it satisfies the **Markov property**
 
-$$\mathbb{P}({x_{t+1}=x}|x_t, x_{t-1}, ..., x_0)=\mathbb{P}(x_{t+1}=x|x_t)$$
+$$\mathbb{P}({s_{t+1}=s'}|{s_t, s_{t-1}, ..., s_0})=\mathbb{P}({s_{t+1}=s'}|{s_t})$$
 
-- Given an initial state $x_0\in X$, a Markov chain is defined by the trainsition probability $p$
+- Given an initial state $s_0\in \mathcal{S}$, a Markov chain is defined by the trainsition probability $p$
 
-$$p({y}|{x})=\mathbb{P}({x_{t+1}=s'}|{x_t}=x)$$
+$$p({s'}|{s})=\mathbb{P}({s_{t+1}=s'}|{s_t=s})$$
 
-- Given that we start in state $x_i$, let $T_i$ be the first return time to state $i$ (**hitting time**)
+- Given that we start in state $s_i$, let $T_i$ be the first return time to state $s_i$ (**hitting time**)
 
-$$T_i = \inf\{{n\ge 1: x_n=i} | {x_0=i}\}$$
+$$T_i = \inf\{{n\ge 1: s_n=i} \vert {s_0=i}\}$$
 
 - and **mean recurrence time** is
 
 $$M_i=E[T_i]$$
 
-- the state $x_i$ is
+- the state $s_i$ is
   - transient: if $\mathbb{P}(T_i < \infty) < 1$
-    - There is non-zero probability that we will never return to $x_i$
+    - There is non-zero probability that we will never return to $s_i$
   - recurrent: not transient
     - positive recurrent: $M_i$ is **finite**
-      - must return to $x_i$ in **finite** time
+      - must return to $s_i$ in **finite** time
     - null recurrent: $M_i$ is infinite
 
 **Markov decision process**
+- Classical(+mathematical) formalization of sequentail decision making, where a actions influence not just immediate rewards, but also subsequent states and future rewards
+- Straightforward framing of the problem of learning from interaction to achieve a goal
 - A **Markov decision process** is defined as a tuple ($\mathcal{S},\mathcal{A},p,r,\gamma$)
   - $\mathcal{S}$ is a set of states
   - $\mathcal{A}$ is a set of actions
-  - $p$ is a state transition probability with $p({y}|{x,a})=\mathbb{P}({s_{t+1}=y}|{s_t=x, a_t=a})$
-  - $r$ is a reward function with $r(s,a)=$
+  - $p$ is a state transition probability with $p({s'}|{s,a})=\mathbb{P}({s_{t+1}=s'}|{s_t=s, a_t=a})$
+  - $r$ is a reward of transition with $r(s,a,s')=\mathbb{E}[{R_t}|{S_{t-1}=s, A_{t-1}=a,S_t=s'}]$
+  - $\gamma$ is a discount factor, $\gamma \in [0,1)$
+- Furthermore, $r(s,a)=\sum_{s'\in \mathcal{S}}r(s,a,s')p({s'}|{s,a})$
 
+**Return**
+- The **return** $G_t$ is total discounted reward from time-step $t$
 
-
-- Classical(+mathematical) formalization of sequentail decision making, where a actions influence not just immediate rewards, but also subsequent states and future rewards
-- Straightforward framing of the problem of learning from interaction to achieve a goal
-
-- Agent and environment interact at each of sequence of <span style=color:red>discrete time</span> steps, $t=0,1,2,3,...$
-  - At each time step $t$, the agent receives some representation of the environment's state $S_t \in \mathcal{S}$, and on that basis select an action $A_t \in \mathcal{A}(s)$
-  - One time step later, as a consequence of its action, agent receive new state $S_{t+1}$ and reward $R_{t+1}$
+$$G_t=R_{t+1}+\gamma R_{t+2}+...=\sum_{k=0}^{\infty}\gamma^k R_{t+k+1}$$
 
 
 References
