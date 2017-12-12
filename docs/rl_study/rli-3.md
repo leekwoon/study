@@ -112,7 +112,7 @@ $$p({s'}|{s})=\mathbb{P}({s_{t+1}=s'}|{s_t=s})$$
 
 - Given that we start in state $s_i$, let $T_i$ be the first return time to state $s_i$ (**hitting time**)
 
-$$T_i = \inf\{{n\ge 1: s_n=i} \vert {s_0=i}\}$$
+$$T_i = \inf\{n\ge 1: s_n=i} \vert s_0=i\}$$
 
 - and **mean recurrence time** is
 
