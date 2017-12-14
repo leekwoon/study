@@ -5,8 +5,8 @@ title: 3. Finite Markov Decision Processes
 ---
 
 # Finite Markov Decision Processes
->- ~~Here, we assume <span style="color:red">dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards ($$\mathcal{S},\mathcal{A},\mathcal{R}$$) all have a finite number of elements.~~
->- <span style="color:red">Stationary</span> assumption: the dynamics and reward do not change over time. For example, transition probability $$p({s'}|{s,a})$$ and reward of transition $$r(s,a,s')$$ do not depends on the time $$t$$ (See below)
+>- ~~Here, we assume <span style="color:red">dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards all have a finite number of elements.~~
+>- <span style="color:red">Stationary</span> assumption: the dynamics and reward do not change over time. For example, transition probability $$p({s'}\vert {s,a})$$ and reward of transition $$r(s,a,s')$$ do not depends on the time $$t$$ (See below)
 
 Background of math
 ------------------
@@ -104,11 +104,11 @@ MDP
 **Markov Chain (=Markov process/memory-less random process)**
 - Let the state space $$\mathcal{S}$$ be a bounded compact[^6] subset of the Euclidean space, the discrete-time dynamic system $${(s)}_{t\in \mathbb{N}} \in S$$ is a **Markov chain** if it satisfies the **Markov property**
 
-$$$$\mathbb{P}({s_{t+1}=s'}|{s_t, s_{t-1}, ..., s_0})=\mathbb{P}({s_{t+1}=s'}|{s_t})$$$$
+$$$$\mathbb{P}({s_{t+1}=s'}\vert{s_t, s_{t-1}, ..., s_0})=\mathbb{P}({s_{t+1}=s'}\vert{s_t})$$$$
 
 - Given an initial state $$s_0\in \mathcal{S}$$, a Markov chain is defined by the trainsition probability $$p$$
 
-$$$$p({s'}|{s})=\mathbb{P}({s_{t+1}=s'}|{s_t=s})$$$$
+$$$$p({s'}\vert{s})=\mathbb{P}({s_{t+1}=s'}\vert{s_t=s})$$$$
 
 - Given that we start in state $$s_i$$, let $$T_i$$ be the first return time to state $$s_i$$ (**hitting time**)
 
@@ -132,10 +132,10 @@ $$$$M_i=E[T_i]$$$$
 - A **Markov decision process** is defined as a tuple ($$\mathcal{S},\mathcal{A},p,r,\gamma$$)
   - $$\mathcal{S}$$ is a set of states
   - $$\mathcal{A}$$ is a set of actions
-  - $$p$$ is a state transition probability with $$p({s'}|{s,a})=\mathbb{P}({s_{t+1}=s'}|{s_t=s, a_t=a})$$
-  - $$r$$ is a reward of transition with $$r(s,a,s')=\mathbb{E}[{R_t}|{S_{t-1}=s, A_{t-1}=a,S_t=s'}]$$
+  - $$p$$ is a state transition probability with $$p({s'}\vert{s,a})=\mathbb{P}({s_{t+1}=s'}\vert{s_t=s, a_t=a})$$
+  - $$r$$ is a reward of transition with $$r(s,a,s')=\mathbb{E}[{R_t}\vert{S_{t-1}=s, A_{t-1}=a,S_t=s'}]$$
   - $$\gamma$$ is a discount factor, $$\gamma \in [0,1)$$
-<!-- - Furthermore, $$r(s,a)=\sum_{s'\in \mathcal{S}}r(s,a,s')p({s'}|{s,a})$$ -->
+<!-- - Furthermore, $$r(s,a)=\sum_{s'\in \mathcal{S}}r(s,a,s')p({s'}\vert{s,a})$$ -->
 
 **Return**
 - The **return** $$G_t$$ is total discounted reward from time-step $$t$$
@@ -145,7 +145,7 @@ $$$$G_t=R_{t+1}+\gamma R_{t+2}+...=\sum_{k=0}^{\infty}\gamma^k R_{t+k+1}$$$$
 **Policy**
 - A **policy** $$\pi$$ is a distribution over actions given states
 
-$$$$\pi(a\vert s)=\mathbb{P}[{A_t=a}|{S_t=s}]$$$$
+$$$$\pi(a\vert s)=\mathbb{P}[{A_t=a}\vert{S_t=s}]$$$$
 - If policy is <u>Deterministic</u> $$\pi_t(s)=a$$
 - If policy is <u>Stationary</u> $$\pi_t=\pi$$
 
