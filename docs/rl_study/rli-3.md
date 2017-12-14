@@ -77,7 +77,7 @@ MDP
 ---
 
 **Agent Environment Model**
-![]({{site.baseurl}}/study/images/rl_study/rli-1.1.PNG){:class="center-block"}[^5]
+![]({{site.baseurl}}/images/rl_study/rli-1.1.PNG){:class="center-block"}[^5]
 - Agent learns a way to achieve a goal by interacting with environment
 - Agent and environment interact at each of sequence of <span style="color:red">discrete time</span> steps, $$t=0,1,2,3,...$$
   - At each time step $$t$$, the agent receives some representation of the environment's state $$S_t \in \mathcal{S}$$, and on that basis select an action $$A_t \in \mathcal{A}(s)$$
@@ -181,22 +181,22 @@ Bellman Equation
 - Here, we assume <u>stationary</u> policy
 
 **(1-step backup diagram)** for $$v_{\pi}(s)$$
-![]({{site.baseurl}}/study/images/rl_study/rli-3.1.PNG){:class="center-block"}
+![]({{site.baseurl}}/images/rl_study/rli-3.1.PNG){:class="center-block"}
 
 $$v_{\pi}(s)=\sum_{a}\pi(a\vert s)q_{\pi}(s, a)$$
 
 **(1-step backup diagram)** for $$q_{\pi}(s, a)$$
-![]({{site.baseurl}}/study/images/rl_study/rli-3.2.PNG){:class="center-block"}
+![]({{site.baseurl}}/images/rl_study/rli-3.2.PNG){:class="center-block"}
 
 $$q_{\pi}(s, a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$
 
 **(2-step backup diagram)** for $$v_{\pi}(s)$$
-![]({{site.baseurl}}/study/images/rl_study/rli-3.3.PNG){:class="center-block"}
+![]({{site.baseurl}}/images/rl_study/rli-3.3.PNG){:class="center-block"}
 
 $$v_{\pi}(s)=\sum_{a}\pi(a\vert s)\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$
 
 **(2-step backup diagram)** for $$q_{\pi}(s, a)$$
-![]({{site.baseurl}}/study/images/rl_study/rli-3.4.PNG){:class="center-block"}
+![]({{site.baseurl}}/images/rl_study/rli-3.4.PNG){:class="center-block"}
 
 $$q_{\pi}(s, a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma \sum_{a'}\pi(a'\vert s')q_{\pi}(s', a')\right]$$
 
