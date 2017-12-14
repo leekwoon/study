@@ -5,8 +5,8 @@ title: 3. Finite Markov Decision Processes
 ---
 
 # Finite Markov Decision Processes
->- ~~Here, we assume <span style=color:red>dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards ($$\mathcal{S},\mathcal{A},\mathcal{R}$$) all have a finite number of elements.~~
->- <span style=color:red>Stationary</span> assumption: the dynamics and reward do not change over time. For example, transition probability $$p({s'}|{s,a})$$ and reward of transition $$r(s,a,s')$$ do not depends on the time $$t$$ (See below)
+>- ~~Here, we assume <span style="color:red">dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards ($$\mathcal{S},\mathcal{A},\mathcal{R}$$) all have a finite number of elements.~~
+>- <span style="color:red">Stationary</span> assumption: the dynamics and reward do not change over time. For example, transition probability $$p({s'}|{s,a})$$ and reward of transition $$r(s,a,s')$$ do not depends on the time $$t$$ (See below)
 
 Background of math
 ------------------
@@ -60,16 +60,16 @@ $$$$\lim_{n\to \infty}\sup_{n\ge n}\vert\vert v_n-v_m\vert\vert=0$$$$
 $$$$\vert\vert\mathcal{T}v - \mathcal{T}u\vert\vert \le L\vert\vert u-v \vert\vert$$$$
 
 - If $$L \le 1 $$ then $$\mathcal{T}$$ is **non-expansion**, while if $$L<1$$ then $$\mathcal{T}$$ is a **L-contraction**
-- If $$\mathcal{T}$$ is Lipschitz then it is also <span style=color:red>continuous</span>, that is
+- If $$\mathcal{T}$$ is Lipschitz then it is also <span style="color:red">continuous</span>, that is
   - if $$v_n \to_{\vert\vert\cdot\vert\vert}v$$ then $$\mathcal{T}v_n \to_{\vert\vert\cdot\vert\vert}\mathcal{T}v$$
 
 **Fixed point**
 - A vector $$v\in V$$ is a **fixed point** of the operator $$\mathcal{T}:V\to V$$ if $$\mathcal{T}v=v$$
 
 **Banach Fixed Point Theorem**
-- Let $$V$$ be a <span style=color:red>complete</span> vector space equipped with the norm $$\vert\vert\cdot\vert\vert$$ and $$\mathcal{T}:V\to V$$ be a <span style=color:red>$$\gamma$$-contraction</span> mapping. Then
-1. $$\mathcal{T}$$ admits a <span style=color:red>unique fixed point</span> $$v$$
-2. For any $$v_0 \in V$$, if $$v_{n+1}=\mathcal{T}v_n$$ then $$v_n\to_{\vert\vert\cdot\vert\vert}v$$ with a <span style=color:red>geometric convergence rate:</span>
+- Let $$V$$ be a <span style="color:red">complete</span> vector space equipped with the norm $$\vert\vert\cdot\vert\vert$$ and $$\mathcal{T}:V\to V$$ be a <span style="color:red">$$\gamma$$-contraction</span> mapping. Then
+1. $$\mathcal{T}$$ admits a <span style="color:red">unique fixed point</span> $$v$$
+2. For any $$v_0 \in V$$, if $$v_{n+1}=\mathcal{T}v_n$$ then $$v_n\to_{\vert\vert\cdot\vert\vert}v$$ with a <span style="color:red">geometric convergence rate:</span>
 
 $$$$\vert\vert v_n-v\vert\vert \le \gamma^n\vert\vert v_0-v \vert\vert$$$$
 
@@ -79,7 +79,7 @@ MDP
 **Agent Environment Model**
 ![]({{site.baseurl}}/s/rl_study/rli-1.1.PNG){:class="center-block"}[^5]
 - Agent learns a way to achieve a goal by interacting with environment
-- Agent and environment interact at each of sequence of <span style=color:red>discrete time</span> steps, $$t=0,1,2,3,...$$
+- Agent and environment interact at each of sequence of <span style="color:red">discrete time</span> steps, $$t=0,1,2,3,...$$
   - At each time step $$t$$, the agent receives some representation of the environment's state $$S_t \in \mathcal{S}$$, and on that basis select an action $$A_t \in \mathcal{A}(s)$$
   - One time step later, as a consequence of its action, agent receive new state $$S_{t+1}$$ and reward $$R_{t+1}$$
 - Several properties of environment
@@ -145,7 +145,7 @@ $$$$G_t=R_{t+1}+\gamma R_{t+2}+...=\sum_{k=0}^{\infty}\gamma^k R_{t+k+1}$$$$
 **Policy**
 - A **policy** $$\pi$$ is a distribution over actions given states
 
-$$$$\pi(a|s)=\mathbb{P}[{A_t=a}|{S_t=s}]$$$$
+$$$$\pi(a\vert s)=\mathbb{P}[{A_t=a}|{S_t=s}]$$$$
 - If policy is <u>Deterministic</u> $$\pi_t(s)=a$$
 - If policy is <u>Stationary</u> $$\pi_t=\pi$$
 
@@ -187,27 +187,27 @@ $$$$v_{\pi}(s)=\sum_{a}\pi(a\vert s)q_{\pi}(s, a)$$$$
 **(1-step backup diagram)** for $$q_{\pi}(s, a)$$
 ![]({{site.baseurl}}/s/rl_study/rli-3.2.PNG){:class="center-block"}
 
-$$$$q_{\pi}(s, a)=\sum_{s'}p(s'|s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$$$
+$$$$q_{\pi}(s, a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$$$
 
 **(2-step backup diagram)** for $$v_{\pi}(s)$$
 ![]({{site.baseurl}}/s/rl_study/rli-3.3.PNG){:class="center-block"}
 
-$$$$v_{\pi}(s)=\sum_{a}\pi(a\vert s)\sum_{s'}p(s'|s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$$$
+$$$$v_{\pi}(s)=\sum_{a}\pi(a\vert s)\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$$$
 
 **(2-step backup diagram)** for $$q_{\pi}(s, a)$$
 ![]({{site.baseurl}}/s/rl_study/rli-3.4.PNG){:class="center-block"}
 
-$$$$q_{\pi}(s, a)=\sum_{s'}p(s'|s,a)\left[r(s,a,s')+\gamma \sum_{a'}\pi(a'\vert s')q_{\pi}(s', a')\right]$$$$
+$$$$q_{\pi}(s, a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma \sum_{a'}\pi(a'\vert s')q_{\pi}(s', a')\right]$$$$
 
 **Optimal Value Function**
 - The **optimal state-value** function v_{\star}(s) is the maximum value function over all polices
 
-$$$$v_{\star}=\max_{\pi}v_{\pi}(s)=\max_{\color{red}{a}}\sum_{a}\pi(a\vert s)\sum_{s'}p(s'|s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$$$
-$$$$=\max_{\color{red}{a}}\sum_{s'}p(s'|s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$$$
+$$$$v_{\star}=\max_{\pi}v_{\pi}(s)=\max_{\color{red}{a}}\sum_{a}\pi(a\vert s)\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$$$
+$$$$=\max_{\color{red}{a}}\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$$$
 The **optimal action-value** function $$q_{\star}(s,a)$$ is the maximum action-value function over all polices
 
-$$$$q_{\star}(s,a)=\max_{\pi}q_{\pi}(s,a)=\sum_{s'}p(s'|s,a)\left[r(s,a,s')+\gamma\max_{\color{red}{a'}}\sum_{a'}\pi(a'\vert s')q_{\pi}(s', a')\right]$$$$
-$$$$=\sum_{s'}p(s'|s,a)\left[r(s,a,s')+\gamma\max_{\color{red}{a'}}\sum_{a'}q_{\pi}(s', a')\right]$$$$
+$$$$q_{\star}(s,a)=\max_{\pi}q_{\pi}(s,a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma\max_{\color{red}{a'}}\sum_{a'}\pi(a'\vert s')q_{\pi}(s', a')\right]$$$$
+$$$$=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma\max_{\color{red}{a'}}\sum_{a'}q_{\pi}(s', a')\right]$$$$
 
 References
 ----------
