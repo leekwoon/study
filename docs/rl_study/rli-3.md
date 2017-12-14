@@ -146,6 +146,7 @@ $$G_t=R_{t+1}+\gamma R_{t+2}+...=\sum_{k=0}^{\infty}\gamma^k R_{t+k+1}$$
 - A **policy** $$\pi$$ is a distribution over actions given states
 
 $$\pi(a\vert s)=\mathbb{P}[{A_t=a}\vert{S_t=s}]$$
+
 - If policy is <u>Deterministic</u> $$\pi_t(s)=a$$
 - If policy is <u>Stationary</u> $$\pi_t=\pi$$
 
@@ -203,10 +204,13 @@ $$q_{\pi}(s, a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma \sum_{a'}\pi(a'\ve
 - The **optimal state-value** function v_{\star}(s) is the maximum value function over all polices
 
 $$v_{\star}=\max_{\pi}v_{\pi}(s)=\max_{\color{red}{a}}\sum_{a}\pi(a\vert s)\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$
+
 $$=\max_{\color{red}{a}}\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]$$
+
 The **optimal action-value** function $$q_{\star}(s,a)$$ is the maximum action-value function over all polices
 
 $$q_{\star}(s,a)=\max_{\pi}q_{\pi}(s,a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma\max_{\color{red}{a'}}\sum_{a'}\pi(a'\vert s')q_{\pi}(s', a')\right]$$
+
 $$=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma\max_{\color{red}{a'}}\sum_{a'}q_{\pi}(s', a')\right]$$
 
 References
