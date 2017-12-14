@@ -1,7 +1,7 @@
 ---
 layout: page-sidenav
 group: "Reinforcement Learning: An Introduction"
-title: 1. Introduction 
+title: 1. Introduction
 ---
 
 # Introduction
@@ -41,4 +41,4 @@ The Problems in Reinforcement Learning
 
 References
 ----------
-[^1]: https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079
+[^1]:[https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079](https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079) 

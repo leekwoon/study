@@ -219,5 +219,5 @@ References
 [^2]: See [proof](https://en.wikipedia.org/wiki/Law_of_total_expectation#Proof_in_the_general_case)
 [^3]: See [Wasserstein GAN 수학 이해하기 I ](https://www.slideshare.net/ssuser7e10e4/wasserstein-gan-i)
 [^4]: For example, $$a_n=(1+\frac{1}{n})^n$$ is a sequence of rationals, but its limit $$e$$ is not rational
-[^5]: https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079
+[^5]: [https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079](https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079)
 [^6]: The meaning of compact is same as colsed and bounded
