@@ -4,12 +4,6 @@ group: "Reinforcement Learning: An Introduction"
 title: 3. Finite Markov Decision Processes
 ---
 
-# test
-- $x$
-- $$p(x|y)$$
-- $$p(x|y)$$
-- $$p(x|y)$$
-
 # Finite Markov Decision Processes
 >- ~~Here, we assume <span style="color:red">dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards all have a finite number of elements.~~
 >- <span style="color:red">Stationary</span> assumption: the dynamics and reward do not change over time. For example, transition probability $$p(s'\vert s,a)$$ and reward of transition $$r(s,a,s')$$ do not depends on the time $$t$$ (See below)
