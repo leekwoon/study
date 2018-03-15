@@ -10,7 +10,7 @@ title: 4. Dynamic Programming
 
 
 # test
-- $x$
+- asd $x$ cfhg
 
 
 $x$
