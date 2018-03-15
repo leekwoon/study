@@ -8,7 +8,10 @@ title: "개발 일지 (2017-12-06)"
 
 To-Do
 -----
-- [ ] GAN + MCTS to consider similar states
+- [ ] deep hasing + MCTS to consider similar states
+  - baseline 참고: http://cs.unc.edu/~zhenni/blog/notes/Deep%20Hashing.html
+  - Bit-Scalable Deep Hashing with Regularized Similarity Learning for Image Retrieval and Person Re-identification
+  - Deep Hashing Network for Efficient Similarity Retrieval
 
 컬링이란
 -------
