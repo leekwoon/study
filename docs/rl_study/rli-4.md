@@ -11,6 +11,8 @@ title: 4. Dynamic Programming
 
 # test
 - asd $x$ cfhg
+- $p(x|y)$
+- $p(y|x)$
 
 
 $x$
