@@ -11,3 +11,8 @@ title: 4. Dynamic Programming
 
 # test
 - $x$
+- $p(x|y)$
+- $p(y|x)|x|$
+
+$x$
+$$x$$
