@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>3. Finite Markov Decision Processes</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/rl_study/rli-3.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript"src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+  MathJax.Hub.Config({extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+  inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+  processEscapes: true
+  },
+  "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/temp"><strong>Temp</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/statistical_inference"><strong>Statistical Inference</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/unity"><strong>Unity</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/rl_study"><strong>RL</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/piano"><strong>Piano</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Reinforcement Learning: An Introduction</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/rl_study/rli-0">0. Summary of Notation</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/rl_study/rli-1">1. Introduction</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/rl_study/rli-2">2. Multi-armed Bandits</a>
+      </li>
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/rl_study/rli-3">3. Finite Markov Decision Processes</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/rl_study/rli-4">4. Dynamic Programming</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/rl_study/rli-3.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>3. Finite Markov Decision Processes</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <h1 id="finite-markov-decision-processes">Finite Markov Decision Processes</h1>
+<blockquote>
+  <ul>
+    <li><del>Here, we assume <span style="color:red">dicrite time finite</span> MDP to simplify the problem. In this case, the set of states, actions and rewards all have a finite number of elements.</del></li>
+    <li><span style="color:red">Stationary</span> assumption: the dynamics and reward do not change over time. For example, transition probability <script type="math/tex">p(s'\vert s,a)</script> and reward of transition <script type="math/tex">r(s,a,s')</script> do not depends on the time <script type="math/tex">t</script> (See below)</li>
+  </ul>
+</blockquote>
+
+<h2 id="background-of-math">Background of math</h2>
+<p><strong>Conditional Probability</strong></p>
+<ul>
+  <li>Given two events <script type="math/tex">A</script> and <script type="math/tex">B</script> with <script type="math/tex">p(B) > 0</script>, the <strong>conditional probability</strong> of <script type="math/tex">A</script> given <script type="math/tex">B</script> is</li>
+</ul>
+
+<script type="math/tex; mode=display">\mathbb{P}(A\vert B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}</script>
+
+<ul>
+  <li>Similarly, if <script type="math/tex">X</script> and <script type="math/tex">Y</script> are <u>*non-degenerate*</u><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and <u>*jointly continuous random variables*</u> with density <script type="math/tex">f_{X,Y}(x,y)</script> then if <script type="math/tex">B</script> has positive measure then the <strong>conditional probability</strong> is</li>
+</ul>
+
+<script type="math/tex; mode=display">p(X \in A \vert Y \in B)=\frac{\int_{y \in B}\int_{X \in A}f_{X,Y}(x,y)dxdy}{\int_{y \in B}\int_{X}f_{X,Y}(x,y)dxdy}</script>
+
+<p><strong>Law of total expectation</strong><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></p>
+<ul>
+  <li>if <script type="math/tex">X</script> is random variable whose expected value <script type="math/tex">\mathbb{E}(X)</script> is defined, and <script type="math/tex">Y</script> is any random variable on the same probability space, then</li>
+</ul>
+
+<script type="math/tex; mode=display">\mathbb{E}[Y]=\mathbb{E}[\mathbb{E}[Y\vert X=x]]</script>
+
+<ul>
+  <li>i.e., the expected value of the conditional expected value of <script type="math/tex">X</script> given <script type="math/tex">Y</script> is the same as the expected value of <script type="math/tex">X</script></li>
+  <li>Further more, given a function <script type="math/tex">f</script> and two random variables <script type="math/tex">X, Y</script> we have that</li>
+</ul>
+
+<script type="math/tex; mode=display">\mathbb{E}_{X,Y}[f(X,Y)]=\mathbb{E}_X[\mathbb{E}_Y[f(x,Y)\vert X=x]]</script>
+
+<p><strong>Norms</strong></p>
+<ul>
+  <li>Given a vector space <script type="math/tex">V \subseteq \mathbb{R}^d</script> a function <script type="math/tex">f:V \to \mathbb{R_0}^+</script> is a <strong>norm</strong> if and only if
+    <ul>
+      <li><span style="color:red">Definite:</span> If <script type="math/tex">f(v)=0</script> for some <script type="math/tex">v\in V</script>, then <script type="math/tex">v=0</script></li>
+      <li><span style="color:red">Absolutely scalable:</span> For any <script type="math/tex">\lambda\in \mathbb{R}, v\in V, \; f(\lambda v)=\vert\lambda \vert f(v)</script></li>
+      <li><span style="color:red">Triangle inequality:</span> For any <script type="math/tex">v,y \in V, f(v+u) \le f(v)+f(u)</script></li>
+    </ul>
+  </li>
+  <li>e.g., <script type="math/tex">L_p</script>-norm</li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert v\vert\vert_p=\left(\sum_{i=1}^d \vert v_i\vert^p \right)^{1/p}</script>
+
+<p><strong>Converge in norm</strong><sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></p>
+<ul>
+  <li>A sequence of vector <script type="math/tex">v_n\in V</script> (with <script type="math/tex">n \in \mathbb{N}</script>) is said to converge in norm <script type="math/tex">\vert\vert\cdot\vert\vert</script> to <script type="math/tex">v\in V</script> if</li>
+</ul>
+
+<script type="math/tex; mode=display">\lim_{n\to \infty}\vert\vert v_n - v\vert\vert=0</script>
+
+<p><strong>Cauchy sequence</strong></p>
+<ul>
+  <li>A sequence of vector <script type="math/tex">v_n\in V</script> (with <script type="math/tex">n \in \mathbb{N}</script>) is a <strong>Cauchy sequence</strong> if</li>
+</ul>
+
+<script type="math/tex; mode=display">\lim_{n\to \infty}\sup_{n\ge n}\vert\vert v_n-v_m\vert\vert=0</script>
+
+<ul>
+  <li>모든 converge sequence는 cachy sequence 이지만, cauchy sequence라고 항상 converge한 것은 아니다.<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup></li>
+</ul>
+
+<p><strong>Complete</strong></p>
+<ul>
+  <li>A vector space <script type="math/tex">V</script> equipped with a norm <script type="math/tex">\vert\vert\cdot\vert\vert</script> is <strong>complete</strong> if every Cauchy sequence in <script type="math/tex">V</script> is convergent in the norm of the space.</li>
+  <li>즉, 공간안의 모든 cauchy sequence가 수렴하는 극한이 여전히 그 공간안에 있을때 공간이 <strong>complete</strong> 하다고 말한다.</li>
+</ul>
+
+<p><strong>L-Lipschits (non-expansion + L-contraction)</strong></p>
+<ul>
+  <li>An operator <script type="math/tex">\mathcal{T}:V\to V</script> is <strong>L-Lipschitz</strong> if for any <script type="math/tex">v,u \in V</script></li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert\mathcal{T}v - \mathcal{T}u\vert\vert \le L\vert\vert u-v \vert\vert</script>
+
+<ul>
+  <li>If <script type="math/tex">L \le 1</script> then <script type="math/tex">\mathcal{T}</script> is <strong>non-expansion</strong>, while if <script type="math/tex">% <![CDATA[
+L<1 %]]></script> then <script type="math/tex">\mathcal{T}</script> is a <strong>L-contraction</strong></li>
+  <li>If <script type="math/tex">\mathcal{T}</script> is Lipschitz then it is also <span style="color:red">continuous</span>, that is
+    <ul>
+      <li>if <script type="math/tex">v_n \to_{\vert\vert\cdot\vert\vert}v</script> then <script type="math/tex">\mathcal{T}v_n \to_{\vert\vert\cdot\vert\vert}\mathcal{T}v</script></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Fixed point</strong></p>
+<ul>
+  <li>A vector <script type="math/tex">v\in V</script> is a <strong>fixed point</strong> of the operator <script type="math/tex">\mathcal{T}:V\to V</script> if <script type="math/tex">\mathcal{T}v=v</script></li>
+</ul>
+
+<p><strong>Banach Fixed Point Theorem</strong></p>
+<ul>
+  <li>Let <script type="math/tex">V</script> be a <span style="color:red">complete</span> vector space equipped with the norm <script type="math/tex">\vert\vert\cdot\vert\vert</script> and <script type="math/tex">\mathcal{T}:V\to V</script> be a <span style="color:red"><script type="math/tex">\gamma</script>-contraction</span> mapping. Then
+    <ol>
+      <li><script type="math/tex">\mathcal{T}</script> admits a <span style="color:red">unique fixed point</span> <script type="math/tex">v</script></li>
+      <li>For any <script type="math/tex">v_0 \in V</script>, if <script type="math/tex">v_{n+1}=\mathcal{T}v_n</script> then <script type="math/tex">v_n\to_{\vert\vert\cdot\vert\vert}v</script> with a <span style="color:red">geometric convergence rate:</span></li>
+    </ol>
+  </li>
+</ul>
+
+<script type="math/tex; mode=display">\vert\vert v_n-v\vert\vert \le \gamma^n\vert\vert v_0-v \vert\vert</script>
+
+<h2 id="mdp">MDP</h2>
+
+<p><strong>Agent Environment Model</strong>
+<img src="/study/images/rl_study/rli-1.1.PNG" alt="" class="center-block" /><sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup></p>
+<ul>
+  <li>Agent learns a way to achieve a goal by interacting with environment</li>
+  <li>Agent and environment interact at each of sequence of <span style="color:red">discrete time</span> steps, <script type="math/tex">t=0,1,2,3,...</script>
+    <ul>
+      <li>At each time step <script type="math/tex">t</script>, the agent receives some representation of the environment’s state <script type="math/tex">S_t \in \mathcal{S}</script>, and on that basis select an action <script type="math/tex">A_t \in \mathcal{A}(s)</script></li>
+      <li>One time step later, as a consequence of its action, agent receive new state <script type="math/tex">S_{t+1}</script> and reward <script type="math/tex">R_{t+1}</script></li>
+    </ul>
+  </li>
+  <li>Several properties of environment
+    <ul>
+      <li>Controllability
+        <ul>
+          <li>fully (e.g., chess)</li>
+          <li>partially (e.g., portfolio optimization)</li>
+        </ul>
+      </li>
+      <li>Uncertainty
+        <ul>
+          <li>determinisitic (e.g., chess)</li>
+          <li>stochastic (e.g., backgammon)</li>
+        </ul>
+      </li>
+      <li>Reactive
+        <ul>
+          <li>adversarial (e.g., chess)</li>
+          <li>fixed (e.g., Tetris)</li>
+        </ul>
+      </li>
+      <li>Observavility
+        <ul>
+          <li>full (e.g., chess)</li>
+          <li>partial (e.g., robotics)</li>
+        </ul>
+      </li>
+      <li>Availability
+        <ul>
+          <li>known (e.g., chess)</li>
+          <li>unknown (e.g., robotics)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>When agent can directly observes environment state, formally, this is a MDP</li>
+  <li>When agent indirectly observes environment state, formally, this is a PO-MDP (Partially observable Markov decision process)</li>
+</ul>
+
+<p><strong>Markov Chain (=Markov process/memory-less random process)</strong></p>
+<ul>
+  <li>Let the state space <script type="math/tex">\mathcal{S}</script> be a bounded compact<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup> subset of the Euclidean space, the discrete-time dynamic system <script type="math/tex">{(s)}_{t\in \mathbb{N}} \in S</script> is a <strong>Markov chain</strong> if it satisfies the <strong>Markov property</strong></li>
+</ul>
+
+<script type="math/tex; mode=display">\mathbb{P}({s_{t+1}=s'}\vert{s_t, s_{t-1}, ..., s_0})=\mathbb{P}({s_{t+1}=s'}\vert{s_t})</script>
+
+<ul>
+  <li>Given an initial state <script type="math/tex">s_0\in \mathcal{S}</script>, a Markov chain is defined by the trainsition probability <script type="math/tex">p</script></li>
+</ul>
+
+<script type="math/tex; mode=display">p({s'}\vert{s})=\mathbb{P}({s_{t+1}=s'}\vert{s_t=s})</script>
+
+<ul>
+  <li>Given that we start in state <script type="math/tex">s_i</script>, let <script type="math/tex">T_i</script> be the first return time to state <script type="math/tex">s_i</script> (<strong>hitting time</strong>)</li>
+</ul>
+
+<script type="math/tex; mode=display">T_i = \inf\{n\ge 1: s_n=i \vert s_0=i\}</script>
+
+<ul>
+  <li>and <strong>mean recurrence time</strong> is</li>
+</ul>
+
+<script type="math/tex; mode=display">M_i=E[T_i]</script>
+
+<ul>
+  <li>the state <script type="math/tex">s_i</script> is
+    <ul>
+      <li>transient: if <script type="math/tex">% <![CDATA[
+\mathbb{P}(T_i < \infty) < 1 %]]></script>
+        <ul>
+          <li>There is non-zero probability that we will never return to <script type="math/tex">s_i</script></li>
+        </ul>
+      </li>
+      <li>recurrent: not transient
+        <ul>
+          <li>positive recurrent: <script type="math/tex">M_i</script> is <strong>finite</strong>
+            <ul>
+              <li>must return to <script type="math/tex">s_i</script> in <strong>finite</strong> time</li>
+            </ul>
+          </li>
+          <li>null recurrent: <script type="math/tex">M_i</script> is infinite</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Markov decision process</strong></p>
+<ul>
+  <li>Classical(+mathematical) formalization of sequentail decision making, where a actions influence not just immediate rewards, but also subsequent states and future rewards</li>
+  <li>Straightforward framing of the problem of learning from interaction to achieve a goal</li>
+  <li>A <strong>Markov decision process</strong> is defined as a tuple (<script type="math/tex">\mathcal{S},\mathcal{A},p,r,\gamma</script>)
+    <ul>
+      <li><script type="math/tex">\mathcal{S}</script> is a set of states</li>
+      <li><script type="math/tex">\mathcal{A}</script> is a set of actions</li>
+      <li><script type="math/tex">p</script> is a state transition probability with <script type="math/tex">p({s'}\vert{s,a})=\mathbb{P}({s_{t+1}=s'}\vert{s_t=s, a_t=a})</script></li>
+      <li><script type="math/tex">r</script> is a reward of transition with <script type="math/tex">r(s,a,s')=\mathbb{E}[{R_t}\vert{S_{t-1}=s, A_{t-1}=a,S_t=s'}]</script></li>
+      <li><script type="math/tex">\gamma</script> is a discount factor, <script type="math/tex">\gamma \in [0,1)</script>
+<!-- - Furthermore, $$r(s,a)=\sum_{s'\in \mathcal{S}}r(s,a,s')p({s'}\vert{s,a})$$ --></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Return</strong></p>
+<ul>
+  <li>The <strong>return</strong> <script type="math/tex">G_t</script> is total discounted reward from time-step <script type="math/tex">t</script></li>
+</ul>
+
+<script type="math/tex; mode=display">G_t=R_{t+1}+\gamma R_{t+2}+...=\sum_{k=0}^{\infty}\gamma^k R_{t+k+1}</script>
+
+<p><strong>Policy</strong></p>
+<ul>
+  <li>A <strong>policy</strong> <script type="math/tex">\pi</script> is a distribution over actions given states</li>
+</ul>
+
+<script type="math/tex; mode=display">\pi(a\vert s)=\mathbb{P}[{A_t=a}\vert{S_t=s}]</script>
+
+<ul>
+  <li>If policy is <u>Deterministic</u> <script type="math/tex">\pi_t(s)=a</script></li>
+  <li>If policy is <u>Stationary</u> <script type="math/tex">\pi_t=\pi</script></li>
+</ul>
+
+<p><strong>State-Value</strong></p>
+<ul>
+  <li>The <strong>state-value</strong> function <script type="math/tex">v_{\pi}(s)</script> of an MDP is the <u>expected return</u> starting from state <script type="math/tex">s</script>, and then following policy <script type="math/tex">\pi</script></li>
+</ul>
+
+<script type="math/tex; mode=display">v_{\pi}(s)=\mathbb{E}_{\pi}[G_t \vert S_t=s]</script>
+
+<ul>
+  <li>and, formally (for infinite time horizon with discount)</li>
+</ul>
+
+<script type="math/tex; mode=display">v_{\pi}(s)=\mathbb{E}_{\pi}\left[ \sum_{k=0}^{\infty}\gamma^{k}R_{t+k+1} \right]</script>
+
+<p><strong>Action-value</strong></p>
+<ul>
+  <li>The <strong>action-value</strong> function <script type="math/tex">q_{\pi}(s, a)</script> is the <u>expected return</u> starting from state <script type="math/tex">s</script>, <span style="color:red">taking action <script type="math/tex">a</script>, and then following policy <script type="math/tex">\pi</script></span></li>
+</ul>
+
+<script type="math/tex; mode=display">q_{\pi}(s, a)=\mathbb{E}_{\pi}\left[ G_t \vert S_t=s, \color{red}{A_t=a} \right]</script>
+
+<p><strong>Optimal policy and Optimal value function</strong></p>
+<ul>
+  <li>The solution to an MDP is an <strong>optimal policy</strong> <script type="math/tex">\pi^{\star}</script> satisfying</li>
+</ul>
+
+<script type="math/tex; mode=display">\pi^{\star} \in arg\max_{\pi \in \Pi}V^{\pi}</script>
+
+<ul>
+  <li>in all the states <script type="math/tex">s\in \mathcal{S}</script>, where <script type="math/tex">\Pi</script> is some policy set of interest.
+    <ul>
+      <li>there can be <u>more than one</u> optimal policy</li>
+      <li>there always exists an optimal <u>deterministic</u> policy</li>
+    </ul>
+  </li>
+  <li>The corresponding value function is the <strong>optimal value function</strong></li>
+</ul>
+
+<script type="math/tex; mode=display">V^{\star}=V^{\pi^{\star}}</script>
+
+<h2 id="bellman-equation">Bellman Equation</h2>
+<ul>
+  <li>Here, we assume <u>stationary</u> policy</li>
+</ul>
+
+<p><strong>(1-step backup diagram)</strong> for <script type="math/tex">v_{\pi}(s)</script>
+<img src="/study/images/rl_study/rli-3.1.PNG" alt="" class="center-block" /></p>
+
+<script type="math/tex; mode=display">v_{\pi}(s)=\sum_{a}\pi(a\vert s)q_{\pi}(s, a)</script>
+
+<p><strong>(1-step backup diagram)</strong> for <script type="math/tex">q_{\pi}(s, a)</script>
+<img src="/study/images/rl_study/rli-3.2.PNG" alt="" class="center-block" /></p>
+
+<script type="math/tex; mode=display">q_{\pi}(s, a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]</script>
+
+<p><strong>(2-step backup diagram)</strong> for <script type="math/tex">v_{\pi}(s)</script>
+<img src="/study/images/rl_study/rli-3.3.PNG" alt="" class="center-block" /></p>
+
+<script type="math/tex; mode=display">v_{\pi}(s)=\sum_{a}\pi(a\vert s)\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]</script>
+
+<p><strong>(2-step backup diagram)</strong> for <script type="math/tex">q_{\pi}(s, a)</script>
+<img src="/study/images/rl_study/rli-3.4.PNG" alt="" class="center-block" /></p>
+
+<script type="math/tex; mode=display">q_{\pi}(s, a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma \sum_{a'}\pi(a'\vert s')q_{\pi}(s', a')\right]</script>
+
+<p><strong>Optimal Value Function</strong></p>
+<ul>
+  <li>The <strong>optimal state-value</strong> function v_{\star}(s) is the maximum value function over all polices</li>
+</ul>
+
+<script type="math/tex; mode=display">v_{\star}=\max_{\pi}v_{\pi}(s)=\max_{\color{red}{a}}\sum_{a}\pi(a\vert s)\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]</script>
+
+<script type="math/tex; mode=display">=\max_{\color{red}{a}}\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma v_{\pi}(s')\right]</script>
+
+<p>The <strong>optimal action-value</strong> function <script type="math/tex">q_{\star}(s,a)</script> is the maximum action-value function over all polices</p>
+
+<script type="math/tex; mode=display">q_{\star}(s,a)=\max_{\pi}q_{\pi}(s,a)=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma\max_{\color{red}{a'}}\sum_{a'}\pi(a'\vert s')q_{\pi}(s', a')\right]</script>
+
+<script type="math/tex; mode=display">=\sum_{s'}p(s'\vert s,a)\left[r(s,a,s')+\gamma\max_{\color{red}{a'}}\sum_{a'}q_{\pi}(s', a')\right]</script>
+
+<h2 id="references">References</h2>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><script type="math/tex">X</script> is degenerate if, for some <script type="math/tex">a \in \mathbb{R}, p(X=a)=1</script>. A random variable that is not degenerate is called non-degenerate. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>See <a href="https://en.wikipedia.org/wiki/Law_of_total_expectation#Proof_in_the_general_case">proof</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>See <a href="https://www.slideshare.net/ssuser7e10e4/wasserstein-gan-i">Wasserstein GAN 수학 이해하기 I </a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>For example, <script type="math/tex">a_n=(1+\frac{1}{n})^n</script> is a sequence of rationals, but its limit <script type="math/tex">e</script> is not rational <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p><a href="https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079">https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079</a> <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>The meaning of compact is same as colsed and bounded <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

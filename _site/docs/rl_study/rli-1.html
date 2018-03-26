@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>1. Introduction</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/rl_study/rli-1.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript"src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+  MathJax.Hub.Config({extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+  inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+  processEscapes: true
+  },
+  "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/temp"><strong>Temp</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/statistical_inference"><strong>Statistical Inference</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/unity"><strong>Unity</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/rl_study"><strong>RL</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/piano"><strong>Piano</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Reinforcement Learning: An Introduction</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/rl_study/rli-0">0. Summary of Notation</a>
+      </li>
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/rl_study/rli-1">1. Introduction</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/rl_study/rli-2">2. Multi-armed Bandits</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/rl_study/rli-3">3. Finite Markov Decision Processes</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/rl_study/rli-4">4. Dynamic Programming</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/rl_study/rli-1.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>1. Introduction</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <h1 id="introduction">Introduction</h1>
+
+<h2 id="reinforcement-learning">Reinforcement Learning</h2>
+
+<p><img src="/study/images/rl_study/rli-1.1.PNG" alt="" class="center-block" /><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+
+<ul>
+  <li>Reinforcement Learning (RL) is learning <strong>how to map situations to actions</strong> to maximize cumulative reward through interaction between agents and environment</li>
+  <li>Two main characteristics are
+    <ul>
+      <li>Traial-and-error search
+        <ul>
+          <li>Learner is not told which actions to take, but instead must discover which actions yield the most reward by trying them</li>
+        </ul>
+      </li>
+      <li>Delayed reward
+        <ul>
+          <li>Since actions may affect subsequent rewards</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="examples">Examples</h2>
+<p><img src="/study/images/rl_study/rli-1.2.PNG" alt="" class="center-block" /><sup id="fnref:1:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+
+<h2 id="elements-of-reinforcement-learning-system">Elements of Reinforcement Learning System</h2>
+
+<ol>
+  <li>Policy: defines the learning agent’s way of behaving at a given time. (perceived states of the environment to actions to be taken when in those states)</li>
+  <li>Reward: defines the goal in a reinforcement learning problem. The agent’s objective is to maximize the total reward at the end. Thus, It defines what are good and bad events for the agent.</li>
+  <li>Value function: specifies what is good state in the long run (in terms of the total amount of reward at the end).</li>
+  <li>model (of environment): mimics the behavior of the environment which allows inferences to be made about hot the environment will behave. For example, given a state and action, the model might predict the next state and next reward.</li>
+</ol>
+
+<h2 id="the-problems-in-reinforcement-learning">The Problems in Reinforcement Learning</h2>
+<ul>
+  <li>How to <strong>model</strong> an RL problem</li>
+  <li>How to <strong>solve</strong>
+    <ul>
+      <li><span style="color:red">exactly</span> an RL problem</li>
+      <li><span style="color:red">incrementally</span> an RL problem</li>
+      <li><span style="color:red">approximately</span> an RL problem</li>
+    </ul>
+  </li>
+  <li>How to <span style="color:red">efficiently</span> <strong>explore</strong> in an RL problem</li>
+</ul>
+
+<h2 id="references">References</h2>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079">https://www.slideshare.net/carpedm20/reinforcement-learning-an-introduction-64037079</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+  </ol>
+</div>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

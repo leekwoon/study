@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>OpenAI gym 슈퍼마리오 강화학습 (2017-12-06)</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/temp/mario-rl.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript"src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+  MathJax.Hub.Config({extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+  inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+  processEscapes: true
+  },
+  "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/temp"><strong>Temp</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/statistical_inference"><strong>Statistical Inference</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/unity"><strong>Unity</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/rl_study"><strong>RL</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/piano"><strong>Piano</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>이것저것</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/temp/github">Github 명령어 (2017-12-04)</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/temp/lab_safety">연구실 안전교육 (2018-03-26)</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/temp/mario-install">OpenAI gym 슈퍼마리오 (2017-12-04)</a>
+      </li>
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/temp/mario-rl">OpenAI gym 슈퍼마리오 강화학습 (2017-12-06)</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/temp/mario-rl.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>OpenAI gym 슈퍼마리오 강화학습 (2017-12-06)</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <h1 id="openai-gym--">OpenAI gym 슈퍼마리오 강화학습</h1>
+
+<h2 id="section">설치</h2>
+<ul>
+  <li>(참고자료)
+    <ul>
+      <li>https://brunch.co.kr/@kakao-it/144</li>
+      <li>https://brunch.co.kr/@kakao-it/161</li>
+    </ul>
+  </li>
+  <li>이미지 처리를 위한 opencv-python 패키지 설치 필요</li>
+  <li>우선 다음과 같은 명령어로 설치해보자.
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">(tensorflow)$ </span>pip install opencv-python
+</code></pre>
+    </div>
+  </li>
+  <li>만약 python 3.n 버전에서 위와같은 방법으로 설치가 되지 않으면 <a href="https://stackoverflow.com/questions/37188623/ubuntu-how-to-install-opencv-for-python3">아래방법</a>으로 설치.</li>
+  <li>주의할 점은 opencv와 contrib 버전이 동일해야 한다.
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="c"># Build and install OpenCV 3.0 with Python 3.4+ bindings</span>
+<span class="gp">(tensorflow)$ </span><span class="nb">cd</span>
+<span class="gp">(tensorflow)$ </span>git clone https://github.com/Itseez/opencv.git
+<span class="gp">(tensorflow)$ </span><span class="nb">cd </span>opencv
+<span class="gp">(tensorflow)$ </span>git checkout 3.0.0 <span class="c"># 버전 맞추기</span>
+<span class="gp">(tensorflow)$ </span><span class="nb">cd</span> ~
+<span class="gp">(tensorflow)$ </span>git clone https://github.com/Itseez/opencv_contrib.git
+<span class="gp">(tensorflow)$ </span><span class="nb">cd </span>opencv_contrib
+<span class="gp">(tensorflow)$ </span>git checkout 3.0.0 <span class="c"># 버전 맞추기</span>
+<span class="gp">(tensorflow)$ </span><span class="nb">cd</span> ~/opencv
+<span class="gp">(tensorflow)$ </span>mkdir build
+<span class="gp">(tensorflow)$ </span><span class="nb">cd </span>build
+<span class="gp">(tensorflow)$ </span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE <span class="se">\</span>
+  -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local <span class="se">\</span>
+  -D <span class="nv">INSTALL_C_EXAMPLES</span><span class="o">=</span>ON <span class="se">\</span>
+  -D <span class="nv">INSTALL_PYTHON_EXAMPLES</span><span class="o">=</span>ON <span class="se">\</span>
+  -D <span class="nv">OPENCV_EXTRA_MODULES_PATH</span><span class="o">=</span>~/opencv_contrib/modules <span class="se">\</span>
+  -D <span class="nv">BUILD_EXAMPLES</span><span class="o">=</span>ON ..   <span class="c"># Time to setup the build</span>
+<span class="gp">(tensorflow)$ </span>make -j4 <span class="c"># start OpenCV compile process</span>
+<span class="gp">(tensorflow)$ </span>sudo make install <span class="c"># 설치 마무리</span>
+<span class="gp">(tensorflow)$ </span>sudo ldconfig <span class="c"># 설치 마무리</span>
+</code></pre>
+    </div>
+  </li>
+  <li>virtual environment 에서 opencv 3.0 을 사용하기 위하여 sym-link 필요
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="c"># Sym-link OpenCV 3.0</span>
+<span class="gp">(tensorflow)$ </span><span class="nb">cd</span> ~/tensorflow/lib/python3.5/site-packages/
+<span class="gp">(tensorflow)$ </span>ln -s /usr/local/lib/python3.5/site-packages/cv2.cpython-35m-x86_64-linux-gnu.so cv2.so
+</code></pre>
+    </div>
+  </li>
+  <li>OpenAI의 baseline 설치 (최신 빌드를 설치하기 위해 아래 명령어 이용)
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">(tensorflow)~$ </span>pip install git+https://github.com/openai/baselines
+</code></pre>
+    </div>
+  </li>
+  <li>슈퍼마리오 강화학습 예제 프로젝트를 클론(clone)하자.
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">(tensorflow)~$ </span>git clone https://github.com/chris-chris/mario-rl-tutorial
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>

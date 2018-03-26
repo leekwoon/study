@@ -4,13 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>kyo-study 사이트 개설</title>
+  <title>study 사이트 개설</title>
   <link rel="stylesheet" href="/study/css/main.css">
   <link rel="stylesheet" href="/study/css/font-awesome.min.css">
   <link rel="canonical" href="http://leekwoon.github.io/study/2016/08/31/open.html">
-  <script src="/study/js/jquery-1.12.0.min.js"></script>    
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="/study/js/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript"src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+  MathJax.Hub.Config({extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+  inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+  processEscapes: true
+  },
+  "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
   <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
 </head>
 
@@ -34,7 +43,31 @@
           
             
             <li  class="active" >
-              <a href="/study/categories/ml_study"><strong>Machine Learning</strong></a>
+              <a href="/study/categories/temp"><strong>Temp</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li  class="active" >
+              <a href="/study/categories/statistical_inference"><strong>Statistical Inference</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li  class="active" >
+              <a href="/study/categories/unity"><strong>Unity</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li  class="active" >
+              <a href="/study/categories/rl_study"><strong>RL</strong></a>
             </li>
             
                       
@@ -43,14 +76,6 @@
             
             <li  class="active" >
               <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
-            </li>
-            
-                      
-          
-          
-            
-            <li  class="active" >
-              <a href="/study/categories/paper_study"><strong>Review Of Papers</strong></a>
             </li>
             
                       
@@ -81,7 +106,7 @@
     <div class="container">
       <header>
   <div>
-    <h1>kyo-study 사이트 개설</h1>
+    <h1>study 사이트 개설</h1>
     <p><span class="post-date">Aug 31, 2016</span></p>
   </div>
 </header>

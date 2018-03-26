@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>OpenAI gym 슈퍼마리오 (2017-12-04)</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/temp/mario-install.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript"src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+  MathJax.Hub.Config({extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+  inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+  processEscapes: true
+  },
+  "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/temp"><strong>Temp</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/statistical_inference"><strong>Statistical Inference</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/unity"><strong>Unity</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/rl_study"><strong>RL</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/piano"><strong>Piano</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>이것저것</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/temp/github">Github 명령어 (2017-12-04)</a>
+      </li>
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/temp/lab_safety">연구실 안전교육 (2018-03-26)</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/temp/mario-install">OpenAI gym 슈퍼마리오 (2017-12-04)</a>
+      </li>
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/temp/mario-rl">OpenAI gym 슈퍼마리오 강화학습 (2017-12-06)</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/temp/mario-install.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>OpenAI gym 슈퍼마리오 (2017-12-04)</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <h1 id="openai-gym-">OpenAI gym 슈퍼마리오</h1>
+
+<h2 id="section">윈도우 환경 실행환경 설정</h2>
+<ul>
+  <li>(리눅스 환경에선 쉽지만…) openAI gym을 윈도우에서 이용하려면 우선, 윈도우용 우분투 앱 설치. (windows 10 기준)</li>
+  <li>(참고자료)
+    <ol>
+      <li>http://jinman190.blogspot.ca/2017/10/openai-gym.html</li>
+      <li>http://prolite.tistory.com/830</li>
+    </ol>
+  </li>
+  <li>참고로, 우분투 앱 상에서는 C 드라이브 위치는
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd</span> /mnt/c
+</code></pre>
+    </div>
+  </li>
+  <li>서브시스템 리눅스에 가상환경, tensorflow 설치 (for python 3.n)
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo apt-get install python3-pip python3-dev python3-tk python-virtualenv
+<span class="gp">$ </span>virtualenv --system-site-packages -p python3 ~/tensorflow
+<span class="gp">$ </span><span class="nb">source</span> ~/tensorflow/bin/activate
+<span class="gp">(tensorflow)$ </span>pip3 install --upgrade tensorflow
+</code></pre>
+    </div>
+  </li>
+  <li>openAI gym 설치 (for python 3.n)
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">(tensorflow)$ </span>sudo apt-get install -y cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python3-opengl libboost-all-dev libsdl2-dev swig
+<span class="gp">(tensorflow)$ </span>pip install gym
+</code></pre>
+    </div>
+  </li>
+  <li>서브시스템 리눅스 환경에서 실행한 코드를 윈도우 상에서 visualize 하기 위하여 윈도우10에서 xming을 설치하고 실행한다.</li>
+  <li>리눅스 환경에서 다음명령어 실행.
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">(tensorflow)$ </span><span class="nb">export </span><span class="nv">DISPLAY</span><span class="o">=</span>:0
+</code></pre>
+    </div>
+  </li>
+  <li>이때 굳이 visualize 할 필요가 없다면
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">(tensorflow)$ </span><span class="nb">export </span><span class="nv">DISPLAY</span><span class="o">=</span>:99
+</code></pre>
+    </div>
+  </li>
+  <li>지금까지 과정을 성공적으로 맞췄다면 아래 python 코드를 리눅스 환경에서 실행했을때, 간단한 게임 실행창을 볼 수 있을 것이다..
+    <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">gym</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s">'CartPole-v0'</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+  <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+  <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span> <span class="c"># take a random action</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h2 id="in-openai-gym">슈퍼마리오 in OpenAI gym</h2>
+<ul>
+  <li>먼저 게임 에뮬레이터 fceux를 설치한다.
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo apt-get install fceux
+</code></pre>
+    </div>
+  </li>
+  <li>슈퍼마리오의 다양한 난이도가 들어있는 gym-super-mario 패키지 설치
+    <div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="gp">(tensorflow)$ </span>pip install git+https://github.com/chris-chris/gym-super-mario
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>
