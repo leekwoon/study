@@ -1,6 +1,8 @@
 topnav:
   - title: Temp
     url: /categories/temp
+  - title: Statistical Inference
+    url: /categories/statistical_inference
   - title: Unity
     url: /categories/unity
   - title: RL
