@@ -3,19 +3,21 @@ topnav:
     url: /categories/temp
   - title: Statistical Inference
     url: /categories/statistical_inference
-  - title: Unity
-    url: /categories/unity
+ # - title: Unity
+ #   url: /categories/unity
   - title: RL
     url: /categories/rl_study
+  - title: English
+    url: /categories/english  
  # - title: Machine Learning
  #   url: /categories/ml_study
-  - title: Optimization
-    url: /categories/opt_study
+ # - title: Optimization
+ #   url: /categories/opt_study
  # - title: Review Of Papers
  #   url: /categories/paper_study
-  - title: Web Study
-    url: /categories/web_study
-  - title: Piano
-    url: /categories/piano
+ # - title: Web Study
+ #   url: /categories/web_study
+ # - title: Piano
+ #   url: /categories/piano
 
 
