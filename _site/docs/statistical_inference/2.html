@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>2. Frequentist Inference (2018-03-26)</title>
+  <link rel="stylesheet" href="/study/css/main.css">
+  <link rel="stylesheet" href="/study/css/font-awesome.min.css">
+  <link rel="canonical" href="http://leekwoon.github.io/study/docs/statistical_inference/2.html">
+  <script src="/study/js/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript"src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+  MathJax.Hub.Config({extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+  inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+  processEscapes: true
+  },
+  "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <link rel="shortcut icon" href="/study/images/favicon.png" type="image/x-icon">
+</head>
+
+  <body>
+    <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/study/"><strong>study</strong></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+          
+
+          
+          
+            
+            <li >
+              <a href="/study/categories/temp"><strong>Temp</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/statistical_inference"><strong>Statistical Inference</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/unity"><strong>Unity</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/rl_study"><strong>RL</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/opt_study"><strong>Optimization</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/web_study"><strong>Web Study</strong></a>
+            </li>
+            
+                      
+          
+          
+            
+            <li >
+              <a href="/study/categories/piano"><strong>Piano</strong></a>
+            </li>
+            
+                      
+          
+	      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <div class="container">
+      <div class="row">
+  <div class="col-sm-3">
+    <h2>Part 1. Classic Statistical Inference</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/statistical_inference/1">1. Algorithms and Inference (2018-03-26)</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class="active " >
+        <a href="/study/docs/statistical_inference/2">2. Frequentist Inference (2018-03-26)</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class=" " >
+        <a href="/study/docs/statistical_inference/3">3. Bayesian Inference (2018-03-27)</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <div class="col-sm-9">
+    
+    <div class="navbar-right">
+      <a target="_blank" href="http://github.com/leekwoon/study/blob/gh-pages/docs/statistical_inference/2.md">
+        <button type="button" class="btn btn-default"><i class="fa fa-github">&nbsp;Edit</i></button>
+      </a>
+    </div>
+    
+
+    <header>
+      <h1>2. Frequentist Inference (2018-03-26)</h1>
+    </header>
+    <hr class="title">
+    <article>
+      <h1 id="frequentist-inference">Frequentist Inference</h1>
+
+<p>At the beginning in 1900, there was the calculator age before the computer age. At that time, the theory relied almost entirely on frequentist inferential ideas.</p>
+
+<p>Statistical inference usually begins with the assumption that some probability
+model has produced the observed data $x=(x_1, …, x_n)$.</p>
+
+<ul>
+  <li>$F$: underlying distribution</li>
+  <li>$X$: theoretical sample, $n$ independent draws from $F$, $F \to X$</li>
+  <li>$x$: realization of $X$ which has been observed.</li>
+  <li>$\theta=E_{F}{X}$: the property of $F$ we are interested in</li>
+  <li>$\hat{\Theta}=t(X)$: the estimator of $\theta$</li>
+  <li>$\hat{\theta}=t(x)$: a realization of $\hat{\Theta}$</li>
+  <li>$t(x)$: known algorithm for estimator</li>
+</ul>
+
+<p>Suppose the desired property is the <em>expectation</em> of a single random draw
+$X$ from $F$ , denoted</p>
+
+<script type="math/tex; mode=display">\theta = E_{F}\{X\}</script>
+
+<p>We have chosen $t(X)$, we hope, to make $\hat{\Theta}$ a good estimator of $\theta$, the desired property of $F$.</p>
+
+<script type="math/tex; mode=display">\hat{\Theta}=t(X)</script>
+
+<p>Let $\mu$ be the expectation of <script type="math/tex">\hat{\Theta}=t(X)</script> under $F \to X$. Then</p>
+
+<ul>
+  <li>bias = $\mu - \theta$</li>
+  <li>var = $E_{F}{(\hat{\Theta} - \mu)^2}$</li>
+</ul>
+
+<h2 id="frequentism-in-practice">Frequentism in Practice</h2>
+
+<p>Frequentism has an obvious defect: it requires aclculating the properties of estimators $\hat{\Theta}=t(X)$ obtained from the true distribution $F$, even though $F$ is unknown. Practical frequentism uses a collection of more or less ingenious devices to circumvent the defect.</p>
+
+<p><strong>1. The plug-in principle.</strong> The related example is the <em>standard error</em> of <em>mean</em> $\bar{X}=\sum X_i / n$: $se(\bar{X}) = [var_{F}(X)/n]^{1/2}$. We can estimate $var_{F}(X)$ without bias by sample variance $\hat{var}_F=\sum(x_i-\bar{x})^2 / (n-1)$. In other words, the frequentist accuracy estimate for $\bar{x}$ is itself estimated from the observed data.</p>
+
+<p><strong>2. Taylor-series approximations.</strong> For example, statistics $\hat{\theta}=t(x)$ can be more complicated than <em>mean</em> $\bar{x}$. One way is to use local linear approximations, <strong>delta method</strong>.</p>
+
+<p>The delta method uses a first-order Taylor series to approximate the variance of a function $s(\hat{\theta})$ of a statistic $\hat{\theta}$. Suppose $\hat{\theta}$ has mean/variance $(\theta, \sigma^2)$, and consider the approximation $s(\hat{\theta}) \approx s(\theta)+s’(\theta)(\hat{\theta}-\theta)$. Then, $var[s(\hat{\theta})]\approx var[s(\theta)+s’(\theta)\hat{\theta}-s’(\theta)\theta]=\vert s’(\theta)\vert^2 \sigma^2$.</p>
+
+<p>For example, we can compute the <em>standard error</em> of <em>mean square</em> $\bar{x}^2$ using delta method. Let $s(\hat{\theta})=\hat{\theta}^2$, $\hat{\theta}=\bar{x}^2$. Then, $var[s(\hat{\theta})]=\vert s’(\theta)\vert^2 \sigma^2=\vert 2\hat{\theta}\vert^2 \hat{se}^2$ … (by using the definition of $se$). Finally, $se(s(\hat{\theta}))=2\theta\hat{se}$ and $se(\bar{x}^2) \doteq 2\vert\bar{x}\vert\hat{se}$</p>
+
+<p><strong>3. Parametric families and maximum likelihood theory.</strong> Theoretical expressions for the standard error of a maximum likelihood estimate (MLE) are discussed in Chapters 4 and 5.</p>
+
+<p><strong>4. Simulation and the bootsrap.</strong> Thanks for the modern computation technology, we can implement semi-infinite sequence of trials. Estimator is no need to be smoothly defined function.</p>
+
+<p><strong>5. Pivotal statistics.</strong> A pivotal statistic $\hat{\theta}=t(x)$ is one whose distribution does not depend upon the underlying probability distribution $F$. The one example is Student’s two-sample t-test.</p>
+
+<p>In a two-sample problem the statistician observes two sets of numbers,</p>
+
+<script type="math/tex; mode=display">x_1=(x_{11}, x_{12}, ..., x_{1n_{1}}), x_2 = (x_{21}, x_{22}, ..., x_{2n_{2}})</script>
+
+<p>It is <strong>assumed</strong> that the underlying probability distribution $F_1$ and $F_2$ is normal. Under null hypothesis $H_0$ ($x_1, x_2$ come from the same distribution), two-sample t-statistic $t=\frac{\bar{x}_1-\bar{x}_2}{\hat{sd}}$ where $\hat{sd}=\hat{\sigma}(\frac{1}{n_1}+\frac{1}{n_2})^{1/2}$ follows Student’s t distribution with $n_1+n_2-2$ degree of freedom. This statistics is used to test the null hypothesis.</p>
+
+<h2 id="frequentist-optimility">Frequentist Optimility</h2>
+
+<p>The <em>frequentist optimality</em> is finiding the best choice of $t(x)$ given model $F$. For example,</p>
+
+<ul>
+  <li>the MLE is the optimum estimate in terms of minimum (asymtotic) standard error.</li>
+  <li>Neyman-Pearson lemma provides an optimum hypothesis-testing algorithm.</li>
+</ul>
+
+
+    </article>
+  </div>
+</div>
+
+    </div>
+    <div class="container">    
+      <footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 text-left">
+      <a href="http://github.com/leekwoon/study" target="_blank">
+        <p><i class="fa fa-github fa-lg">&nbsp;</i>Github</p>
+      </a>
+    </div>
+    <div class="col-xs-6 text-right">
+      <a href="http://github.com/leekwoon" target="_blank"><i class="fa fa fa-user">&nbsp;&nbsp;Who am I</i></a>
+    </div>
+  </div>
+</footer>
+
+
+    </div>      
+  </body>
+</html>
